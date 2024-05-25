@@ -43,6 +43,7 @@ func (c CharacterMockRepository) Update(_ context.Context, id string, in reposit
 	if in.HitPoints != nil {
 		character.HitPoints = *in.HitPoints
 	}
+	c.characters[id] = character
 
 	return &character, nil
 }

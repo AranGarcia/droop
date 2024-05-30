@@ -7,7 +7,10 @@ import (
 	"github.com/AranGarcia/droop/internal"
 )
 
-var addr string
+var (
+	// addr is the address (HOST:PORT) where the server will run.
+	addr string
+)
 
 func init() {
 	flag.StringVar(&addr, "addr", ":8080", "the server address (host and port)")

@@ -13,7 +13,7 @@ func NewServer(addr string) *Server {
 	s := &Server{
 		addr: addr,
 	}
-
+	s.setupRoutes()
 	return s
 }
 

@@ -9,13 +9,15 @@ import (
 type Server struct {
 	addr string
 	mux  *http.ServeMux
+	repo *CharacterRepository
 }
 
 // NewServer initializes a server with the URI routes added with their handlers.s
-func NewServer(addr string) *Server {
+func NewServer(addr string, repo *CharacterRepository) *Server {
 	s := &Server{
 		addr: addr,
 		mux:  http.NewServeMux(),
+		repo: repo,
 	}
 	s.setupRoutes()
 	return s

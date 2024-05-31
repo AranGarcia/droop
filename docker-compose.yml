@@ -1,0 +1,6 @@
+services:
+  mongodb:
+    image: 'mongo:8.0-rc-jammy'
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: root

@@ -5,11 +5,13 @@ import (
 	"net/http"
 )
 
+// Server is an HTTP server.
 type Server struct {
 	addr string
 	mux  *http.ServeMux
 }
 
+// NewServer initializes a server with the URI routes added with their handlers.s
 func NewServer(addr string) *Server {
 	s := &Server{
 		addr: addr,
@@ -19,11 +21,13 @@ func NewServer(addr string) *Server {
 	return s
 }
 
+// Run the server.
 func (s *Server) Run() error {
-	handler := loggingMiddleware(jsonMiddlewhare(s.mux))
+	handler := loggingMiddleware(jsonMiddleware(s.mux))
 	return http.ListenAndServe(s.addr, handler)
 }
 
+// loggingMiddleware logs all server requests.
 func loggingMiddleware(next http.Handler) http.Handler {
 	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		log.Printf("%s %s", r.Method, r.URL)
@@ -32,7 +36,8 @@ func loggingMiddleware(next http.Handler) http.Handler {
 	})
 }
 
-func jsonMiddlewhare(next http.Handler) http.Handler {
+// jsonMiddleware manages all requests with the header Content-Type set as application/json.
+func jsonMiddleware(next http.Handler) http.Handler {
 	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		w.Header().Add("Content-Type", "application/json")
 		next.ServeHTTP(w, r)

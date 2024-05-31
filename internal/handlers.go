@@ -1,6 +1,7 @@
 package internal
 
 import (
+	"encoding/json"
 	"log"
 	"net/http"
 )
@@ -9,8 +10,16 @@ func postCharacter(_ http.ResponseWriter, _ *http.Request) {
 	log.Println("Creating character")
 }
 
-func getCharacter(_ http.ResponseWriter, _ *http.Request) {
-	log.Println("Retrieving character")
+// getCharacter is a GET endpoint for the Character resource.
+func getCharacter(w http.ResponseWriter, r *http.Request) {
+	character := Character{}
+	responseBody, err := json.Marshal(character)
+	if err != nil {
+		w.WriteHeader(http.StatusInternalServerError)
+		return
+	}
+	w.WriteHeader(http.StatusOK)
+	w.Write(responseBody)
 }
 
 func listCharacters(_ http.ResponseWriter, _ *http.Request) {

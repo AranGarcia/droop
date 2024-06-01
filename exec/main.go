@@ -35,8 +35,9 @@ func main() {
 	if err != nil {
 		log.Fatalf("failed to start mongo client:", err)
 	}
+	handler := internal.NewHandler(repository)
 	log.Println("running the server...")
-	httpServer := internal.NewServer(addr, repository)
+	httpServer := internal.NewServer(addr, handler)
 	if err := httpServer.Run(); err != nil {
 		log.Fatalf("Failed to run; %v", err)
 	}

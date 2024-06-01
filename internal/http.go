@@ -7,17 +7,17 @@ import (
 
 // Server is an HTTP server.
 type Server struct {
-	addr string
-	mux  *http.ServeMux
-	repo *CharacterRepository
+	addr    string
+	mux     *http.ServeMux
+	handler *Handler
 }
 
 // NewServer initializes a server with the URI routes added with their handlers.s
-func NewServer(addr string, repo *CharacterRepository) *Server {
+func NewServer(addr string, handler *Handler) *Server {
 	s := &Server{
-		addr: addr,
-		mux:  http.NewServeMux(),
-		repo: repo,
+		addr:    addr,
+		mux:     http.NewServeMux(),
+		handler: handler,
 	}
 	s.setupRoutes()
 	return s

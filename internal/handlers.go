@@ -12,6 +12,12 @@ type Handler struct {
 	repo *CharacterRepository
 }
 
+func NewHandler(repository *CharacterRepository) *Handler {
+	return &Handler{
+		repo: repository,
+	}
+}
+
 func (h Handler) postCharacter(w http.ResponseWriter, r *http.Request) {
 	payload, err := io.ReadAll(r.Body)
 	if err != nil {

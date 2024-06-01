@@ -32,11 +32,12 @@ func NewCharacterRepository(user, password, host string, port int) (*CharacterRe
 	connectionString := fmt.Sprintf("mongodb://%s:%s@%s:%d", user, password, host, port)
 	clientOpt := options.Client().ApplyURI(connectionString)
 	clientOpt.Timeout = &mongoClientTimeout
+
 	// TODO: figure out how to pass the context.
 	ctx := context.TODO()
 	client, err := mongo.Connect(ctx, clientOpt)
 	if err != nil {
-		return nil, err
+		return nil, fmt.Errorf("failed to connect; %v", err)
 	}
 
 	// Perform a health check

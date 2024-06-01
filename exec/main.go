@@ -34,7 +34,7 @@ func main() {
 	log.Println("initializing repository...")
 	repository, err := internal.NewCharacterRepository(mongoUser, mongoPassword, mongoHost, mongoPort)
 	if err != nil {
-		log.Fatal("failed to start mongo client:", err)
+		log.Fatal("mongo client initialization failed; ", err)
 	}
 	handler := internal.NewHandler(repository)
 	log.Println("running the server...")

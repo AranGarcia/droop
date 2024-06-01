@@ -3,6 +3,7 @@ package internal
 import (
 	"context"
 	"fmt"
+	"time"
 
 	"go.mongodb.org/mongo-driver/mongo"
 	"go.mongodb.org/mongo-driver/mongo/options"
@@ -15,6 +16,11 @@ const (
 	collection = "characters"
 )
 
+var (
+	// mongoClientTimeout is the default timeout for the MongoDB client.
+	mongoClientTimeout = 10 * time.Second
+)
+
 // CharacterRepository provides access to the repository where character are stored.
 type CharacterRepository struct {
 	client mongo.Client
@@ -25,7 +31,8 @@ func NewCharacterRepository(user, password, host string, port int) (*CharacterRe
 	// mongodb://[username:password@]host1[:port1][,...hostN[:portN]][/[defaultauthdb][?options]]
 	connectionString := fmt.Sprintf("mongodb://%s:%s@%s:%d", user, password, host, port)
 	clientOpt := options.Client().ApplyURI(connectionString)
-
+	clientOpt.Timeout = &mongoClientTimeout
+	// TODO: figure out how to pass the context.
 	ctx := context.TODO()
 	client, err := mongo.Connect(ctx, clientOpt)
 	if err != nil {

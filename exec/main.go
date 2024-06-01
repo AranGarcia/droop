@@ -31,6 +31,7 @@ func init() {
 }
 
 func main() {
+	log.Println("initializing repository...")
 	repository, err := internal.NewCharacterRepository(mongoUser, mongoPassword, mongoHost, mongoPort)
 	if err != nil {
 		log.Fatal("failed to start mongo client:", err)

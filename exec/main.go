@@ -33,7 +33,7 @@ func init() {
 func main() {
 	repository, err := internal.NewCharacterRepository(mongoUser, mongoPassword, mongoHost, mongoPort)
 	if err != nil {
-		log.Fatalf("failed to start mongo client:", err)
+		log.Fatal("failed to start mongo client:", err)
 	}
 	handler := internal.NewHandler(repository)
 	log.Println("running the server...")

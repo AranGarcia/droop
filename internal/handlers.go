@@ -39,6 +39,9 @@ func (h Handler) postCharacter(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 	responseBody, err := json.Marshal(output)
+	if err != nil {
+		log.Println("failed to marshal data for character with ID", output.ID)
+	}
 	w.WriteHeader(http.StatusOK)
 	w.Write(responseBody)
 

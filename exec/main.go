@@ -18,6 +18,8 @@ var (
 	mongoHost string
 	// mongoPort of the MongoDB.
 	mongoPort int
+	// mongoDatabase is the name of the database where collections are stored.
+	mongoDatabase string
 )
 
 func init() {
@@ -26,16 +28,15 @@ func init() {
 	flag.StringVar(&mongoPassword, "mongo_password", "droopadmin", "MongoDB user password")
 	flag.StringVar(&mongoHost, "mongo_host", "localhost", "MongoDB hostname")
 	flag.IntVar(&mongoPort, "mongo_port", 27017, "MongoDB port")
+	flag.StringVar(&mongoDatabase, "mongo_database", "droop", "MongoDB database name")
 
 	flag.Parse()
 }
 
 func main() {
 	log.Println("Initializing repository...")
-	repository, err := internal.NewCharacterRepository(mongoUser, mongoPassword, mongoHost, mongoPort)
-	if err != nil {
-		log.Fatal("mongo client initialization failed; ", err)
-	}
+	mongoConfig := buildMongoConfig()
+	repository := buildCharacterRepository(mongoConfig)
 	handler := internal.NewHandler(repository)
 	log.Println("running the server...")
 	httpServer := internal.NewServer(addr, handler)

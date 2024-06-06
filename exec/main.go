@@ -22,8 +22,8 @@ var (
 
 func init() {
 	flag.StringVar(&addr, "addr", ":8080", "the server address (host and port)")
-	flag.StringVar(&mongoUser, "mongo_user", "root", "MongoDB user name")
-	flag.StringVar(&mongoPassword, "mongo_password", "root", "MongoDB user password")
+	flag.StringVar(&mongoUser, "mongo_user", "droopadmin", "MongoDB user name")
+	flag.StringVar(&mongoPassword, "mongo_password", "droopadmin", "MongoDB user password")
 	flag.StringVar(&mongoHost, "mongo_host", "localhost", "MongoDB hostname")
 	flag.IntVar(&mongoPort, "mongo_port", 27017, "MongoDB port")
 

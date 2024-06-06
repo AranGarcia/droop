@@ -21,7 +21,7 @@ var (
 )
 
 func init() {
-	flag.StringVar(&addr, "addr", ":8080", "the server address (host and port)")
+	flag.StringVar(&addr, "addr", "0.0.0.0:8080", "the server address (host and port)")
 	flag.StringVar(&mongoUser, "mongo_user", "droopadmin", "MongoDB user name")
 	flag.StringVar(&mongoPassword, "mongo_password", "droopadmin", "MongoDB user password")
 	flag.StringVar(&mongoHost, "mongo_host", "localhost", "MongoDB hostname")
@@ -31,7 +31,7 @@ func init() {
 }
 
 func main() {
-	log.Println("initializing repository...")
+	log.Println("Initializing repository...")
 	repository, err := internal.NewCharacterRepository(mongoUser, mongoPassword, mongoHost, mongoPort)
 	if err != nil {
 		log.Fatal("mongo client initialization failed; ", err)
@@ -39,6 +39,7 @@ func main() {
 	handler := internal.NewHandler(repository)
 	log.Println("running the server...")
 	httpServer := internal.NewServer(addr, handler)
+	log.Println("Server is running on", addr)
 	if err := httpServer.Run(); err != nil {
 		log.Fatalf("Failed to run; %v", err)
 	}

@@ -28,14 +28,17 @@ func (h Handler) postCharacter(w http.ResponseWriter, r *http.Request) {
 
 	character := Character{}
 	if err = json.Unmarshal(payload, &character); err != nil {
-		w.WriteHeader(http.StatusInternalServerError)
-		w.Write([]byte(fmt.Sprintf("failed to unmarshal request payload; %v", err)))
+		jsonErr := JSONErrorResponse{Message: fmt.Sprintf("invalid request data; %v", err)}
+		w.WriteHeader(http.StatusBadRequest)
+		w.Write(jsonErr.ToBytes())
 		return
 	}
 
 	output, err := h.repo.CreateCharacter(r.Context(), character)
 	if err != nil {
+		jsonErr := JSONErrorResponse{Message: fmt.Sprintf("failed to create character; %v", err)}
 		w.WriteHeader(http.StatusBadRequest)
+		w.Write(jsonErr.ToBytes())
 		return
 	}
 	responseBody, err := json.Marshal(output)

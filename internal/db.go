@@ -29,7 +29,7 @@ type CharacterRepository struct {
 // NewCharacterRepository initializes a new repository with a MongoDB client.
 func NewCharacterRepository(user, password, host string, port int) (*CharacterRepository, error) {
 	// mongodb://[username:password@]host1[:port1][,...hostN[:portN]][/[defaultauthdb][?options]]
-	connectionString := fmt.Sprintf("mongodb://%s:%s@%s:%d", user, password, host, port)
+	connectionString := fmt.Sprintf("mongodb://%s:%s@%s:%d/%s", user, password, host, port, database)
 	clientOpt := options.Client().ApplyURI(connectionString)
 	clientOpt.Timeout = &mongoClientTimeout
 

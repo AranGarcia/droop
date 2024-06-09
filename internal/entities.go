@@ -11,3 +11,6 @@ type Character struct {
 	Wisdom       int    `json:"wisdom" bson:"wisdom"`
 	Charisma     int    `json:"charisma" bson:"charisma"`
 }
+
+// Validate all of the fields and return an error if an value violates the fields' constraints.
+func (c Character) Validate() error { return validate.Struct(c) }

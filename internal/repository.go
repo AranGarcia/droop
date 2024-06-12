@@ -70,7 +70,7 @@ func (c CharacterRepository) RetrieveCharacter(ctx context.Context, id string) (
 	return character, nil
 }
 
-func (c CharacterRepository) deleteCharacter(ctx context.Context, id string) error {
+func (c CharacterRepository) DeleteCharacter(ctx context.Context, id string) error {
 	_id, err := primitive.ObjectIDFromHex(id)
 	if err != nil {
 		return fmt.Errorf("invalid ID; %v", err)

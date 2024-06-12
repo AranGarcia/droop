@@ -86,7 +86,7 @@ func patchCharacter(_ http.ResponseWriter, _ *http.Request) {
 
 func (h Handler) deleteCharacter(w http.ResponseWriter, r *http.Request) {
 	id := r.PathValue("id")
-	if err := h.repo.deleteCharacter(r.Context(), id); err != nil {
+	if err := h.repo.DeleteCharacter(r.Context(), id); err != nil {
 		w.Write(JSONErrorResponse{Error: err.Error()}.ToBytes())
 		w.WriteHeader(http.StatusBadRequest)
 		return

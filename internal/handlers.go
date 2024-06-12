@@ -76,8 +76,10 @@ func (h Handler) getCharacter(w http.ResponseWriter, r *http.Request) {
 	w.Write(responseBody)
 }
 
-func listCharacters(_ http.ResponseWriter, _ *http.Request) {
+func (h Handler) listCharacters(_ http.ResponseWriter, _ *http.Request) {
 	log.Println("Listing characters")
+
+	// XXX: There are new fields to be added (created at, updated at, etc.). How to migrate existing entities?
 }
 
 func (h Handler) patchCharacter(w http.ResponseWriter, r *http.Request) {

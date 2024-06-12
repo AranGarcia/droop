@@ -39,12 +39,12 @@ func NewCharacterRepository(config MongoConfig) (*CharacterRepository, error) {
 // CreateCharacter inserts the input character into the database. The same character is returned,
 // but with its ID set.
 func (c CharacterRepository) CreateCharacter(ctx context.Context, character Character) (*Character, error) {
-	// Deprecated: use CharacterRepository.collection instead
 	result, err := c.collection.InsertOne(ctx, character)
 	if err != nil {
 		return nil, fmt.Errorf("failed to insert character; %v", err)
 	}
-	character.ID = fmt.Sprint(result.InsertedID)
+	_id := result.InsertedID.(primitive.ObjectID)
+	character.ID = _id.Hex()
 	return &character, nil
 }
 

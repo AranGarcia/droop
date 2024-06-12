@@ -80,8 +80,35 @@ func listCharacters(_ http.ResponseWriter, _ *http.Request) {
 	log.Println("Listing characters")
 }
 
-func patchCharacter(_ http.ResponseWriter, _ *http.Request) {
-	log.Println("Updating character")
+func (h Handler) patchCharacter(w http.ResponseWriter, r *http.Request) {
+	id := r.PathValue("id")
+	payload, err := io.ReadAll(r.Body)
+	if err != nil {
+		w.Write(JSONErrorResponse{Error: "failed to read JSON data"}.ToBytes())
+		w.WriteHeader(http.StatusBadRequest)
+		return
+	}
+
+	updateData := &UpdateFields{}
+	if err = json.Unmarshal(payload, updateData); err != nil {
+		jsonErr := JSONErrorResponse{Error: fmt.Sprintf("invalid request data; %v", err)}
+		w.WriteHeader(http.StatusBadRequest)
+		w.Write(jsonErr.ToBytes())
+		return
+	}
+
+	character, err := h.repo.Update(r.Context(), id, updateData)
+	if err != nil {
+		w.WriteHeader(http.StatusInternalServerError)
+		w.Write(JSONErrorResponse{Error: fmt.Sprintf("repository error; %v", err)}.ToBytes())
+	}
+
+	responseBody, err := json.Marshal(character)
+	if err != nil {
+		log.Println("failed to marshal data for character with ID", character.ID)
+	}
+	w.WriteHeader(http.StatusOK)
+	w.Write(responseBody)
 }
 
 func (h Handler) deleteCharacter(w http.ResponseWriter, r *http.Request) {

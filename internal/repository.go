@@ -75,16 +75,16 @@ func (c CharacterRepository) RetrieveCharacter(ctx context.Context, id string) (
 }
 
 type UpdateFields struct {
-	Level        *int
-	Name         *string
-	HealthPoints *int
-	ArmorClass   *int
-	Strength     *int
-	Dexterity    *int
-	Constitution *int
-	Intelligence *int
-	Wisdom       *int
-	Charisma     *int
+	Level        *int    `json:"level"`
+	Name         *string `json:"name"`
+	HealthPoints *int    `json:"health_points"`
+	ArmorClass   *int    `json:"armor_class"`
+	Strength     *int    `json:"strength"`
+	Dexterity    *int    `json:"dexterity"`
+	Constitution *int    `json:"constitution"`
+	Intelligence *int    `json:"intelligence"`
+	Wisdom       *int    `json:"wisdom"`
+	Charisma     *int    `json:"charisma"`
 }
 
 func (u UpdateFields) ToBsonMap() bson.M {
@@ -122,8 +122,8 @@ func (u UpdateFields) ToBsonMap() bson.M {
 	return data
 }
 
-func (c CharacterRepository) Update(ctx context.Context, id string, fields UpdateFields) (*Character, error) {
-	return nil, nil
+func (c CharacterRepository) Update(ctx context.Context, id string, fields *UpdateFields) (*Character, error) {
+	return &Character{}, nil
 }
 
 func (c CharacterRepository) DeleteCharacter(ctx context.Context, id string) error {

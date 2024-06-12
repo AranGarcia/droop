@@ -18,6 +18,10 @@ const (
 	collection = "characters"
 )
 
+func IntPtr(i int) *int { return &i }
+
+func StrPtr(s string) *string { return &s }
+
 // CharacterRepository provides access to the repository where character are stored.
 type CharacterRepository struct {
 	client     *mongo.Client // TODO: figure out if this is required or if it should be deleted.
@@ -68,6 +72,58 @@ func (c CharacterRepository) RetrieveCharacter(ctx context.Context, id string) (
 		return nil, fmt.Errorf("decoding error; %v", err)
 	}
 	return character, nil
+}
+
+type UpdateFields struct {
+	Level        *int
+	Name         *string
+	HealthPoints *int
+	ArmorClass   *int
+	Strength     *int
+	Dexterity    *int
+	Constitution *int
+	Intelligence *int
+	Wisdom       *int
+	Charisma     *int
+}
+
+func (u UpdateFields) ToBsonMap() bson.M {
+	data := bson.M{}
+	if u.Level != nil {
+		data["level"] = *u.Level
+	}
+	if u.Name != nil {
+		data["name"] = *u.Name
+	}
+	if u.HealthPoints != nil {
+		data["health_points"] = *u.HealthPoints
+	}
+	if u.ArmorClass != nil {
+		data["armor_class"] = *u.ArmorClass
+	}
+	if u.Strength != nil {
+		data["strength"] = *u.Strength
+	}
+	if u.Dexterity != nil {
+		data["dexterity"] = *u.Dexterity
+	}
+	if u.Constitution != nil {
+		data["constitution"] = *u.Constitution
+	}
+	if u.Intelligence != nil {
+		data["intelligence"] = *u.Intelligence
+	}
+	if u.Wisdom != nil {
+		data["wisdom"] = *u.Wisdom
+	}
+	if u.Charisma != nil {
+		data["charisma"] = *u.Charisma
+	}
+	return data
+}
+
+func (c CharacterRepository) Update(ctx context.Context, id string, fields UpdateFields) (*Character, error) {
+	return nil, nil
 }
 
 func (c CharacterRepository) DeleteCharacter(ctx context.Context, id string) error {

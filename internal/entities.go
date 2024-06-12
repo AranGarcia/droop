@@ -1,7 +1,7 @@
 package internal
 
 type Character struct {
-	ID           string `json:"id"`
+	ID           string `json:"id" bson:"_id,omitempty"`
 	Level        int    `json:"level" bson:"level" validate:"gte=1,lte=20"`
 	Name         string `json:"name" bson:"name" validate:"required"`
 	HealthPoints int    `json:"health_points" bson:"health_points"`

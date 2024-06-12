@@ -5,6 +5,7 @@ import (
 	"fmt"
 
 	"go.mongodb.org/mongo-driver/bson"
+	"go.mongodb.org/mongo-driver/bson/primitive"
 	"go.mongodb.org/mongo-driver/mongo"
 )
 
@@ -17,7 +18,7 @@ const (
 
 // CharacterRepository provides access to the repository where character are stored.
 type CharacterRepository struct {
-	client     *mongo.Client
+	client     *mongo.Client // TODO: figure out if this is required or if it should be deleted.
 	collection *mongo.Collection
 }
 
@@ -48,12 +49,16 @@ func (c CharacterRepository) CreateCharacter(ctx context.Context, character Char
 }
 
 func (c CharacterRepository) RetrieveCharacter(ctx context.Context, id string) (*Character, error) {
-	result := c.collection.FindOne(ctx, bson.M{"_id": id})
+	_id, err := primitive.ObjectIDFromHex(id)
+	if err != nil {
+		return nil, fmt.Errorf("invalid id; %v", err)
+	}
+	result := c.collection.FindOne(ctx, bson.M{"_id": _id})
 	if result.Err() != nil {
 		return nil, fmt.Errorf("query error; %v", result.Err())
 	}
 	character := &Character{}
-	if err := result.Decode(character); err != nil {
+	if err = result.Decode(character); err != nil {
 		return nil, fmt.Errorf("decoding error; %v", err)
 	}
 	return character, nil

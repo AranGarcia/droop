@@ -3,7 +3,7 @@ package internal
 import "encoding/json"
 
 type JSONErrorResponse struct {
-	Message string `json:"message,omitempty"`
+	Error string `json:"error,omitempty"`
 }
 
 func (j JSONErrorResponse) ToBytes() []byte {

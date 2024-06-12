@@ -28,14 +28,14 @@ func (h Handler) postCharacter(w http.ResponseWriter, r *http.Request) {
 
 	character := Character{}
 	if err = json.Unmarshal(payload, &character); err != nil {
-		jsonErr := JSONErrorResponse{Message: fmt.Sprintf("invalid request data; %v", err)}
+		jsonErr := JSONErrorResponse{Error: fmt.Sprintf("invalid request data; %v", err)}
 		w.WriteHeader(http.StatusBadRequest)
 		w.Write(jsonErr.ToBytes())
 		return
 	}
 
 	if err := character.Validate(); err != nil {
-		jsonErr := JSONErrorResponse{Message: fmt.Sprintf("invalid request data; %v", err)}
+		jsonErr := JSONErrorResponse{Error: fmt.Sprintf("invalid request data; %v", err)}
 		w.WriteHeader(http.StatusBadRequest)
 		w.Write(jsonErr.ToBytes())
 		return
@@ -43,7 +43,7 @@ func (h Handler) postCharacter(w http.ResponseWriter, r *http.Request) {
 
 	output, err := h.repo.CreateCharacter(r.Context(), character)
 	if err != nil {
-		jsonErr := JSONErrorResponse{Message: fmt.Sprintf("failed to create character; %v", err)}
+		jsonErr := JSONErrorResponse{Error: fmt.Sprintf("failed to create character; %v", err)}
 		w.WriteHeader(http.StatusBadRequest)
 		w.Write(jsonErr.ToBytes())
 		return
@@ -58,8 +58,15 @@ func (h Handler) postCharacter(w http.ResponseWriter, r *http.Request) {
 }
 
 // getCharacter is a GET endpoint for the Character resource.
-func getCharacter(w http.ResponseWriter, r *http.Request) {
-	character := Character{}
+func (h Handler) getCharacter(w http.ResponseWriter, r *http.Request) {
+	id := r.PathValue("id")
+	character, err := h.repo.RetrieveCharacter(r.Context(), id)
+	if err != nil {
+		jsonErr := JSONErrorResponse{Error: fmt.Sprintf("failed to retrieve character; %v", err)}
+		w.WriteHeader(http.StatusNotFound)
+		w.Write((jsonErr.ToBytes()))
+		return
+	}
 	responseBody, err := json.Marshal(character)
 	if err != nil {
 		w.WriteHeader(http.StatusInternalServerError)

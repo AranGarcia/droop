@@ -60,7 +60,7 @@ func (h Handler) postCharacter(w http.ResponseWriter, r *http.Request) {
 // getCharacter is a GET endpoint for the Character resource.
 func (h Handler) getCharacter(w http.ResponseWriter, r *http.Request) {
 	id := r.PathValue("id")
-	character, err := h.repo.RetrieveCharacter(r.Context(), id)
+	character, err := h.repo.Retrieve(r.Context(), id)
 	if err != nil {
 		jsonErr := JSONErrorResponse{Error: fmt.Sprintf("failed to retrieve character; %v", err)}
 		w.WriteHeader(http.StatusNotFound)
@@ -97,10 +97,17 @@ func (h Handler) patchCharacter(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	character, err := h.repo.Update(r.Context(), id, updateData)
+	if err = h.repo.Update(r.Context(), id, updateData); err != nil {
+		w.WriteHeader(http.StatusNotFound)
+		w.Write(JSONErrorResponse{Error: fmt.Sprintf("repository error; %v", err)}.ToBytes())
+		return
+	}
+
+	character, err := h.repo.Retrieve(r.Context(), id)
 	if err != nil {
 		w.WriteHeader(http.StatusInternalServerError)
-		w.Write(JSONErrorResponse{Error: fmt.Sprintf("repository error; %v", err)}.ToBytes())
+		w.Write(JSONErrorResponse{Error: fmt.Sprintf("failed to retrieve updated character; %v", err)}.ToBytes())
+		return
 	}
 
 	responseBody, err := json.Marshal(character)

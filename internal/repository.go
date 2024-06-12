@@ -54,7 +54,7 @@ func (c CharacterRepository) CreateCharacter(ctx context.Context, character Char
 	return &character, nil
 }
 
-func (c CharacterRepository) RetrieveCharacter(ctx context.Context, id string) (*Character, error) {
+func (c CharacterRepository) Retrieve(ctx context.Context, id string) (*Character, error) {
 	_id, err := primitive.ObjectIDFromHex(id)
 	if err != nil {
 		return nil, fmt.Errorf("invalid id; %v", err)
@@ -119,11 +119,23 @@ func (u UpdateFields) ToBsonMap() bson.M {
 	if u.Charisma != nil {
 		data["charisma"] = *u.Charisma
 	}
-	return data
+	return bson.M{"$set": data}
 }
 
-func (c CharacterRepository) Update(ctx context.Context, id string, fields *UpdateFields) (*Character, error) {
-	return &Character{}, nil
+func (c CharacterRepository) Update(ctx context.Context, id string, fields *UpdateFields) error {
+	_id, err := primitive.ObjectIDFromHex(id)
+	if err != nil {
+		return fmt.Errorf("invalid ID; %v", err)
+	}
+
+	update := fields.ToBsonMap()
+	result, err := c.collection.UpdateByID(ctx, _id, update)
+	if err != nil {
+		return fmt.Errorf("execution error; %v", err)
+	} else if result.MatchedCount == 0 {
+		return fmt.Errorf("character with id %s not found", id)
+	}
+	return nil
 }
 
 func (c CharacterRepository) DeleteCharacter(ctx context.Context, id string) error {

@@ -17,52 +17,52 @@ func TestUpdateFields_ToBsonMap(t *testing.T) {
 		{
 			name: "level",
 			u:    UpdateFields{Level: IntPtr(19)},
-			want: bson.M{"level": 19},
+			want: bson.M{"$set": bson.M{"level": 19}},
 		},
 		{
 			name: "name",
 			u:    UpdateFields{Name: StrPtr("Frido")},
-			want: bson.M{"name": "Frido"},
+			want: bson.M{"$set": bson.M{"name": "Frido"}},
 		},
 		{
 			name: "health points",
 			u:    UpdateFields{HealthPoints: IntPtr(77)},
-			want: bson.M{"health_points": 77},
+			want: bson.M{"$set": bson.M{"health_points": 77}},
 		},
 		{
 			name: "armor class",
 			u:    UpdateFields{ArmorClass: IntPtr(15)},
-			want: bson.M{"armor_class": 15},
+			want: bson.M{"$set": bson.M{"armor_class": 15}},
 		},
 		{
 			name: "strength",
 			u:    UpdateFields{Strength: IntPtr(10)},
-			want: bson.M{"strength": 10},
+			want: bson.M{"$set": bson.M{"strength": 10}},
 		},
 		{
 			name: "dexterity",
 			u:    UpdateFields{Dexterity: IntPtr(10)},
-			want: bson.M{"dexterity": 10},
+			want: bson.M{"$set": bson.M{"dexterity": 10}},
 		},
 		{
 			name: "constitution",
 			u:    UpdateFields{Constitution: IntPtr(10)},
-			want: bson.M{"constitution": 10},
+			want: bson.M{"$set": bson.M{"constitution": 10}},
 		},
 		{
 			name: "intelligence",
 			u:    UpdateFields{Intelligence: IntPtr(10)},
-			want: bson.M{"intelligence": 10},
+			want: bson.M{"$set": bson.M{"intelligence": 10}},
 		},
 		{
 			name: "wisdom",
 			u:    UpdateFields{Wisdom: IntPtr(10)},
-			want: bson.M{"wisdom": 10},
+			want: bson.M{"$set": bson.M{"wisdom": 10}},
 		},
 		{
 			name: "charisma",
 			u:    UpdateFields{Charisma: IntPtr(10)},
-			want: bson.M{"charisma": 10},
+			want: bson.M{"$set": bson.M{"charisma": 10}},
 		},
 	}
 	for _, test := range tests {

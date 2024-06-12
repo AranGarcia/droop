@@ -55,7 +55,11 @@ func (c CharacterRepository) RetrieveCharacter(ctx context.Context, id string) (
 	if err != nil {
 		return nil, fmt.Errorf("invalid id; %v", err)
 	}
-	result := c.collection.FindOne(ctx, bson.M{"_id": _id})
+	filter := bson.M{
+		"_id":        _id,
+		"deleted_at": nil,
+	}
+	result := c.collection.FindOne(ctx, filter)
 	if result.Err() != nil {
 		return nil, fmt.Errorf("query error; %v", result.Err())
 	}

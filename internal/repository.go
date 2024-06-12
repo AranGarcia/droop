@@ -3,6 +3,8 @@ package internal
 import (
 	"context"
 	"fmt"
+	"log"
+	"time"
 
 	"go.mongodb.org/mongo-driver/bson"
 	"go.mongodb.org/mongo-driver/bson/primitive"
@@ -62,4 +64,30 @@ func (c CharacterRepository) RetrieveCharacter(ctx context.Context, id string) (
 		return nil, fmt.Errorf("decoding error; %v", err)
 	}
 	return character, nil
+}
+
+func (c CharacterRepository) deleteCharacter(ctx context.Context, id string) error {
+	_id, err := primitive.ObjectIDFromHex(id)
+	if err != nil {
+		return fmt.Errorf("invalid ID; %v", err)
+	}
+	filter := bson.D{{Key: "_id", Value: _id}}
+	update := bson.D{
+		{
+			Key: "$set", Value: bson.D{
+				{
+					Key:   "deleted_at",
+					Value: time.Now(),
+				},
+			},
+		},
+	}
+
+	result, err := c.collection.UpdateOne(ctx, filter, update)
+	if err != nil {
+		return fmt.Errorf("failed to delete; %v", err)
+	}
+
+	log.Println(result)
+	return nil
 }

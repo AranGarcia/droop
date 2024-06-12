@@ -52,7 +52,7 @@ func (h Handler) postCharacter(w http.ResponseWriter, r *http.Request) {
 	if err != nil {
 		log.Println("failed to marshal data for character with ID", output.ID)
 	}
-	w.WriteHeader(http.StatusOK)
+	w.WriteHeader(http.StatusCreated)
 	w.Write(responseBody)
 
 }
@@ -84,6 +84,12 @@ func patchCharacter(_ http.ResponseWriter, _ *http.Request) {
 	log.Println("Updating character")
 }
 
-func deleteCharacter(_ http.ResponseWriter, _ *http.Request) {
-	log.Println("deleting character")
+func (h Handler) deleteCharacter(w http.ResponseWriter, r *http.Request) {
+	id := r.PathValue("id")
+	if err := h.repo.deleteCharacter(r.Context(), id); err != nil {
+		w.Write(JSONErrorResponse{Error: err.Error()}.ToBytes())
+		w.WriteHeader(http.StatusBadRequest)
+		return
+	}
+	w.WriteHeader(http.StatusOK)
 }

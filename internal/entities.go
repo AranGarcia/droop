@@ -3,7 +3,7 @@ package internal
 import "time"
 
 type Character struct {
-	DeletedAt time.Time `json:"deleted_at" bson:"deleted_at,omitempty"`
+	DeletedAt *time.Time `json:"deleted_at,omitempty" bson:"deleted_at,omitempty"`
 
 	ID           string `json:"id" bson:"_id,omitempty"`
 	Level        int    `json:"level" bson:"level" validate:"gte=1,lte=20"`

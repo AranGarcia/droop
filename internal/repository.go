@@ -9,6 +9,7 @@ import (
 	"go.mongodb.org/mongo-driver/bson"
 	"go.mongodb.org/mongo-driver/bson/primitive"
 	"go.mongodb.org/mongo-driver/mongo"
+	"go.mongodb.org/mongo-driver/mongo/options"
 )
 
 const (
@@ -24,7 +25,6 @@ func StrPtr(s string) *string { return &s }
 
 // CharacterRepository provides access to the repository where character are stored.
 type CharacterRepository struct {
-	client     *mongo.Client // TODO: figure out if this is required or if it should be deleted.
 	collection *mongo.Collection
 }
 
@@ -36,7 +36,6 @@ func NewCharacterRepository(config MongoConfig) (*CharacterRepository, error) {
 	}
 
 	repo := &CharacterRepository{
-		client:     client,
 		collection: client.Database(database).Collection(collection),
 	}
 	return repo, nil
@@ -162,4 +161,30 @@ func (c CharacterRepository) DeleteCharacter(ctx context.Context, id string) err
 
 	log.Println(result)
 	return nil
+}
+
+// List multiple characters.
+//
+// TODO: Support filters
+//
+// TODO: Support pagination.
+func (c CharacterRepository) List(ctx context.Context) ([]*Character, error) {
+	opts := options.Find().SetLimit(20) // FIXME: Avoid hardcoding page size
+	filter := bson.M{"deleted_at": nil}
+	cursor, err := c.collection.Find(ctx, filter, opts)
+	if err != nil {
+		return nil, fmt.Errorf("query failure; %v", err)
+	}
+
+	characters := make([]*Character, cursor.RemainingBatchLength())
+	var character *Character
+	for i := 0; cursor.Next(ctx); i++ {
+		character = &Character{}
+		if err = cursor.Decode(character); err != nil {
+			return nil, fmt.Errorf("error decoding result; %v", err)
+		}
+		characters[i] = character
+	}
+
+	return characters, nil
 }

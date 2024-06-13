@@ -57,7 +57,6 @@ func (h Handler) postCharacter(w http.ResponseWriter, r *http.Request) {
 
 }
 
-// getCharacter is a GET endpoint for the Character resource.
 func (h Handler) getCharacter(w http.ResponseWriter, r *http.Request) {
 	id := r.PathValue("id")
 	character, err := h.repo.Retrieve(r.Context(), id)
@@ -76,10 +75,29 @@ func (h Handler) getCharacter(w http.ResponseWriter, r *http.Request) {
 	w.Write(responseBody)
 }
 
-func (h Handler) listCharacters(_ http.ResponseWriter, _ *http.Request) {
-	log.Println("Listing characters")
+func (h Handler) listCharacters(w http.ResponseWriter, r *http.Request) {
+	type ListResponse struct {
+		Length     int          `json:"length"`
+		Characters []*Character `json:"characters"`
+	}
 
-	// XXX: There are new fields to be added (created at, updated at, etc.). How to migrate existing entities?
+	var err error
+	response := ListResponse{}
+	response.Characters, err = h.repo.List(r.Context())
+	if err != nil {
+		w.WriteHeader(http.StatusBadRequest)
+		w.Write(JSONErrorResponse{Error: err.Error()}.ToBytes())
+	}
+	response.Length = len(response.Characters)
+
+	var payload []byte
+	if payload, err = json.Marshal(response); err != nil {
+		w.Write(JSONErrorResponse{Error: fmt.Sprintf("failed to marshal response; %v", err)}.ToBytes())
+		w.WriteHeader(http.StatusInternalServerError)
+	}
+
+	w.WriteHeader(http.StatusOK)
+	w.Write(payload)
 }
 
 func (h Handler) patchCharacter(w http.ResponseWriter, r *http.Request) {

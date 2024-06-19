@@ -27,8 +27,43 @@ func (c *Characters) Retrieve(_ context.Context, id string) (*entities.Character
 	return &character, nil
 }
 
-func (c *Characters) Update(_ context.Context, _ entities.Character) error {
-	panic("not implemented") // TODO: Implement
+func (c *Characters) Update(ctx context.Context, id string, fields repositories.CharacterFields) (*entities.Character, error) {
+	character, ok := c.inMemory[id]
+	if !ok {
+		return nil, repositories.ErrNotFound
+	}
+	if fields.Level != nil {
+		character.Level = *fields.Level
+	}
+	if fields.Name != nil {
+		character.Name = *fields.Name
+	}
+	if fields.HealthPoints != nil {
+		character.HealthPoints = *fields.HealthPoints
+	}
+	if fields.ArmorClass != nil {
+		character.ArmorClass = *fields.ArmorClass
+	}
+	if fields.Strength != nil {
+		character.Strength = *fields.Strength
+	}
+	if fields.Dexterity != nil {
+		character.Dexterity = *fields.Dexterity
+	}
+	if fields.Constitution != nil {
+		character.Constitution = *fields.Constitution
+	}
+	if fields.Intelligence != nil {
+		character.Intelligence = *fields.Intelligence
+	}
+	if fields.Wisdom != nil {
+		character.Wisdom = *fields.Wisdom
+	}
+	if fields.Charisma != nil {
+		character.Charisma = *fields.Charisma
+	}
+
+	return &character, nil
 }
 
 func (c *Characters) Delete(_ context.Context, id string) error {

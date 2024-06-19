@@ -87,28 +87,106 @@ func TestCharacters_Retrieve(t *testing.T) {
 }
 
 func TestCharacters_Update(t *testing.T) {
+	characterID := "character-id"
 	type fields struct {
 		inMemory map[string]entities.Character
 	}
-	type args struct {
-		in0 context.Context
-		in1 entities.Character
-	}
 	tests := []struct {
-		name    string
-		fields  fields
-		args    args
-		wantErr bool
+		name            string
+		id              string
+		fields          fields
+		characterFields repositories.CharacterFields
+		want            *entities.Character
+		wantErr         error
 	}{
-		// TODO: Add test cases.
+		{
+			name:    "not found",
+			id:      "not-found-character-id",
+			wantErr: repositories.ErrNotFound,
+		},
+		{
+			name:            "level",
+			id:              characterID,
+			characterFields: repositories.CharacterFields{Level: repositories.IntPtr(10)},
+			fields:          fields{map[string]entities.Character{characterID: {ID: characterID}}},
+			want:            &entities.Character{ID: characterID, Level: 10},
+		},
+		{
+			name:            "name",
+			id:              characterID,
+			characterFields: repositories.CharacterFields{Name: repositories.StringPtr("new-character-name")},
+			fields:          fields{map[string]entities.Character{characterID: {ID: characterID}}},
+			want:            &entities.Character{ID: characterID, Name: "new-character-name"},
+		},
+		{
+			name:            "health points",
+			id:              characterID,
+			characterFields: repositories.CharacterFields{HealthPoints: repositories.IntPtr(15)},
+			fields:          fields{map[string]entities.Character{characterID: {ID: characterID}}},
+			want:            &entities.Character{ID: characterID, HealthPoints: 15},
+		},
+		{
+			name:            "armorclass",
+			id:              characterID,
+			characterFields: repositories.CharacterFields{ArmorClass: repositories.IntPtr(15)},
+			fields:          fields{map[string]entities.Character{characterID: {ID: characterID}}},
+			want:            &entities.Character{ID: characterID, ArmorClass: 15},
+		},
+		{
+			name:            "strength",
+			id:              characterID,
+			characterFields: repositories.CharacterFields{Strength: repositories.IntPtr(15)},
+			fields:          fields{map[string]entities.Character{characterID: {ID: characterID}}},
+			want:            &entities.Character{ID: characterID, Strength: 15},
+		},
+		{
+			name:            "dexterity",
+			id:              characterID,
+			characterFields: repositories.CharacterFields{Dexterity: repositories.IntPtr(15)},
+			fields:          fields{map[string]entities.Character{characterID: {ID: characterID}}},
+			want:            &entities.Character{ID: characterID, Dexterity: 15},
+		},
+		{
+			name:            "constitution",
+			id:              characterID,
+			characterFields: repositories.CharacterFields{Constitution: repositories.IntPtr(15)},
+			fields:          fields{map[string]entities.Character{characterID: {ID: characterID}}},
+			want:            &entities.Character{ID: characterID, Constitution: 15},
+		},
+		{
+			name:            "intelligence",
+			id:              characterID,
+			characterFields: repositories.CharacterFields{Intelligence: repositories.IntPtr(15)},
+			fields:          fields{map[string]entities.Character{characterID: {ID: characterID}}},
+			want:            &entities.Character{ID: characterID, Intelligence: 15},
+		},
+		{
+			name:            "wisdom",
+			id:              characterID,
+			characterFields: repositories.CharacterFields{Wisdom: repositories.IntPtr(15)},
+			fields:          fields{map[string]entities.Character{characterID: {ID: characterID}}},
+			want:            &entities.Character{ID: characterID, Wisdom: 15},
+		},
+		{
+			name:            "charisma",
+			id:              characterID,
+			characterFields: repositories.CharacterFields{Charisma: repositories.IntPtr(15)},
+			fields:          fields{map[string]entities.Character{characterID: {ID: characterID}}},
+			want:            &entities.Character{ID: characterID, Charisma: 15},
+		},
 	}
+
+	ctx := context.Background()
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			c := &Characters{
-				inMemory: tt.fields.inMemory,
-			}
-			if err := c.Update(tt.args.in0, tt.args.in1); (err != nil) != tt.wantErr {
+			c := &Characters{inMemory: tt.fields.inMemory}
+			got, err := c.Update(ctx, tt.id, tt.characterFields)
+			if !errors.Is(err, tt.wantErr) {
 				t.Errorf("Characters.Update() error = %v, wantErr %v", err, tt.wantErr)
+				return
+			}
+			if diff := cmp.Diff(got, tt.want); diff != "" {
+				t.Errorf("Characters.Update() mismatch (-want,+got):\n%s", diff)
 			}
 		})
 	}

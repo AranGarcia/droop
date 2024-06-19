@@ -2,7 +2,6 @@ package mocks
 
 import (
 	"context"
-	"errors"
 
 	"github.com/AranGarcia/droop/characters/internal/core/entities"
 	"github.com/AranGarcia/droop/characters/internal/ports/repositories"
@@ -23,7 +22,7 @@ func (c *Characters) Create(_ context.Context, character entities.Character) err
 func (c *Characters) Retrieve(_ context.Context, id string) (*entities.Character, error) {
 	character, ok := c.inMemory[id]
 	if !ok {
-		return nil, errors.New("not found") // TODO: use custom errors
+		return nil, repositories.ErrNotFound
 	}
 	return &character, nil
 }

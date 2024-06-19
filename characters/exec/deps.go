@@ -4,7 +4,7 @@ import (
 	"log"
 	"time"
 
-	"github.com/AranGarcia/droop/internal"
+	"github.com/AranGarcia/droop/characters/internal"
 )
 
 // buildMongoConfig is built from the configuration flags.

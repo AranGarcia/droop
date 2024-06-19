@@ -4,7 +4,7 @@ import (
 	"flag"
 	"log"
 
-	"github.com/AranGarcia/droop/internal"
+	"github.com/AranGarcia/droop/characters/internal"
 )
 
 var (

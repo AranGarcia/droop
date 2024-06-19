@@ -1,4 +1,4 @@
-module github.com/AranGarcia/droop
+module github.com/AranGarcia/droop/characters
 
 go 1.22.3
 

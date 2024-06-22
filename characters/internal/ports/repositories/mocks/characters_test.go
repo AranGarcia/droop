@@ -12,7 +12,7 @@ import (
 
 func TestCharacters_Create(t *testing.T) {
 	character := entities.Character{
-		ID: "pre-existing-character",
+		Base: entities.Base{ID: "pre-existing-character"},
 	}
 	inMemory := map[string]entities.Character{
 		character.ID: character,
@@ -24,12 +24,12 @@ func TestCharacters_Create(t *testing.T) {
 	}{
 		{
 			name:    "duplicate",
-			in:      entities.Character{ID: character.ID},
+			in:      entities.Character{Base: entities.Base{ID: character.ID}},
 			wantErr: repositories.ErrDuplicateEntity,
 		},
 		{
 			name: "successful create",
-			in:   entities.Character{ID: "completely-new-character"},
+			in:   entities.Character{Base: entities.Base{ID: "completely-new-character"}},
 		},
 	}
 
@@ -47,7 +47,7 @@ func TestCharacters_Create(t *testing.T) {
 
 func TestCharacters_Retrieve(t *testing.T) {
 	character := entities.Character{
-		ID: "pre-existing-character",
+		Base: entities.Base{ID: "pre-existing-character"},
 	}
 	inMemory := map[string]entities.Character{
 		character.ID: character,
@@ -108,71 +108,71 @@ func TestCharacters_Update(t *testing.T) {
 			name:            "level",
 			id:              characterID,
 			characterFields: repositories.CharacterFields{Level: repositories.IntPtr(10)},
-			fields:          fields{map[string]entities.Character{characterID: {ID: characterID}}},
-			want:            &entities.Character{ID: characterID, Level: 10},
+			fields:          fields{map[string]entities.Character{characterID: {Base: entities.Base{ID: characterID}}}},
+			want:            &entities.Character{Base: entities.Base{ID: characterID}, Level: 10},
 		},
 		{
 			name:            "name",
 			id:              characterID,
 			characterFields: repositories.CharacterFields{Name: repositories.StringPtr("new-character-name")},
-			fields:          fields{map[string]entities.Character{characterID: {ID: characterID}}},
-			want:            &entities.Character{ID: characterID, Name: "new-character-name"},
+			fields:          fields{map[string]entities.Character{characterID: {Base: entities.Base{ID: characterID}}}},
+			want:            &entities.Character{Base: entities.Base{ID: characterID}, Name: "new-character-name"},
 		},
 		{
 			name:            "health points",
 			id:              characterID,
 			characterFields: repositories.CharacterFields{HealthPoints: repositories.IntPtr(15)},
-			fields:          fields{map[string]entities.Character{characterID: {ID: characterID}}},
-			want:            &entities.Character{ID: characterID, HealthPoints: 15},
+			fields:          fields{map[string]entities.Character{characterID: {Base: entities.Base{ID: characterID}}}},
+			want:            &entities.Character{Base: entities.Base{ID: characterID}, HealthPoints: 15},
 		},
 		{
 			name:            "armorclass",
 			id:              characterID,
 			characterFields: repositories.CharacterFields{ArmorClass: repositories.IntPtr(15)},
-			fields:          fields{map[string]entities.Character{characterID: {ID: characterID}}},
-			want:            &entities.Character{ID: characterID, ArmorClass: 15},
+			fields:          fields{map[string]entities.Character{characterID: {Base: entities.Base{ID: characterID}}}},
+			want:            &entities.Character{Base: entities.Base{ID: characterID}, ArmorClass: 15},
 		},
 		{
 			name:            "strength",
 			id:              characterID,
 			characterFields: repositories.CharacterFields{Strength: repositories.IntPtr(15)},
-			fields:          fields{map[string]entities.Character{characterID: {ID: characterID}}},
-			want:            &entities.Character{ID: characterID, Strength: 15},
+			fields:          fields{map[string]entities.Character{characterID: {Base: entities.Base{ID: characterID}}}},
+			want:            &entities.Character{Base: entities.Base{ID: characterID}, Strength: 15},
 		},
 		{
 			name:            "dexterity",
 			id:              characterID,
 			characterFields: repositories.CharacterFields{Dexterity: repositories.IntPtr(15)},
-			fields:          fields{map[string]entities.Character{characterID: {ID: characterID}}},
-			want:            &entities.Character{ID: characterID, Dexterity: 15},
+			fields:          fields{map[string]entities.Character{characterID: {Base: entities.Base{ID: characterID}}}},
+			want:            &entities.Character{Base: entities.Base{ID: characterID}, Dexterity: 15},
 		},
 		{
 			name:            "constitution",
 			id:              characterID,
 			characterFields: repositories.CharacterFields{Constitution: repositories.IntPtr(15)},
-			fields:          fields{map[string]entities.Character{characterID: {ID: characterID}}},
-			want:            &entities.Character{ID: characterID, Constitution: 15},
+			fields:          fields{map[string]entities.Character{characterID: {Base: entities.Base{ID: characterID}}}},
+			want:            &entities.Character{Base: entities.Base{ID: characterID}, Constitution: 15},
 		},
 		{
 			name:            "intelligence",
 			id:              characterID,
 			characterFields: repositories.CharacterFields{Intelligence: repositories.IntPtr(15)},
-			fields:          fields{map[string]entities.Character{characterID: {ID: characterID}}},
-			want:            &entities.Character{ID: characterID, Intelligence: 15},
+			fields:          fields{map[string]entities.Character{characterID: {Base: entities.Base{ID: characterID}}}},
+			want:            &entities.Character{Base: entities.Base{ID: characterID}, Intelligence: 15},
 		},
 		{
 			name:            "wisdom",
 			id:              characterID,
 			characterFields: repositories.CharacterFields{Wisdom: repositories.IntPtr(15)},
-			fields:          fields{map[string]entities.Character{characterID: {ID: characterID}}},
-			want:            &entities.Character{ID: characterID, Wisdom: 15},
+			fields:          fields{map[string]entities.Character{characterID: {Base: entities.Base{ID: characterID}}}},
+			want:            &entities.Character{Base: entities.Base{ID: characterID}, Wisdom: 15},
 		},
 		{
 			name:            "charisma",
 			id:              characterID,
 			characterFields: repositories.CharacterFields{Charisma: repositories.IntPtr(15)},
-			fields:          fields{map[string]entities.Character{characterID: {ID: characterID}}},
-			want:            &entities.Character{ID: characterID, Charisma: 15},
+			fields:          fields{map[string]entities.Character{characterID: {Base: entities.Base{ID: characterID}}}},
+			want:            &entities.Character{Base: entities.Base{ID: characterID}, Charisma: 15},
 		},
 	}
 
@@ -213,11 +213,11 @@ func TestCharacters_Delete(t *testing.T) {
 			},
 			fields: fields{
 				inMemory: map[string]entities.Character{
-					"non-affected-id": {ID: "non-affected-id"},
+					"non-affected-id": {Base: entities.Base{ID: "non-affected-id"}},
 				},
 			},
 			want: map[string]entities.Character{
-				"non-affected-id": {ID: "non-affected-id"},
+				"non-affected-id": {Base: entities.Base{ID: "non-affected-id"}},
 			},
 		},
 		{
@@ -227,7 +227,7 @@ func TestCharacters_Delete(t *testing.T) {
 			},
 			fields: fields{
 				inMemory: map[string]entities.Character{
-					"expected-to-delete": {ID: "expected-to-delete"},
+					"expected-to-delete": {Base: entities.Base{ID: "expected-to-delete"}},
 				},
 			},
 			want: map[string]entities.Character{},

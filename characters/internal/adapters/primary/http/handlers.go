@@ -15,8 +15,10 @@ type Handler struct {
 	characterService api.Characters
 }
 
-func NewHandler() *Handler {
-	return &Handler{}
+func NewHandler(api api.Characters) *Handler {
+	return &Handler{
+		characterService: api,
+	}
 }
 
 func (h Handler) postCharacter(w http.ResponseWriter, r *http.Request) {

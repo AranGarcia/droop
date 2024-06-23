@@ -2,6 +2,7 @@ package mocks
 
 import (
 	"context"
+	"time"
 
 	"github.com/AranGarcia/droop/characters/internal/core/entities"
 	"github.com/AranGarcia/droop/characters/internal/ports/repositories"
@@ -11,12 +12,16 @@ type Characters struct {
 	inMemory map[string]entities.Character
 }
 
-func (c *Characters) Create(_ context.Context, character entities.Character) error {
-	if _, ok := c.inMemory[character.ID]; ok {
-		return repositories.ErrDuplicateEntity
+// Create a Character in memory. It returns a copy of the created entity with a newly set ID.
+func (c *Characters) Create(_ context.Context, character entities.Character) (*entities.Character, error) {
+	createdCharacter := character.Copy()
+	id := time.Now().Format(time.RFC3339Nano)
+	createdCharacter.ID = id
+	if _, ok := c.inMemory[id]; ok {
+		return nil, repositories.ErrDuplicateEntity
 	}
-	c.inMemory[character.ID] = character
-	return nil
+	c.inMemory[createdCharacter.ID] = createdCharacter
+	return &createdCharacter, nil
 }
 
 func (c *Characters) Retrieve(_ context.Context, id string) (*entities.Character, error) {

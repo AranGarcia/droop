@@ -47,6 +47,9 @@ func (c Character) Copy() Character {
 }
 
 func copyTimePtr(t *time.Time) *time.Time {
+	if t == nil {
+		return nil
+	}
 	t2 := time.Date(
 		t.Year(), t.Month(), t.Day(),
 		t.Hour(), t.Minute(), t.Second(), t.Nanosecond(),

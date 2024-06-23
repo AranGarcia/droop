@@ -7,7 +7,7 @@ import (
 )
 
 type Characters interface {
-	Create(context.Context, entities.Character) error
+	Create(context.Context, entities.Character) (*entities.Character, error)
 	Retrieve(context.Context, string) (*entities.Character, error)
 	Update(context.Context, string, CharacterFields) (*entities.Character, error)
 	Delete(context.Context, string) error

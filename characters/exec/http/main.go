@@ -3,8 +3,6 @@ package main
 import (
 	"flag"
 	"log"
-
-	"github.com/AranGarcia/droop/characters/internal"
 )
 
 var (
@@ -36,12 +34,5 @@ func init() {
 func main() {
 	log.Println("Initializing repository...")
 	mongoConfig := buildMongoConfig()
-	repository := buildCharacterRepository(mongoConfig)
-	handler := internal.NewHandler(repository)
-	log.Println("running the server...")
-	httpServer := internal.NewServer(addr, handler)
-	log.Println("Server is running on", addr)
-	if err := httpServer.Run(); err != nil {
-		log.Fatalf("Failed to run; %v", err)
-	}
+	_ = buildRepositories(mongoConfig)
 }

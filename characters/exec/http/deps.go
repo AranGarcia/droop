@@ -19,11 +19,16 @@ func buildMongoConfig() internal.MongoConfig {
 	}
 }
 
-// buildCharacterRepository initializes the character
-func buildCharacterRepository(m internal.MongoConfig) *internal.CharacterRepository {
-	repository, err := internal.NewCharacterRepository(m)
+type repositories struct {
+	characters internal.CharacterRepository
+}
+
+func buildRepositories(mongoConfig internal.MongoConfig) repositories {
+	characters, err := internal.NewCharacterRepository(mongoConfig)
 	if err != nil {
 		log.Fatal("mongo client initialization failed; ", err)
 	}
-	return repository
+	return repositories{
+		characters: *characters,
+	}
 }

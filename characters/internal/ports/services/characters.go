@@ -2,6 +2,8 @@ package services
 
 import (
 	"context"
+
+	"github.com/AranGarcia/droop/characters/internal/core/entities"
 )
 
 // Characters is an API port for the core domain.
@@ -12,7 +14,9 @@ type Characters interface {
 	Delete(context.Context, DeleteCharacterRequest) (DeleteCharacterResponse, error)
 }
 
-type CreateCharacterRequest struct{}
+type CreateCharacterRequest struct {
+	Character entities.Character
+}
 
 type CreateCharacterResponse struct{}
 

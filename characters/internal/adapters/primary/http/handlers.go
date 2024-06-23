@@ -8,11 +8,11 @@ import (
 	"net/http"
 
 	"github.com/AranGarcia/droop/characters/internal/core/entities"
-	"github.com/AranGarcia/droop/characters/internal/ports/services"
+	"github.com/AranGarcia/droop/characters/internal/ports/api"
 )
 
 type Handler struct {
-	characterService services.Characters
+	characterService api.Characters
 }
 
 func NewHandler() *Handler {
@@ -35,7 +35,7 @@ func (h Handler) postCharacter(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	apiRequest := services.CreateCharacterRequest{Character: character}
+	apiRequest := api.CreateCharacterRequest{Character: character}
 	_, err = h.characterService.Create(r.Context(), apiRequest)
 	if err != nil {
 		jsonErr := JSONErrorResponse{Error: fmt.Sprintf("failed to create character; %v", err)}

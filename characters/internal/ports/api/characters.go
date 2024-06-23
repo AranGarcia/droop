@@ -1,4 +1,4 @@
-package services
+package api
 
 import (
 	"context"
@@ -6,7 +6,6 @@ import (
 	"github.com/AranGarcia/droop/characters/internal/core/entities"
 )
 
-// Characters is an API port for the core domain.
 type Characters interface {
 	Create(context.Context, CreateCharacterRequest) (CreateCharacterResponse, error)
 	Retrieve(context.Context, RetrieveCharacterRequest) (RetrieveCharacterResponse, error)

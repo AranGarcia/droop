@@ -3,6 +3,8 @@ package main
 import (
 	"flag"
 	"log"
+
+	"github.com/AranGarcia/droop/characters/internal/adapters/secondary/mongo"
 )
 
 var (
@@ -34,5 +36,6 @@ func init() {
 func main() {
 	log.Println("Initializing repository...")
 	mongoConfig := buildMongoConfig()
-	_ = buildRepositories(mongoConfig)
+	repo := buildRepository(mongo.Config(mongoConfig))
+	_ = buildService(repo)
 }

@@ -1,10 +1,13 @@
 package main
 
 import (
-	"log"
 	"time"
 
 	"github.com/AranGarcia/droop/characters/internal"
+	"github.com/AranGarcia/droop/characters/internal/adapters/secondary/mongo"
+	"github.com/AranGarcia/droop/characters/internal/core/services"
+	"github.com/AranGarcia/droop/characters/internal/ports/api"
+	"github.com/AranGarcia/droop/characters/internal/ports/repositories"
 )
 
 // buildMongoConfig is built from the configuration flags.
@@ -19,16 +22,10 @@ func buildMongoConfig() internal.MongoConfig {
 	}
 }
 
-type repositories struct {
-	characters internal.CharacterRepository
+func buildRepository(mongoConfig mongo.Config) repositories.Characters {
+	return mongo.CharacterRepository{}
 }
 
-func buildRepositories(mongoConfig internal.MongoConfig) repositories {
-	characters, err := internal.NewCharacterRepository(mongoConfig)
-	if err != nil {
-		log.Fatal("mongo client initialization failed; ", err)
-	}
-	return repositories{
-		characters: *characters,
-	}
+func buildService(repo repositories.Characters) api.Characters {
+	return &services.Characters{Repository: repo}
 }

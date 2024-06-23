@@ -36,13 +36,16 @@ func NewCharacterRepository(config Config) (*CharacterRepository, error) {
 	return repo, nil
 }
 
-func (c CharacterRepository) Create(ctx context.Context, character entities.Character) error {
-	// TODO: decide whether caller sets ID or
-	_, err := c.collection.InsertOne(ctx, character)
+func (c CharacterRepository) Create(ctx context.Context, character entities.Character) (*entities.Character, error) {
+	result, err := c.collection.InsertOne(ctx, character)
 	if err != nil {
-		return fmt.Errorf("failed to insert character; %v", err)
+		return nil, fmt.Errorf("failed to insert character; %v", err)
 	}
-	return nil
+	created := character.Copy()
+	if oid, ok := result.InsertedID.(primitive.ObjectID); ok {
+		created.ID = oid.String()
+	}
+	return &created, nil
 }
 
 func (c CharacterRepository) Retrieve(ctx context.Context, id string) (*entities.Character, error) {

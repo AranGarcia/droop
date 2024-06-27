@@ -4,7 +4,6 @@ import (
 	"log"
 	"time"
 
-	"github.com/AranGarcia/droop/characters/internal"
 	"github.com/AranGarcia/droop/characters/internal/adapters/secondary/mongo"
 	"github.com/AranGarcia/droop/characters/internal/core/services"
 	"github.com/AranGarcia/droop/characters/internal/ports/api"
@@ -12,8 +11,8 @@ import (
 )
 
 // buildMongoConfig is built from the configuration flags.
-func buildMongoConfig() internal.MongoConfig {
-	return internal.MongoConfig{
+func buildMongoConfig() mongo.Config {
+	return mongo.Config{
 		User:     mongoUser,
 		Password: mongoPassword,
 		Host:     mongoHost,

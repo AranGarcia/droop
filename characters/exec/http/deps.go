@@ -31,5 +31,6 @@ func buildRepository(mongoConfig mongo.Config) repositories.Characters {
 }
 
 func buildService(repo repositories.Characters) api.Characters {
-	return &services.Characters{Repository: repo}
+	deps := services.Dependencies{Repository: repo}
+	return services.NewCharacters(deps)
 }

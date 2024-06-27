@@ -1,4 +1,4 @@
-package internal
+package mongo
 
 import (
 	"context"
@@ -9,8 +9,8 @@ import (
 	"go.mongodb.org/mongo-driver/mongo/options"
 )
 
-// MongoConfig contains the configuration parameters to connect to MongoDB.
-type MongoConfig struct {
+// Config contains the configuration parameters to connect to MongoDB.
+type Config struct {
 	User     string
 	Password string
 	Host     string
@@ -21,7 +21,7 @@ type MongoConfig struct {
 
 // InitializeClient returns an initialized Mongo Client. It also performs a ping to validate it could
 // connect properly.
-func (m MongoConfig) InitializeClient() (*mongo.Client, error) {
+func (m Config) InitializeClient() (*mongo.Client, error) {
 	connectionString := m.ConnectionString()
 	clientOpt := options.Client().ApplyURI(connectionString)
 	clientOpt.Timeout = &m.Timeout
@@ -40,6 +40,6 @@ func (m MongoConfig) InitializeClient() (*mongo.Client, error) {
 }
 
 // ConnectionString built from the configuration parameters.
-func (m MongoConfig) ConnectionString() string {
+func (m Config) ConnectionString() string {
 	return fmt.Sprintf("mongodb://%s:%s@%s:%d/%s", m.User, m.Password, m.Host, m.Port, m.Database)
 }

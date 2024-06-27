@@ -1,4 +1,4 @@
-package internal
+package http
 
 func (s *Server) setupRoutes() {
 	s.mux.HandleFunc("POST /character", s.handler.postCharacter)

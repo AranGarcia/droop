@@ -1,8 +1,10 @@
-package internal
+package http
 
 import (
 	"log"
 	"net/http"
+
+	"github.com/AranGarcia/droop/characters/internal/ports/api"
 )
 
 // Server is an HTTP server.
@@ -13,11 +15,11 @@ type Server struct {
 }
 
 // NewServer initializes a server with the URI routes added with their handlers.s
-func NewServer(addr string, handler *Handler) *Server {
+func NewServer(addr string, api api.Characters) *Server {
 	s := &Server{
 		addr:    addr,
 		mux:     http.NewServeMux(),
-		handler: handler,
+		handler: NewHandler(api),
 	}
 	s.setupRoutes()
 	return s

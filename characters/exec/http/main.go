@@ -4,7 +4,8 @@ import (
 	"flag"
 	"log"
 
-	"github.com/AranGarcia/droop/characters/internal"
+	"github.com/AranGarcia/droop/characters/internal/adapters/primary/http"
+	"github.com/AranGarcia/droop/characters/internal/adapters/secondary/mongo"
 )
 
 var (
@@ -29,19 +30,17 @@ func init() {
 	flag.StringVar(&mongoHost, "mongo_host", "localhost", "MongoDB hostname")
 	flag.IntVar(&mongoPort, "mongo_port", 27017, "MongoDB port")
 	flag.StringVar(&mongoDatabase, "mongo_database", "droop", "MongoDB database name")
-
 	flag.Parse()
 }
 
 func main() {
 	log.Println("Initializing repository...")
 	mongoConfig := buildMongoConfig()
-	repository := buildCharacterRepository(mongoConfig)
-	handler := internal.NewHandler(repository)
-	log.Println("running the server...")
-	httpServer := internal.NewServer(addr, handler)
-	log.Println("Server is running on", addr)
-	if err := httpServer.Run(); err != nil {
-		log.Fatalf("Failed to run; %v", err)
+	repo := buildRepository(mongo.Config(mongoConfig))
+	service := buildService(repo)
+	server := http.NewServer(addr, service)
+	log.Println("Running server on", addr)
+	if err := server.Run(); err != nil {
+		log.Fatalf("server.Run failure; %v", err)
 	}
 }

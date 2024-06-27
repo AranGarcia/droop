@@ -5,10 +5,10 @@ import (
 )
 
 type Characters interface {
-	Create(context.Context, CreateCharacterRequest) (CreateCharacterResponse, error)
-	Retrieve(context.Context, RetrieveCharacterRequest) (RetrieveCharacterResponse, error)
-	Update(context.Context, UpdateCharacterRequest) (UpdateCharacterResponse, error)
-	Delete(context.Context, DeleteCharacterRequest) (DeleteCharacterResponse, error)
+	Create(context.Context, CreateCharacterRequest) (*CreateCharacterResponse, error)
+	Retrieve(context.Context, RetrieveCharacterRequest) (*RetrieveCharacterResponse, error)
+	Update(context.Context, UpdateCharacterRequest) (*UpdateCharacterResponse, error)
+	Delete(context.Context, DeleteCharacterRequest) (*DeleteCharacterResponse, error)
 }
 
 type RetrieveCharacterRequest struct{}

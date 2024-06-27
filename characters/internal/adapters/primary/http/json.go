@@ -2,6 +2,7 @@ package http
 
 import "encoding/json"
 
+// Deprecated: use ErrorResponse instead.
 type JSONErrorResponse struct {
 	Error string `json:"error,omitempty"`
 }

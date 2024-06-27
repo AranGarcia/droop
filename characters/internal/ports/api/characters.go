@@ -2,8 +2,6 @@ package api
 
 import (
 	"context"
-
-	"github.com/AranGarcia/droop/characters/internal/core/entities"
 )
 
 type Characters interface {
@@ -12,12 +10,6 @@ type Characters interface {
 	Update(context.Context, UpdateCharacterRequest) (UpdateCharacterResponse, error)
 	Delete(context.Context, DeleteCharacterRequest) (DeleteCharacterResponse, error)
 }
-
-type CreateCharacterRequest struct {
-	Character entities.Character
-}
-
-type CreateCharacterResponse struct{}
 
 type RetrieveCharacterRequest struct{}
 

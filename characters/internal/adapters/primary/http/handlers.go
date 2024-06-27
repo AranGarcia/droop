@@ -7,7 +7,6 @@ import (
 	"log"
 	"net/http"
 
-	"github.com/AranGarcia/droop/characters/internal/core/entities"
 	"github.com/AranGarcia/droop/characters/internal/ports/api"
 )
 
@@ -29,24 +28,32 @@ func (h Handler) postCharacter(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	character := entities.Character{}
-	if err = json.Unmarshal(payload, &character); err != nil {
+	apiRequest := api.CreateCharacterRequest{}
+	if err = json.Unmarshal(payload, &apiRequest); err != nil {
 		jsonErr := JSONErrorResponse{Error: fmt.Sprintf("invalid request data; %v", err)}
 		w.WriteHeader(http.StatusBadRequest)
 		w.Write(jsonErr.ToBytes())
 		return
 	}
 
-	apiRequest := api.CreateCharacterRequest{Character: character}
-	_, err = h.characterService.Create(r.Context(), apiRequest)
+	apiResponse, err := h.characterService.Create(r.Context(), apiRequest)
 	if err != nil {
 		jsonErr := JSONErrorResponse{Error: fmt.Sprintf("failed to create character; %v", err)}
 		w.WriteHeader(http.StatusBadRequest)
 		w.Write(jsonErr.ToBytes())
 		return
 	}
+
+	body, err := json.Marshal(apiResponse)
+	if err != nil {
+		jsonErr := JSONErrorResponse{Error: fmt.Sprintf("failed to marshal response; %v", err)}
+		w.WriteHeader(http.StatusInternalServerError)
+		w.Write(jsonErr.ToBytes())
+		return
+	}
+
 	w.WriteHeader(http.StatusCreated)
-	w.Write([]byte(`{}`))
+	w.Write(body)
 }
 
 func (h Handler) getCharacter(w http.ResponseWriter, r *http.Request) {

@@ -1,6 +1,7 @@
 package main
 
 import (
+	"log"
 	"time"
 
 	"github.com/AranGarcia/droop/characters/internal"
@@ -23,7 +24,11 @@ func buildMongoConfig() internal.MongoConfig {
 }
 
 func buildRepository(mongoConfig mongo.Config) repositories.Characters {
-	return mongo.CharacterRepository{}
+	repo, err := mongo.NewCharacterRepository(mongoConfig)
+	if err != nil {
+		log.Fatalf("failed to initialize repo; %v", err)
+	}
+	return repo
 }
 
 func buildService(repo repositories.Characters) api.Characters {

@@ -3,6 +3,8 @@ package http
 import (
 	"encoding/json"
 	"net/http"
+
+	"github.com/AranGarcia/droop/characters/internal/ports/api"
 )
 
 type ErrorResponse struct {
@@ -23,7 +25,10 @@ func handleAPIError(w http.ResponseWriter, err error) {
 	w.Write(response.ToBytes())
 }
 
-func errorToStatusCode(_ error) int {
-	// TODO: handle all API errors.
+func errorToStatusCode(err error) int {
+	switch err {
+	case api.ErrNotFound:
+		return http.StatusNotFound
+	}
 	return http.StatusInternalServerError
 }

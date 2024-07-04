@@ -58,8 +58,8 @@ func (c CharacterRepository) Retrieve(ctx context.Context, id string) (*entities
 		"deleted_at": nil,
 	}
 	result := c.collection.FindOne(ctx, filter)
-	if result.Err() != nil {
-		return nil, fmt.Errorf("query error; %v", result.Err())
+	if err := result.Err(); err != nil {
+		return nil, handleMongoError(err)
 	}
 	character := &entities.Character{}
 	if err = result.Decode(character); err != nil {

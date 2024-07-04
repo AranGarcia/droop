@@ -47,6 +47,21 @@ func (h Handler) postCharacter(w http.ResponseWriter, r *http.Request) {
 }
 
 func (h Handler) getCharacter(w http.ResponseWriter, r *http.Request) {
+	var err error
+	defer func() { handleAPIError(w, err) }()
+
+	id := r.PathValue("id")
+	apiRequest := api.RetrieveCharacterRequest{ID: id}
+	apiResponse, err := h.characterService.Retrieve(r.Context(), apiRequest)
+	if err != nil {
+		return
+	}
+	body, err := json.Marshal(apiResponse)
+	if err != nil {
+		return
+	}
+	w.WriteHeader(http.StatusCreated)
+	w.Write(body)
 }
 
 func (h Handler) listCharacters(w http.ResponseWriter, r *http.Request) {

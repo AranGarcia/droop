@@ -36,14 +36,18 @@ func (c Characters) Create(ctx context.Context, request api.CreateCharacterReque
 		Charisma:     request.Charisma,
 	}
 	createdEntity, err := c.repository.Create(ctx, requestEntity)
-	if err == nil {
+	if err != nil {
 		return nil, repositoryErrorToAPI(err)
 	}
 	return &api.CreateCharacterResponse{Character: *createdEntity}, nil
 }
 
-func (c Characters) Retrieve(_ context.Context, _ api.RetrieveCharacterRequest) (*api.RetrieveCharacterResponse, error) {
-	panic("not implemented") // TODO: Implement
+func (c Characters) Retrieve(ctx context.Context, request api.RetrieveCharacterRequest) (*api.RetrieveCharacterResponse, error) {
+	character, err := c.repository.Retrieve(ctx, request.ID)
+	if err != nil {
+		return nil, repositoryErrorToAPI(err)
+	}
+	return &api.RetrieveCharacterResponse{Character: *character}, nil
 }
 
 func (c Characters) Update(_ context.Context, _ api.UpdateCharacterRequest) (*api.UpdateCharacterResponse, error) {

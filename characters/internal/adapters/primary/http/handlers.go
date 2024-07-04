@@ -56,7 +56,7 @@ func (h Handler) getCharacter(w http.ResponseWriter, r *http.Request) {
 	if err != nil {
 		return
 	}
-	body, err := json.Marshal(apiResponse)
+	body, err := json.Marshal(apiResponse.Character)
 	if err != nil {
 		return
 	}

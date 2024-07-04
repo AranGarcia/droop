@@ -8,10 +8,10 @@ import (
 )
 
 func repositoryErrorToAPI(err error) error {
-	switch {
-	case errors.Is(err, mongo.ErrorNotFound):
+	switch err {
+	case mongo.ErrorNotFound:
 		return api.ErrNotFound
-	case errors.Is(err, mongo.ErrInternalError):
+	case mongo.ErrInternalError:
 		return errors.Join(api.ErrRepositoryFailure, err)
 	}
 	return api.ErrInternalError

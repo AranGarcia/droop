@@ -11,10 +11,6 @@ type Characters interface {
 	Delete(context.Context, DeleteCharacterRequest) (*DeleteCharacterResponse, error)
 }
 
-type UpdateCharacterRequest struct{}
-
-type UpdateCharacterResponse struct{}
-
 type DeleteCharacterRequest struct{}
 
 type DeleteCharacterResponse struct{}

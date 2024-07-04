@@ -68,8 +68,25 @@ func (c CharacterRepository) Retrieve(ctx context.Context, id string) (*entities
 	return character, nil
 }
 
-func (c CharacterRepository) Update(_ context.Context, _ string, _ repositories.CharacterFields) (*entities.Character, error) {
-	panic("not implemented") // TODO: Implement
+func (c CharacterRepository) Update(ctx context.Context, id string, fields repositories.CharacterFields) (*entities.Character, error) {
+	_id, err := primitive.ObjectIDFromHex(id)
+	if err != nil {
+		return nil, fmt.Errorf("invalid id; %v", err)
+	}
+	filter := bson.M{
+		"_id":        _id,
+		"deleted_at": nil,
+	}
+	update := bson.M{} // TODO: build update map
+	_, err = c.collection.UpdateOne(ctx, filter, update)
+	if err != nil {
+		return nil, handleMongoError(err)
+	}
+	charcter, err := c.Retrieve(ctx, id)
+	if err != nil {
+		return nil, handleMongoError(err)
+	}
+	return charcter, nil
 }
 
 func (c CharacterRepository) Delete(ctx context.Context, id string) error {

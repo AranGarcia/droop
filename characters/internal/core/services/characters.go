@@ -50,8 +50,13 @@ func (c Characters) Retrieve(ctx context.Context, request api.RetrieveCharacterR
 	return &api.RetrieveCharacterResponse{Character: *character}, nil
 }
 
-func (c Characters) Update(_ context.Context, _ api.UpdateCharacterRequest) (*api.UpdateCharacterResponse, error) {
-	panic("not implemented") // TODO: Implement
+func (c Characters) Update(ctx context.Context, request api.UpdateCharacterRequest) (*api.UpdateCharacterResponse, error) {
+	repositoryUpdateFields := getRepositoryUpdateFields(request)
+	character, err := c.repository.Update(ctx, request.ID, repositoryUpdateFields)
+	if err != nil {
+		return nil, repositoryErrorToAPI(err)
+	}
+	return &api.UpdateCharacterResponse{Character: *character}, nil
 }
 
 func (c Characters) Delete(_ context.Context, _ api.DeleteCharacterRequest) (*api.DeleteCharacterResponse, error) {

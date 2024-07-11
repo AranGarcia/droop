@@ -77,7 +77,7 @@ func (c CharacterRepository) Update(ctx context.Context, id string, fields repos
 		"_id":        _id,
 		"deleted_at": nil,
 	}
-	update := bson.M{} // TODO: build update map
+	update := bson.M{"$set": characterFieldsToBSONMap(fields)}
 	_, err = c.collection.UpdateOne(ctx, filter, update)
 	if err != nil {
 		return nil, handleMongoError(err)

@@ -3,6 +3,7 @@ package api
 import "github.com/AranGarcia/droop/characters/internal/core/entities"
 
 type UpdateCharacterRequest struct {
+	ID           string  `json:"id"`
 	Level        *int    `json:"level,omitempty"`
 	Name         *string `json:"name,omitempty"`
 	HealthPoints *int    `json:"health_points,omitempty"`

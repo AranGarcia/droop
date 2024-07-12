@@ -66,11 +66,12 @@ func (c CharacterRepository) Retrieve(ctx context.Context, id string) (*entities
 	if err := result.Err(); err != nil {
 		return nil, handleMongoError(err)
 	}
-	character := &entities.Character{}
+	character := &Character{}
 	if err = result.Decode(character); err != nil {
 		return nil, fmt.Errorf("decoding error; %v", err)
 	}
-	return character, nil
+	entity := character.ToEntity()
+	return &entity, nil
 }
 
 func (c CharacterRepository) Update(ctx context.Context, id string, fields repositories.CharacterFields) (*entities.Character, error) {

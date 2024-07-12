@@ -46,7 +46,7 @@ func (c CharacterRepository) Create(ctx context.Context, entity entities.Charact
 	}
 	created := entity.Copy()
 	if oid, ok := result.InsertedID.(primitive.ObjectID); ok {
-		created.ID = oid.String()
+		created.ID = oid.Hex()
 	}
 	created.CreatedAt = character.CreatedAt
 	created.UpdatedAt = character.UpdatedAt

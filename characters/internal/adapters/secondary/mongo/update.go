@@ -1,9 +1,9 @@
 package mongo
 
 import (
-	"github.com/AranGarcia/droop/characters/internal/ports/repositories"
-
 	"go.mongodb.org/mongo-driver/bson"
+
+	"github.com/AranGarcia/droop/characters/internal/ports/repositories"
 )
 
 func characterFieldsToBSONMap(fields repositories.CharacterFields) bson.M {

@@ -35,15 +35,21 @@ func NewCharacterRepository(config Config) (*CharacterRepository, error) {
 	return repo, nil
 }
 
-func (c CharacterRepository) Create(ctx context.Context, character entities.Character) (*entities.Character, error) {
+func (c CharacterRepository) Create(ctx context.Context, entity entities.Character) (*entities.Character, error) {
+	character := NewCharacterFromEntity(entity)
+	character.CreatedAtNow()
+	character.UpdatedAtNow()
+
 	result, err := c.collection.InsertOne(ctx, character)
 	if err != nil {
 		return nil, fmt.Errorf("failed to insert character; %v", err)
 	}
-	created := character.Copy()
+	created := entity.Copy()
 	if oid, ok := result.InsertedID.(primitive.ObjectID); ok {
 		created.ID = oid.String()
 	}
+	created.CreatedAt = character.CreatedAt
+	created.UpdatedAt = character.UpdatedAt
 	return &created, nil
 }
 

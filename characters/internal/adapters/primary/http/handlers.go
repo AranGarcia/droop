@@ -37,7 +37,7 @@ func (h Handler) postCharacter(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	body, err := json.Marshal(apiResponse)
+	body, err := json.Marshal(apiResponse.Character)
 	if err != nil {
 		return
 	}

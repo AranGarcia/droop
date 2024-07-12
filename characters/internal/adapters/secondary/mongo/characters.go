@@ -3,7 +3,6 @@ package mongo
 import (
 	"context"
 	"fmt"
-	"log"
 	"time"
 
 	"github.com/AranGarcia/droop/characters/internal/core/entities"
@@ -106,11 +105,10 @@ func (c CharacterRepository) Delete(ctx context.Context, id string) error {
 		},
 	}
 
-	result, err := c.collection.UpdateOne(ctx, filter, update)
+	_, err = c.collection.UpdateOne(ctx, filter, update)
 	if err != nil {
 		return fmt.Errorf("failed to delete; %v", err)
 	}
 
-	log.Println(result)
 	return nil
 }

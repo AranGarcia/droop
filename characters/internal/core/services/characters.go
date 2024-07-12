@@ -59,6 +59,9 @@ func (c Characters) Update(ctx context.Context, request api.UpdateCharacterReque
 	return &api.UpdateCharacterResponse{Character: *character}, nil
 }
 
-func (c Characters) Delete(_ context.Context, _ api.DeleteCharacterRequest) (*api.DeleteCharacterResponse, error) {
-	panic("not implemented") // TODO: Implement
+func (c Characters) Delete(ctx context.Context, request api.DeleteCharacterRequest) (*api.DeleteCharacterResponse, error) {
+	if err := c.repository.Delete(ctx, request.ID); err != nil {
+		return nil, repositoryErrorToAPI(err)
+	}
+	return &api.DeleteCharacterResponse{}, nil
 }

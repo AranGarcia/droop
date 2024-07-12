@@ -96,4 +96,21 @@ func (h Handler) patchCharacter(w http.ResponseWriter, r *http.Request) {
 }
 
 func (h Handler) deleteCharacter(w http.ResponseWriter, r *http.Request) {
+	var err error
+	defer func() { handleAPIError(w, err) }()
+
+	id := r.PathValue("id")
+	apiRequest := api.DeleteCharacterRequest{ID: id}
+	apiResponse, err := h.characterService.Delete(r.Context(), apiRequest)
+	if err != nil {
+		return
+	}
+
+	body, err := json.Marshal(apiResponse)
+	if err != nil {
+		return
+	}
+
+	w.WriteHeader(http.StatusOK)
+	w.Write(body)
 }

@@ -2,6 +2,7 @@ package http
 
 import (
 	"encoding/json"
+	"errors"
 	"net/http"
 
 	"github.com/AranGarcia/droop/characters/internal/ports/api"
@@ -26,6 +27,11 @@ func handleAPIError(w http.ResponseWriter, err error) {
 }
 
 func errorToStatusCode(err error) int {
+	var jsonSyntaxError *json.SyntaxError
+	if errors.As(err, &jsonSyntaxError) {
+		return http.StatusBadRequest
+	}
+
 	switch err {
 	case api.ErrNotFound:
 		return http.StatusNotFound

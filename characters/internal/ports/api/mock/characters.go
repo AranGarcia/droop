@@ -12,6 +12,12 @@ type Characters struct {
 	entities map[string]entities.Character
 }
 
+func NewMockCharacterService() *Characters {
+	return &Characters{
+		entities: make(map[string]entities.Character),
+	}
+}
+
 func (c *Characters) Create(_ context.Context, request api.CreateCharacterRequest) (*api.CreateCharacterResponse, error) {
 	id := time.Now().String()
 	character := entities.Character{

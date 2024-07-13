@@ -57,7 +57,7 @@ func Test_copyTimePtr(t *testing.T) {
 				t.Errorf("copyTimePtr() = %v, want %v", got, test.want)
 			}
 
-			if test.want != nil && test.want != got {
+			if test.want != nil && test.want == got {
 				t.Fatalf("expected different pointers; got = %p, want = %p", got, test.want)
 			}
 		})

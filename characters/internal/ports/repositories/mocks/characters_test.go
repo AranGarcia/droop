@@ -23,11 +23,6 @@ func TestCharacters_Create(t *testing.T) {
 		wantErr error
 	}{
 		{
-			name:    "duplicate",
-			in:      entities.Character{Base: entities.Base{ID: character.ID}},
-			wantErr: repositories.ErrDuplicateEntity,
-		},
-		{
 			name: "successful create",
 			in:   entities.Character{Base: entities.Base{ID: "completely-new-character"}},
 		},

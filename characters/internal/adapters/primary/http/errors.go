@@ -9,7 +9,7 @@ import (
 )
 
 type ErrorResponse struct {
-	Message string `json:"Message"`
+	Message string `json:"message"`
 }
 
 func (j ErrorResponse) ToBytes() []byte {

@@ -9,12 +9,12 @@ import (
 )
 
 type Characters struct {
-	entities map[string]entities.Character
+	Entities map[string]entities.Character
 }
 
 func NewMockCharacterService() *Characters {
 	return &Characters{
-		entities: make(map[string]entities.Character),
+		Entities: make(map[string]entities.Character),
 	}
 }
 
@@ -32,13 +32,13 @@ func (c *Characters) Create(_ context.Context, request api.CreateCharacterReques
 		Wisdom:       request.Wisdom,
 		Charisma:     request.Charisma,
 	}
-	c.entities[id] = character
+	c.Entities[id] = character
 	response := api.CreateCharacterResponse{Character: character}
 	return &response, nil
 }
 
 func (c *Characters) Retrieve(_ context.Context, request api.RetrieveCharacterRequest) (*api.RetrieveCharacterResponse, error) {
-	character, ok := c.entities[request.ID]
+	character, ok := c.Entities[request.ID]
 	if !ok {
 		return nil, api.ErrNotFound
 	}
@@ -47,7 +47,7 @@ func (c *Characters) Retrieve(_ context.Context, request api.RetrieveCharacterRe
 }
 
 func (c *Characters) Update(_ context.Context, request api.UpdateCharacterRequest) (*api.UpdateCharacterResponse, error) {
-	character, ok := c.entities[request.ID]
+	character, ok := c.Entities[request.ID]
 	if !ok {
 		return nil, api.ErrNotFound
 	}
@@ -81,16 +81,16 @@ func (c *Characters) Update(_ context.Context, request api.UpdateCharacterReques
 	if request.Charisma != nil {
 		character.Charisma = *request.Charisma
 	}
-	c.entities[request.ID] = character
+	c.Entities[request.ID] = character
 	response := &api.UpdateCharacterResponse{Character: character}
 	return response, nil
 }
 
 func (c *Characters) Delete(_ context.Context, request api.DeleteCharacterRequest) (*api.DeleteCharacterResponse, error) {
-	if _, ok := c.entities[request.ID]; !ok {
+	if _, ok := c.Entities[request.ID]; !ok {
 		return nil, api.ErrNotFound
 	}
-	delete(c.entities, request.ID)
+	delete(c.Entities, request.ID)
 	response := &api.DeleteCharacterResponse{}
 	return response, nil
 }

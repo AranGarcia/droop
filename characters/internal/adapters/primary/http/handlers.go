@@ -60,7 +60,7 @@ func (h Handler) getCharacter(w http.ResponseWriter, r *http.Request) {
 	if err != nil {
 		return
 	}
-	w.WriteHeader(http.StatusCreated)
+	w.WriteHeader(http.StatusOK)
 	w.Write(body)
 }
 

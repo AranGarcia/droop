@@ -1,6 +1,8 @@
 package entities
 
-import "time"
+import (
+	"time"
+)
 
 // Base attributes shared among entities.
 type Base struct {
@@ -44,6 +46,10 @@ func (c Character) Copy() Character {
 		Wisdom:       c.Wisdom,
 		Charisma:     c.Charisma,
 	}
+}
+
+func (c Character) Validate() error {
+	return validate.Struct(c)
 }
 
 func copyTimePtr(t *time.Time) *time.Time {

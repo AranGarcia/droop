@@ -32,6 +32,11 @@ func errorToStatusCode(err error) int {
 		return http.StatusBadRequest
 	}
 
+	var validationError api.InvalidRequestError
+	if errors.As(err, &validationError) {
+		return http.StatusBadRequest
+	}
+
 	switch err {
 	case api.ErrNotFound:
 		return http.StatusNotFound

@@ -1,8 +1,6 @@
 package entities
 
-import (
-	"time"
-)
+import "time"
 
 // Base attributes shared among entities.
 type Base struct {
@@ -18,12 +16,12 @@ type Character struct {
 	Name         string `json:"name" validate:"required"`
 	HealthPoints int    `json:"health_points"`
 	ArmorClass   int    `json:"armor_class"`
-	Strength     int    `json:"strength"`
-	Dexterity    int    `json:"dexterity"`
-	Constitution int    `json:"constitution"`
-	Intelligence int    `json:"intelligence"`
-	Wisdom       int    `json:"wisdom"`
-	Charisma     int    `json:"charisma"`
+	Strength     int    `json:"strength" validate:"required"`
+	Dexterity    int    `json:"dexterity" validate:"required"`
+	Constitution int    `json:"constitution" validate:"required"`
+	Intelligence int    `json:"intelligence" validate:"required"`
+	Wisdom       int    `json:"wisdom" validate:"required"`
+	Charisma     int    `json:"charisma" validate:"required"`
 }
 
 // Copy creates a deep copy of the character.

@@ -3,9 +3,10 @@ package services
 import (
 	"errors"
 
+	"github.com/go-playground/validator/v10"
+
 	"github.com/AranGarcia/droop/characters/internal/adapters/secondary/mongo"
 	"github.com/AranGarcia/droop/characters/internal/ports/api"
-	"github.com/go-playground/validator/v10"
 )
 
 func repositoryErrorToAPI(err error) error {

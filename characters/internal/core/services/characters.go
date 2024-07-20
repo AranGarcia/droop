@@ -35,6 +35,11 @@ func (c Characters) Create(ctx context.Context, request api.CreateCharacterReque
 		Wisdom:       request.Wisdom,
 		Charisma:     request.Charisma,
 	}
+
+	if err := requestEntity.Validate(); err != nil {
+		return nil, repositoryErrorToAPI(err)
+	}
+
 	createdEntity, err := c.repository.Create(ctx, requestEntity)
 	if err != nil {
 		return nil, repositoryErrorToAPI(err)

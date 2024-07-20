@@ -12,16 +12,16 @@ type Base struct {
 
 type Character struct {
 	Base
-	Level        int    `json:"level"`
-	Name         string `json:"name"`
+	Level        int    `json:"level" validate:"required,gte=1,lte=20"`
+	Name         string `json:"name" validate:"required"`
 	HealthPoints int    `json:"health_points"`
 	ArmorClass   int    `json:"armor_class"`
-	Strength     int    `json:"strength"`
-	Dexterity    int    `json:"dexterity"`
-	Constitution int    `json:"constitution"`
-	Intelligence int    `json:"intelligence"`
-	Wisdom       int    `json:"wisdom"`
-	Charisma     int    `json:"charisma"`
+	Strength     int    `json:"strength" validate:"required"`
+	Dexterity    int    `json:"dexterity" validate:"required"`
+	Constitution int    `json:"constitution" validate:"required"`
+	Intelligence int    `json:"intelligence" validate:"required"`
+	Wisdom       int    `json:"wisdom" validate:"required"`
+	Charisma     int    `json:"charisma" validate:"required"`
 }
 
 // Copy creates a deep copy of the character.
@@ -44,6 +44,11 @@ func (c Character) Copy() Character {
 		Wisdom:       c.Wisdom,
 		Charisma:     c.Charisma,
 	}
+}
+
+// Validate the character's fields.
+func (c Character) Validate() error {
+	return validate.Struct(c)
 }
 
 func copyTimePtr(t *time.Time) *time.Time {

@@ -46,6 +46,7 @@ func (c Character) Copy() Character {
 	}
 }
 
+// Validate the character's fields.
 func (c Character) Validate() error {
 	return validate.Struct(c)
 }

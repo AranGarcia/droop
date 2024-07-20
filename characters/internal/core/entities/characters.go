@@ -14,8 +14,8 @@ type Base struct {
 
 type Character struct {
 	Base
-	Level        int    `json:"level"`
-	Name         string `json:"name"`
+	Level        int    `json:"level" validate:"required,gte=1,lte=20"`
+	Name         string `json:"name" validate:"required"`
 	HealthPoints int    `json:"health_points"`
 	ArmorClass   int    `json:"armor_class"`
 	Strength     int    `json:"strength"`

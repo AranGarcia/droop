@@ -9,7 +9,26 @@ import (
 )
 
 type ErrorResponse struct {
-	Message string `json:"message"`
+	// Message is the error message.
+	Message string `json:"error"`
+	// Fields from the request that may have caused the error.
+	Fields map[string]string `json:"fields"`
+}
+
+// NewErrorResponse returns the structure containing the data for the JSON response for an error.
+func NewErrorResponse(err error) ErrorResponse {
+	var apiInvalidRequest api.InvalidRequestError
+	if !errors.As(err, &apiInvalidRequest) {
+		return ErrorResponse{Message: err.Error()}
+	}
+	fields := make(map[string]string, len(apiInvalidRequest.Fields))
+	for k, v := range apiInvalidRequest.Fields {
+		fields[k] = v
+	}
+	return ErrorResponse{
+		Message: "some fields contain invalid values",
+		Fields:  fields,
+	}
 }
 
 func (j ErrorResponse) ToBytes() []byte {
@@ -21,7 +40,7 @@ func handleAPIError(w http.ResponseWriter, err error) {
 	if err == nil {
 		return
 	}
-	response := ErrorResponse{Message: err.Error()}
+	response := NewErrorResponse(err)
 	w.WriteHeader(errorToStatusCode(err))
 	w.Write(response.ToBytes())
 }

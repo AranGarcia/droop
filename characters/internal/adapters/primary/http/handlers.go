@@ -66,8 +66,7 @@ func (h Handler) getCharacter(w http.ResponseWriter, r *http.Request) {
 
 func (h Handler) listCharacters(w http.ResponseWriter, r *http.Request) {
 	// TODO: implement when pagination is completed
-	
-	w.writeHeader(http.StatusNotImplemented)
+	w.WriteHeader(http.StatusNotImplemented)
 }
 
 func (h Handler) patchCharacter(w http.ResponseWriter, r *http.Request) {

@@ -1,10 +1,14 @@
 syntax = "proto3";
 
-service Characters {
-    rpc Create(CreateRequest) CreateResponse;
-    rpc Retrieve(RetrieveRequest) RetrieveResponse;
-    rpc Update(UpdateRequest) UpdateResponse;
-    rpc Delete(DeleteRequest) DeleteResponse;
+package characters;
+
+option go_package="github.com/AranGarcia/droop/characters/internal/gen/proto";
+
+service API {
+    rpc Create(CreateRequest) returns (CreateResponse);
+    rpc Retrieve(RetrieveRequest) returns (RetrieveResponse);
+    rpc Update(UpdateRequest) returns (UpdateResponse);
+    rpc Delete(DeleteRequest) returns (DeleteResponse);
 }
 
 message CreateRequest {

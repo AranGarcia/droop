@@ -2,7 +2,7 @@ syntax = "proto3";
 
 package characters;
 
-option go_package="github.com/AranGarcia/droop/characters/internal/gen/proto";
+option go_package="github.com/AranGarcia/droop/characters/gen/proto";
 
 service API {
     rpc Create(CreateRequest) returns (CreateResponse);

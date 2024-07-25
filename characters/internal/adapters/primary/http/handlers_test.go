@@ -69,7 +69,7 @@ func TestHandler_getCharacter(t *testing.T) {
 			id:             "retrieve: character not found",
 			wantStatusCode: http.StatusNotFound,
 			wantBody: map[string]any{
-				"message": "not found",
+				"error": "not found",
 			},
 		},
 		{
@@ -78,8 +78,8 @@ func TestHandler_getCharacter(t *testing.T) {
 			wantStatusCode: http.StatusOK,
 			wantBody: map[string]any{
 				"id":            character.ID,
-				"created_at":    character.CreatedAt,
-				"updated_at":    character.UpdatedAt,
+				"created_at":    character.CreatedAt.Format(time.RFC3339Nano),
+				"updated_at":    character.UpdatedAt.Format(time.RFC3339Nano),
 				"name":          character.Name,
 				"level":         float64(7),
 				"health_points": float64(0),

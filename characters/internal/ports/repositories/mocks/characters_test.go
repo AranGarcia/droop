@@ -10,6 +10,12 @@ import (
 	"github.com/google/go-cmp/cmp"
 )
 
+// TestImplementation is expected to throw a compile error rather than a runtime assertion to
+// validate that the mock is an implementation of the expected repository.
+func TestImplementation(t *testing.T) {
+	var _ repositories.Characters = &Characters{}
+}
+
 func TestCharacters_Create(t *testing.T) {
 	character := entities.Character{
 		Base: entities.Base{ID: "pre-existing-character"},

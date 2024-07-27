@@ -2,6 +2,7 @@ package mongo
 
 import (
 	"context"
+	"errors"
 	"fmt"
 	"time"
 
@@ -118,4 +119,8 @@ func (c CharacterRepository) Delete(ctx context.Context, id string) error {
 	}
 
 	return nil
+}
+
+func (c CharacterRepository) List(_ context.Context, offset, limit int) ([]entities.Character, error) {
+	return nil, errors.New("unimplemented")
 }

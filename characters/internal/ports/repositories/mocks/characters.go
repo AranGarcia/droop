@@ -2,6 +2,7 @@ package mocks
 
 import (
 	"context"
+	"errors"
 	"time"
 
 	"github.com/AranGarcia/droop/characters/internal/core/entities"
@@ -74,4 +75,8 @@ func (c *Characters) Update(ctx context.Context, id string, fields repositories.
 func (c *Characters) Delete(_ context.Context, id string) error {
 	delete(c.inMemory, id)
 	return nil
+}
+
+func (c *Characters) List(_ context.Context, offset, limit int) ([]entities.Character, error) {
+	return nil, errors.New("unimplemented")
 }

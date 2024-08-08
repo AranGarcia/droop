@@ -10,9 +10,9 @@ import (
 
 type ErrorResponse struct {
 	// Message is the error message.
-	Message string `json:"error"`
+	Message string `json:"error,omitempty"`
 	// Fields from the request that may have caused the error.
-	Fields map[string]string `json:"fields"`
+	Fields map[string]string `json:"fields,omitempty"`
 }
 
 // NewErrorResponse returns the structure containing the data for the JSON response for an error.

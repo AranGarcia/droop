@@ -11,6 +11,7 @@ import (
 	"go.mongodb.org/mongo-driver/bson"
 	"go.mongodb.org/mongo-driver/bson/primitive"
 	"go.mongodb.org/mongo-driver/mongo"
+	"go.mongodb.org/mongo-driver/mongo/options"
 )
 
 const (
@@ -118,4 +119,27 @@ func (c CharacterRepository) Delete(ctx context.Context, id string) error {
 	}
 
 	return nil
+}
+
+func (c CharacterRepository) List(ctx context.Context, offset, limit int) ([]entities.Character, error) {
+	opts := options.Find().
+		SetSkip(int64(offset)).
+		SetLimit(int64(limit))
+	cursor, err := c.collection.Find(ctx, bson.D{}, opts)
+	if err != nil {
+		return nil, handleMongoError(err)
+	}
+	characters := make([]entities.Character, cursor.RemainingBatchLength())
+	dbCharacter := Character{}
+	i := 0
+	for cursor.Next(ctx) {
+		err = cursor.Decode(&dbCharacter)
+		if err != nil {
+			return nil, handleMongoError(err)
+		}
+		characters[i] = dbCharacter.ToEntity()
+		i++
+	}
+
+	return characters, nil
 }

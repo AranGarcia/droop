@@ -2,6 +2,7 @@ package mock
 
 import (
 	"context"
+	"errors"
 	"time"
 
 	"github.com/AranGarcia/droop/characters/internal/core/entities"
@@ -93,4 +94,8 @@ func (c *Characters) Delete(_ context.Context, request api.DeleteCharacterReques
 	delete(c.Entities, request.ID)
 	response := &api.DeleteCharacterResponse{}
 	return response, nil
+}
+
+func (c *Characters) List(_ context.Context, request api.ListCharactersRequest) (*api.ListCharactersResponse, error) {
+	return nil, errors.New("not implemented")
 }

@@ -65,8 +65,22 @@ func (h Handler) getCharacter(w http.ResponseWriter, r *http.Request) {
 }
 
 func (h Handler) listCharacters(w http.ResponseWriter, r *http.Request) {
-	// TODO: implement when pagination is completed
-	w.WriteHeader(http.StatusNotImplemented)
+	var err error
+	defer func() { handleAPIError(w, err) }()
+
+	// TODO: support pagination and filtering
+	apiRequest := api.ListCharactersRequest{}
+	apiResponse, err := h.characterService.List(r.Context(), apiRequest)
+	if err != nil {
+		return
+	}
+
+	body, err := json.Marshal(apiResponse)
+	if err != nil {
+		return
+	}
+	w.WriteHeader(http.StatusOK)
+	w.Write(body)
 }
 
 func (h Handler) patchCharacter(w http.ResponseWriter, r *http.Request) {

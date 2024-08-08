@@ -125,7 +125,7 @@ func (c CharacterRepository) List(ctx context.Context, offset, limit int) ([]ent
 	opts := options.Find().
 		SetSkip(int64(offset)).
 		SetLimit(int64(limit))
-	cursor, err := c.collection.Find(ctx, nil, opts)
+	cursor, err := c.collection.Find(ctx, bson.D{}, opts)
 	if err != nil {
 		return nil, handleMongoError(err)
 	}

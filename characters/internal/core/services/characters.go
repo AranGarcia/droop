@@ -70,3 +70,7 @@ func (c Characters) Delete(ctx context.Context, request api.DeleteCharacterReque
 	}
 	return &api.DeleteCharacterResponse{}, nil
 }
+
+func (c Characters) List(_ context.Context, _ api.ListCharactersRequest) (*api.ListCharactersResponse, error) {
+	panic("not implemented") // TODO: Implement
+}

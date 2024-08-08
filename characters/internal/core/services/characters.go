@@ -2,6 +2,7 @@ package services
 
 import (
 	"context"
+	"errors"
 
 	"github.com/AranGarcia/droop/characters/internal/core/entities"
 	"github.com/AranGarcia/droop/characters/internal/ports/api"
@@ -72,5 +73,5 @@ func (c Characters) Delete(ctx context.Context, request api.DeleteCharacterReque
 }
 
 func (c Characters) List(_ context.Context, _ api.ListCharactersRequest) (*api.ListCharactersResponse, error) {
-	panic("not implemented") // TODO: Implement
+	return nil, errors.New("not implemented")
 }

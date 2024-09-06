@@ -68,9 +68,12 @@ func (h Handler) listCharacters(w http.ResponseWriter, r *http.Request) {
 	var err error
 	defer func() { handleAPIError(w, err) }()
 
-	// TODO: support pagination and filtering
-	apiRequest := api.ListCharactersRequest{}
-	apiResponse, err := h.characterService.List(r.Context(), apiRequest)
+	// TODO: support  filtering
+	apiRequest, err := api.ListCharactersRequestFromURLQuery(r.URL.Query())
+	if err != nil {
+		return
+	}
+	apiResponse, err := h.characterService.List(r.Context(), *apiRequest)
 	if err != nil {
 		return
 	}

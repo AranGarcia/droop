@@ -71,8 +71,8 @@ func (c Characters) Delete(ctx context.Context, request api.DeleteCharacterReque
 	return &api.DeleteCharacterResponse{}, nil
 }
 
-func (c Characters) List(ctx context.Context, _ api.ListCharactersRequest) (*api.ListCharactersResponse, error) {
-	characters, err := c.repository.List(ctx, 0, 20)
+func (c Characters) List(ctx context.Context, request api.ListCharactersRequest) (*api.ListCharactersResponse, error) {
+	characters, err := c.repository.List(ctx, request.Offset, request.Size)
 	if err != nil {
 		return nil, repositoryErrorToAPI(err)
 	}

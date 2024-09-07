@@ -7,19 +7,8 @@ import (
 	"github.con/AranGarcia/droop/dnd/core/entities"
 )
 
-type Characters interface {
+// Port to the external service Characters.
+type Port interface {
 	// Retrieve a Character from the service.
-	Retrieve(context.Context, RetrieveCharacterRequest) (*RetrieveCharacterRequest, error)
-}
-
-// RetrieveCharacterRequest for Characters.Retrieve.
-type RetrieveCharacterRequest struct {
-	// ID of the character to retrieve
-	ID string `json:"id"`
-}
-
-// RetrieveCharacterResponse from Characters.Retrieve.
-type RetrieveCharacterResponse struct {
-	// Character that was requested.
-	Character entities.Character `json:"character"`
+	Retrieve(context.Context, string) (entities.Character, error)
 }

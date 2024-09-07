@@ -2,9 +2,9 @@ package mock
 
 import (
 	"context"
-	"fmt"
 
 	"github.con/AranGarcia/droop/dnd/core/entities"
+	"github.con/AranGarcia/droop/dnd/ports/api"
 )
 
 // Characters is a mock implementation of the external Character service.
@@ -17,7 +17,7 @@ type Characters struct {
 func (c Characters) Retrieve(_ context.Context, id string) (*entities.Character, error) {
 	character, ok := c.Data[id]
 	if !ok {
-		return nil, fmt.Errorf("character with id %s not found", id)
+		return nil, api.ErrNotFound
 	}
 	return &character, nil
 }

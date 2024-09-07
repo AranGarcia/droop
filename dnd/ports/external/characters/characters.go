@@ -10,5 +10,5 @@ import (
 // Port to the external service Characters.
 type Port interface {
 	// Retrieve a Character from the service.
-	Retrieve(context.Context, string) (entities.Character, error)
+	Retrieve(context.Context, string) (*entities.Character, error)
 }

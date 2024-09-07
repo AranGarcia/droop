@@ -3,7 +3,6 @@ package services
 import (
 	"context"
 	"crypto/rand"
-	"fmt"
 	"math/big"
 
 	"github.con/AranGarcia/droop/dnd/ports/api"
@@ -22,16 +21,20 @@ type DND struct {
 func (d DND) RollInitiative(ctx context.Context, request api.RollInitiativeRequest) (*api.RollInitiativeResponse, error) {
 	character, err := d.characters.Retrieve(ctx, request.ID)
 	if err != nil {
-		return nil, fmt.Errorf("failed to retrieve character data; %v", err)
+		return nil, api.NewExternalServiceError("characters", err)
 	}
 
 	roll, err := rand.Int(rand.Reader, maxRoll)
 	if err != nil {
-		return nil, fmt.Errorf("failed to roll; %v", err)
+		return nil, &api.InternalError{
+			Message: "failed to generate random roll",
+			Err:     err,
+		}
 	}
 
+	dexMod := character.Dexterity.CalculateModifier()
 	response := &api.RollInitiativeResponse{
-		Result: character.Dexterity + int(roll.Int64()),
+		Result: dexMod + int(roll.Int64()),
 	}
 	return response, nil
 }

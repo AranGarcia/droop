@@ -7,7 +7,7 @@ Herramienta para jugar D&D
 # Requisitos
 
 - Docker y Docker Compose
-- Go 1.22.3
+- Go 1.22.6
 
 # Ejecución
 
@@ -16,7 +16,7 @@ Herramienta para jugar D&D
 docker-compose up
 
 # Ejecutar el servidor HTTP
-go run ./exec
+go run ./characters/exec/http
 ```
 
 > :warning: El binario del servidor se implementará en un contenedor eventualmente para poder ejeuctarlo con Docker Compose en local sin necesidad de requerir Go en local.

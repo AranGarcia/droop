@@ -1,0 +1,15 @@
+syntax = "proto3";
+
+package dnd;
+
+service API {
+    rpc RollInitiative(RollInitiativeRequest) returns (RollInitiativeResponse);
+}
+
+message RollInitiativeRequest{
+    string id = 1;
+}
+
+message RollInitiativeResponse {
+    int32 result = 1;
+}

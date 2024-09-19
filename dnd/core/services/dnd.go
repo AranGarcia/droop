@@ -2,18 +2,15 @@ package services
 
 import (
 	"context"
-	"crypto/rand"
-	"math/big"
 
+	"github.con/AranGarcia/droop/dnd/core/entities"
 	"github.con/AranGarcia/droop/dnd/ports/core"
 	"github.con/AranGarcia/droop/dnd/ports/external/characters"
 )
 
-var (
-	maxRoll = big.NewInt(20)
-)
-
 type DND struct {
+	d20 entities.Die
+
 	// External ports
 	characters characters.Port
 }
@@ -24,8 +21,8 @@ func (d DND) RollInitiative(ctx context.Context, request core.RollInitiativeRequ
 		return nil, core.NewExternalServiceError("characters", err)
 	}
 
-	roll, err := rand.Int(rand.Reader, maxRoll)
-	if err != nil {
+	roll := d.d20.Roll()
+	if roll < 1 {
 		return nil, &core.InternalError{
 			Message: "failed to generate random roll",
 			Err:     err,
@@ -34,7 +31,7 @@ func (d DND) RollInitiative(ctx context.Context, request core.RollInitiativeRequ
 
 	dexMod := character.Dexterity.CalculateModifier()
 	response := &core.RollInitiativeResponse{
-		Result: dexMod + int(roll.Int64()),
+		Result: dexMod + roll,
 	}
 	return response, nil
 }

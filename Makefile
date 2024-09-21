@@ -1,4 +1,5 @@
 proto: characters-proto dnd-proto
+	cd proto/gen; go mod tidy
 
 characters-proto: proto-dir
 	protoc \
@@ -24,6 +25,7 @@ dnd-proto: proto-dir
 
 proto-dir:
 	mkdir -p proto/gen
+	cd proto/gen; go mod init github.com/AranGarcia/droop/proto/gen
 
 clean:
 	rm -rf proto/gen

@@ -5,6 +5,8 @@ import (
 
 	"google.golang.org/grpc"
 
+	"github.com/AranGarcia/droop/characters/internal/ports/api"
+
 	characterspb "github.com/AranGarcia/droop/proto/gen/characters"
 )
 
@@ -13,7 +15,8 @@ type Server struct {
 	// Unimplemented gRPC server.
 	characterspb.UnimplementedAPIServer
 
-	addr string
+	addr             string
+	characterService api.Characters
 }
 
 func NewServer(addr string) *Server {

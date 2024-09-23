@@ -4,10 +4,15 @@ import (
 	"net"
 
 	"google.golang.org/grpc"
+
+	characterspb "github.com/AranGarcia/droop/proto/gen/characters"
 )
 
 // Server is a gRPC adapter for the character service.
 type Server struct {
+	// Unimplemented gRPC server.
+	characterspb.UnimplementedAPIServer
+
 	addr string
 }
 

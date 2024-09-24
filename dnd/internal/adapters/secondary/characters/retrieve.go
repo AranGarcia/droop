@@ -4,7 +4,7 @@ import (
 	"context"
 	"fmt"
 
-	"github.con/AranGarcia/droop/dnd/internal/core/entities"
+	"github.com/AranGarcia/droop/dnd/internal/core/entities"
 
 	characterspb "github.com/AranGarcia/droop/proto/gen/characters"
 )

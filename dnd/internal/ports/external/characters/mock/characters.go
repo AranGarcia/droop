@@ -3,8 +3,8 @@ package mock
 import (
 	"context"
 
-	"github.con/AranGarcia/droop/dnd/internal/core/entities"
-	"github.con/AranGarcia/droop/dnd/internal/ports/core"
+	"github.com/AranGarcia/droop/dnd/internal/core/entities"
+	"github.com/AranGarcia/droop/dnd/internal/ports/core"
 )
 
 // Characters is a mock implementation of the external Character service.

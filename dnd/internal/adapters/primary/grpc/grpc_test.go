@@ -6,8 +6,8 @@ import (
 	"reflect"
 	"testing"
 
-	"github.con/AranGarcia/droop/dnd/internal/ports/core"
-	"github.con/AranGarcia/droop/dnd/internal/ports/core/mock"
+	"github.com/AranGarcia/droop/dnd/internal/ports/core"
+	"github.com/AranGarcia/droop/dnd/internal/ports/core/mock"
 
 	dndpb "github.com/AranGarcia/droop/proto/gen/dnd"
 )

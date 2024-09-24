@@ -3,7 +3,7 @@ package mock
 import (
 	"context"
 
-	"github.con/AranGarcia/droop/dnd/internal/ports/core"
+	"github.com/AranGarcia/droop/dnd/internal/ports/core"
 )
 
 // DND is a mock implementation of the core.

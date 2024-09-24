@@ -1,4 +1,4 @@
-module github.con/AranGarcia/droop/dnd
+module github.com/AranGarcia/droop/dnd
 
 go 1.22.6
 

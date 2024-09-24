@@ -3,9 +3,9 @@ package services
 import (
 	"context"
 
-	"github.con/AranGarcia/droop/dnd/internal/core/entities"
-	"github.con/AranGarcia/droop/dnd/internal/ports/core"
-	"github.con/AranGarcia/droop/dnd/internal/ports/external/characters"
+	"github.com/AranGarcia/droop/dnd/internal/core/entities"
+	"github.com/AranGarcia/droop/dnd/internal/ports/core"
+	"github.com/AranGarcia/droop/dnd/internal/ports/external/characters"
 )
 
 type DND struct {

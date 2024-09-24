@@ -15,6 +15,15 @@ type DND struct {
 	characters characters.Port
 }
 
+func NewDNDService(characters characters.Port) DND {
+	d20 := entities.D20{}
+
+	return DND{
+		d20:        d20,
+		characters: characters,
+	}
+}
+
 func (d DND) RollInitiative(ctx context.Context, request core.RollInitiativeRequest) (*core.RollInitiativeResponse, error) {
 	character, err := d.characters.Retrieve(ctx, request.ID)
 	if err != nil {

@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"net"
 
+	"github.con/AranGarcia/droop/dnd/ports/core"
 	"google.golang.org/grpc"
 
 	dndpb "github.com/AranGarcia/droop/proto/gen/dnd"
@@ -14,16 +15,22 @@ type Server struct {
 
 	// Addr is the connection string in the format "HOST:PORT"
 	addr string
+
+	DNDCore core.DND
 }
 
 type Config struct {
 	// Addr is the connection string in the format "HOST:PORT"
 	Addr string
+
+	// DND is a port to the core service.
+	DND core.DND
 }
 
 func NewServer(c Config) Server {
 	s := Server{
-		addr: c.Addr,
+		addr:    c.Addr,
+		DNDCore: c.DND,
 	}
 	return s
 }

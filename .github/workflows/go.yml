@@ -25,7 +25,7 @@ jobs:
       uses: arduino/setup-protoc@v3
 
     - name: Compile protocol buffers
-      run: protoc --version
+      run: make proto
 
     - name: Build characters service
       run: go build -v ./characters/...

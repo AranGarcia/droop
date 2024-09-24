@@ -4,8 +4,9 @@ import (
 	"fmt"
 	"net"
 
-	"github.con/AranGarcia/droop/dnd/internal/ports/core"
 	"google.golang.org/grpc"
+
+	"github.con/AranGarcia/droop/dnd/internal/ports/core"
 
 	dndpb "github.com/AranGarcia/droop/proto/gen/dnd"
 )

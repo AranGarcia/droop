@@ -6,9 +6,10 @@ import (
 	"reflect"
 	"testing"
 
-	dndpb "github.com/AranGarcia/droop/proto/gen/dnd"
 	"github.con/AranGarcia/droop/dnd/internal/ports/core"
 	"github.con/AranGarcia/droop/dnd/internal/ports/core/mock"
+
+	dndpb "github.com/AranGarcia/droop/proto/gen/dnd"
 )
 
 func TestServer_RollInitiative(t *testing.T) {

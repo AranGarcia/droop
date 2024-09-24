@@ -3,9 +3,10 @@ package grpc
 import (
 	"context"
 
-	"github.con/AranGarcia/droop/dnd/internal/ports/core"
 	"google.golang.org/grpc/codes"
 	"google.golang.org/grpc/status"
+
+	"github.con/AranGarcia/droop/dnd/internal/ports/core"
 
 	dndpb "github.com/AranGarcia/droop/proto/gen/dnd"
 )

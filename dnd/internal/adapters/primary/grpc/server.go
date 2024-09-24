@@ -4,18 +4,20 @@ import (
 	"fmt"
 	"net"
 
-	"github.con/AranGarcia/droop/dnd/ports/core"
+	"github.con/AranGarcia/droop/dnd/internal/ports/core"
 	"google.golang.org/grpc"
 
 	dndpb "github.com/AranGarcia/droop/proto/gen/dnd"
 )
 
+// Server is a primary port implemented with GRPC.
 type Server struct {
 	dndpb.UnimplementedAPIServer
 
 	// Addr is the connection string in the format "HOST:PORT"
 	addr string
 
+	// DND is a port to the core service.
 	DNDCore core.DND
 }
 
@@ -27,6 +29,7 @@ type Config struct {
 	DND core.DND
 }
 
+// NewServer
 func NewServer(c Config) Server {
 	s := Server{
 		addr:    c.Addr,
@@ -35,6 +38,7 @@ func NewServer(c Config) Server {
 	return s
 }
 
+// Run the server.
 func (s Server) Run() error {
 	lis, err := net.Listen("tcp", s.addr)
 	if err != nil {

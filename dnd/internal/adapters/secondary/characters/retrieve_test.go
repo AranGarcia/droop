@@ -8,7 +8,7 @@ import (
 
 	characterspb "github.com/AranGarcia/droop/proto/gen/characters"
 
-	"github.con/AranGarcia/droop/dnd/core/entities"
+	"github.con/AranGarcia/droop/dnd/internal/core/entities"
 )
 
 func TestClient_Retrieve(t *testing.T) {

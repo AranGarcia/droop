@@ -4,7 +4,7 @@ package characters
 import (
 	"context"
 
-	"github.con/AranGarcia/droop/dnd/core/entities"
+	"github.con/AranGarcia/droop/dnd/internal/core/entities"
 )
 
 // Port to the external service Characters.

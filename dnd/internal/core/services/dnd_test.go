@@ -5,9 +5,9 @@ import (
 	"reflect"
 	"testing"
 
-	"github.con/AranGarcia/droop/dnd/core/entities"
-	"github.con/AranGarcia/droop/dnd/ports/core"
-	"github.con/AranGarcia/droop/dnd/ports/external/characters/mock"
+	"github.con/AranGarcia/droop/dnd/internal/core/entities"
+	"github.con/AranGarcia/droop/dnd/internal/ports/core"
+	"github.con/AranGarcia/droop/dnd/internal/ports/external/characters/mock"
 )
 
 // Mock implementation of a D20 dice roll.

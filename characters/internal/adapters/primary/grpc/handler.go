@@ -22,7 +22,7 @@ func (s Server) Retrieve(ctx context.Context, request *characterspb.RetrieveRequ
 	}
 	apiResponse, err := s.characterService.Retrieve(ctx, apiRequest)
 	if err != nil {
-		return nil, fmt.Errorf("api error; %v", err)
+		return nil, status.Error(codes.Internal, fmt.Sprintf("character service error; %v", err))
 	}
 
 	response := &characterspb.RetrieveResponse{

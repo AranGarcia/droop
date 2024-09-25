@@ -9,6 +9,7 @@ import (
 var (
 	ErrorNotFound    = errors.New("not found")
 	ErrInternalError = errors.New("unknown error")
+	ErrInvalidID     = errors.New("invalid ObjectID")
 )
 
 func handleMongoError(err error) error {

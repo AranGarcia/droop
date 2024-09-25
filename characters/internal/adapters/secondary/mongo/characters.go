@@ -57,7 +57,7 @@ func (c CharacterRepository) Create(ctx context.Context, entity entities.Charact
 func (c CharacterRepository) Retrieve(ctx context.Context, id string) (*entities.Character, error) {
 	_id, err := primitive.ObjectIDFromHex(id)
 	if err != nil {
-		return nil, fmt.Errorf("invalid id; %v", err)
+		return nil, ErrInvalidID
 	}
 	filter := bson.M{
 		"_id":        _id,

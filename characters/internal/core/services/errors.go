@@ -15,6 +15,8 @@ func repositoryErrorToAPI(err error) error {
 	}
 
 	switch err {
+	case mongo.ErrInvalidID:
+		return api.ErrInvalidID
 	case mongo.ErrorNotFound:
 		return api.ErrNotFound
 	case mongo.ErrInternalError:

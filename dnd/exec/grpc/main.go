@@ -14,7 +14,8 @@ var (
 )
 
 func init() {
-	flag.StringVar(&addr, "addr", "8010", "the server address (host:port)")
+	flag.StringVar(&addr, "addr", ":8010", "the server address (host:port)")
+	flag.StringVar(&charactersServiceAddr, "character_service_addr", ":8090", "host where Character Service is running")
 	flag.Parse()
 }
 
@@ -26,7 +27,8 @@ func main() {
 	}
 
 	c := grpc.Config{
-		DND: dndAPI,
+		Addr: addr,
+		DND:  dndAPI,
 	}
 	server := grpc.NewServer(c)
 	if err := server.Run(); err != nil {

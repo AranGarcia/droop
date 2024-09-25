@@ -19,9 +19,10 @@ type Server struct {
 	characterService api.Characters
 }
 
-func NewServer(addr string) *Server {
+func NewServer(addr string, characterService api.Characters) *Server {
 	s := &Server{
-		addr: addr,
+		addr:             addr,
+		characterService: characterService,
 	}
 	return s
 }

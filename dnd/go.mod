@@ -6,7 +6,7 @@ replace github.com/AranGarcia/droop/proto/gen => ../proto/gen
 
 require (
 	github.com/AranGarcia/droop/proto/gen v0.0.0-00010101000000-000000000000
-	google.golang.org/grpc v1.67.0
+	google.golang.org/grpc v1.67.1
 )
 
 require (

@@ -1,6 +1,6 @@
 module github.com/AranGarcia/droop/characters
 
-go 1.22.6
+go 1.23.2
 
 replace github.com/AranGarcia/droop/proto/gen => ../proto/gen
 

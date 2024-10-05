@@ -8,9 +8,7 @@ Herramienta para jugar D&D
 
 - Docker y Docker Compose
 - Go 1.22.6
-- Protocol Buffers
-  - protoc
-  - protoc-gen-go
+- [buf CLI](https://buf.build/docs/ecosystem/cli-overview)
 
 # Ejecución
 

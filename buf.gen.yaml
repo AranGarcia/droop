@@ -3,7 +3,7 @@ managed:
   enabled: true
 plugins:
   - remote: buf.build/protocolbuffers/go
-    out: gen
+    out: proto/gen
     opt:
       - paths=source_relative
       - Mcharacters/service.proto=proto/characters

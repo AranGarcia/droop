@@ -34,7 +34,7 @@ func init() {
 }
 
 func main() {
-	log.Println("Initializing repository...")
+	log.Printf("Connection to repository in host %s...\n", mongoHost)
 	mongoConfig := buildMongoConfig()
 	repo := buildRepository(mongo.Config(mongoConfig))
 	service := buildService(repo)

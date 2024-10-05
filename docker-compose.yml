@@ -8,7 +8,33 @@ services:
       MONGO_INITDB_ROOT_USERNAME: mongoadmin
       MONGO_INITDB_ROOT_PASSWORD: mongoadmin
       MONGO_INITDB_DATABASE: droop
+    healthcheck:
+      test: echo 'db.runCommand("ping").ok' | mongosh localhost:27017/test --quiet
     volumes:
       - type: bind
         source: docker/mongo
         target: /docker-entrypoint-initdb.d
+
+  characters:
+    depends_on:
+      mongodb:
+        restart: true
+        condition: service_healthy
+    build:
+      context: .
+      dockerfile: docker/characters/Dockerfile
+    environment:
+      - MONGO_HOST=mongodb
+    volumes:
+      - ./proto/:/proto/
+
+  dnd:
+    depends_on:
+      - characters
+    build:
+      context: .
+      dockerfile: docker/dnd/Dockerfile
+    environment:
+      - CHARACTERS_SERVICE_ADDR=chracters
+    volumes:
+      - ./proto/:/proto/

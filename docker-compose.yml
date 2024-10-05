@@ -24,6 +24,8 @@ services:
     build:
       context: .
       dockerfile: docker/characters/Dockerfile
+    ports:
+      - 8090:8090
     environment:
       - MONGO_HOST=mongodb
     volumes:
@@ -35,6 +37,8 @@ services:
     build:
       context: .
       dockerfile: docker/dnd/Dockerfile
+    ports:
+      - 8010:8010
     environment:
       - CHARACTERS_SERVICE_ADDR=chracters
     volumes:

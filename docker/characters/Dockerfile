@@ -1,5 +1,7 @@
 FROM golang:1.23.2
 
+EXPOSE 8090
+
 WORKDIR /app
 
 # Protocol Buffers (must be compiled)

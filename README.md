@@ -6,18 +6,23 @@ Herramienta para jugar D&D
 
 # Requisitos
 
-- Docker y Docker Compose
-- Go 1.22.6
-- [buf CLI](https://buf.build/docs/ecosystem/cli-overview)
+- Docker
+- Docker Compose
+- Go 1.23.2
+- [buf CLI v.1.44.0](https://buf.build/docs/ecosystem/cli-overview)
+
+# Instalación
+
+Compila los protobufs
+
+```bash
+make proto
+```
 
 # Ejecución
 
+Se pueden levantar todos los servicios con Docker Compose:
+
 ```sh
-# Esto debe levantar la base de datos
 docker-compose up
-
-# Ejecutar el servidor HTTP
-go run ./characters/exec/http
 ```
-
-> :warning: El binario del servidor se implementará en un contenedor eventualmente para poder ejeuctarlo con Docker Compose en local sin necesidad de requerir Go en local.

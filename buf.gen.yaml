@@ -8,5 +8,11 @@ plugins:
       - paths=source_relative
       - Mcharacters/service.proto=proto/characters
       - Mdnd/service.proto=proto/dnd
+  - remote: buf.build/grpc/go:v1.5.1
+    out: proto/gen
+    opt:
+      - paths=source_relative
+      - Mcharacters/service.proto=proto/characters
+      - Mdnd/service.proto=proto/dnd
 inputs:
   - directory: proto

@@ -46,3 +46,34 @@ func CreateResponseToProto(response *api.CreateCharacterResponse) *characterspb.
 		},
 	}
 }
+
+func RetrieveRequestToAPI(request *characterspb.RetrieveRequest) api.RetrieveCharacterRequest {
+	if request == nil {
+		return api.RetrieveCharacterRequest{}
+	}
+	return api.RetrieveCharacterRequest{
+		ID: request.Id,
+	}
+}
+
+func RetrieveResponseToProto(response *api.RetrieveCharacterResponse) *characterspb.RetrieveResponse {
+	if response == nil {
+		return nil
+	}
+
+	return &characterspb.RetrieveResponse{
+		Character: &characterspb.Character{
+			Id:           response.Character.ID,
+			Level:        int32(response.Character.Level),
+			Name:         response.Character.Name,
+			HealthPoints: int32(response.Character.HealthPoints),
+			ArmorClass:   int32(response.Character.ArmorClass),
+			Strength:     int32(response.Character.Strength),
+			Dexterity:    int32(response.Character.Dexterity),
+			Constitution: int32(response.Character.Constitution),
+			Intelligence: int32(response.Character.Intelligence),
+			Wisdom:       int32(response.Character.Wisdom),
+			Charisma:     int32(response.Character.Charisma),
+		},
+	}
+}

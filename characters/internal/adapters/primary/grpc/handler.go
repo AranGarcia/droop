@@ -26,9 +26,7 @@ func (s Server) Retrieve(ctx context.Context, request *characterspb.RetrieveRequ
 	}
 
 	response := &characterspb.RetrieveResponse{
-		Character: &characterspb.Character{
-			Id: apiResponse.Character.ID,
-		},
+		Character: CharacterPBFromCore(apiResponse.Character),
 	}
 	return response, nil
 }

@@ -40,6 +40,6 @@ services:
     ports:
       - 8010:8010
     environment:
-      - CHARACTERS_SERVICE_ADDR=chracters
+      - CHARACTERS_SERVICE_ADDR=characters
     volumes:
       - ./proto/:/proto/

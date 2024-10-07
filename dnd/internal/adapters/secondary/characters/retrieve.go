@@ -2,7 +2,6 @@ package characters
 
 import (
 	"context"
-	"fmt"
 
 	"github.com/AranGarcia/droop/dnd/internal/core/entities"
 
@@ -14,11 +13,12 @@ func (c Client) Retrieve(ctx context.Context, id string) (*entities.Character, e
 	request := characterspb.RetrieveRequest{Id: id}
 	response, err := c.grpcClient.Retrieve(ctx, &request)
 	if err != nil {
-		return nil, fmt.Errorf("grpcClient retrieve failure; %v", err)
+		return nil, ErrCharacterServiceError
 	}
 
-	character := &entities.Character{
-		ID: response.Character.Id,
+	character, err := CharacterCoreFromExternal(response.Character)
+	if err != nil {
+		return nil, err
 	}
 	return character, nil
 }

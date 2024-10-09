@@ -1,7 +1,7 @@
 package entities
 
 import (
-	"errors"
+	"github.com/AranGarcia/droop/dnd/internal/ports/core"
 )
 
 // AbilityScore for a Character.
@@ -12,7 +12,7 @@ type AbilityScore struct {
 
 func NewAbilityScore(v int) (*AbilityScore, error) {
 	if v < 1 || v > 30 {
-		return nil, errors.New("ability score must be in range [1, 30]")
+		return nil, core.ErrInvalidInput
 	}
 
 	return &AbilityScore{Value: uint(v)}, nil

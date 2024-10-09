@@ -1,10 +1,13 @@
 package entities
 
 import (
+	"errors"
 	"math"
 	"math/rand/v2"
 	"reflect"
 	"testing"
+
+	"github.com/AranGarcia/droop/dnd/internal/ports/core"
 )
 
 // randRange generates a random int within the interval [min, max].
@@ -19,17 +22,17 @@ func TestNewAbilityScore(t *testing.T) {
 		name    string
 		v       int
 		want    *AbilityScore
-		wantErr bool
+		wantErr error
 	}{
 		{
 			name:    "less than 1",
 			v:       randRange(math.MinInt+1, 0),
-			wantErr: true,
+			wantErr: core.ErrInvalidInput,
 		},
 		{
 			name:    "more than 30",
 			v:       randRange(30, math.MaxInt),
-			wantErr: true,
+			wantErr: core.ErrInvalidInput,
 		},
 		{
 			name: "success",
@@ -40,7 +43,7 @@ func TestNewAbilityScore(t *testing.T) {
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
 			got, err := NewAbilityScore(tt.v)
-			if (err != nil) != tt.wantErr {
+			if !errors.Is(err, tt.wantErr) {
 				t.Errorf("NewAbilityScore() error = %v, wantErr %v", err, tt.wantErr)
 				return
 			}

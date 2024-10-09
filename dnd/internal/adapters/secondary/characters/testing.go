@@ -1,4 +1,3 @@
-// go:build testing
 package characters
 
 import (

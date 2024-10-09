@@ -6,6 +6,7 @@ import (
 )
 
 var (
+	ErrNoIDProvided      = errors.New("no ID provided")
 	ErrInvalidInput      = errors.New("invalid input")
 	ErrNotFound          = errors.New("not found")
 	ErrRepositoryFailure = errors.New("repository failure")

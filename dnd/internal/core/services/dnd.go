@@ -25,6 +25,10 @@ func NewDNDService(characters characters.Port) DND {
 }
 
 func (d DND) RollInitiative(ctx context.Context, request core.RollInitiativeRequest) (*core.RollInitiativeResponse, error) {
+	if request.ID == "" {
+		return nil, core.ErrNoIDProvided
+	}
+
 	character, err := d.characters.Retrieve(ctx, request.ID)
 	if err != nil {
 		return nil, core.NewExternalServiceError("characters", err)

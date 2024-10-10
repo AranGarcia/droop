@@ -7,7 +7,8 @@ import (
 
 	"github.com/AranGarcia/droop/dnd/internal/core/entities"
 	"github.com/AranGarcia/droop/dnd/internal/ports/core"
-	"github.com/AranGarcia/droop/dnd/internal/ports/external/characters/mock"
+	eventsmock "github.com/AranGarcia/droop/dnd/internal/ports/events/mock"
+	charactersmock "github.com/AranGarcia/droop/dnd/internal/ports/external/characters/mock"
 )
 
 // Mock implementation of a D20 dice roll.
@@ -23,20 +24,27 @@ func TestDND_RollInitiative(t *testing.T) {
 		ID:        "character-id",
 		Dexterity: *dex,
 	}
-	characters := mock.Characters{
+	characters := charactersmock.Characters{
 		Data: map[string]entities.Character{character.ID: character},
 	}
 
 	type fields struct {
-		d20 entities.Die
+		d20      entities.Die
+		producer eventsmock.Producer
 	}
 	tests := []struct {
-		name    string
-		fields  fields
-		request core.RollInitiativeRequest
-		want    *core.RollInitiativeResponse
-		wantErr bool
+		name               string
+		fields             fields
+		request            core.RollInitiativeRequest
+		want               *core.RollInitiativeResponse
+		wantProducedEvents int
+		wantErr            bool
 	}{
+		{
+			name:    "empty ID",
+			request: core.RollInitiativeRequest{},
+			wantErr: true,
+		},
 		{
 			name:    "failed to retrieve character",
 			request: core.RollInitiativeRequest{ID: "character-that-doesnt-exist"},
@@ -53,12 +61,14 @@ func TestDND_RollInitiative(t *testing.T) {
 		{
 			name: "success",
 			fields: fields{
-				d20: &mockD20{13},
+				d20:      &mockD20{13},
+				producer: eventsmock.Producer{},
 			},
 			request: core.RollInitiativeRequest{ID: character.ID},
 			want: &core.RollInitiativeResponse{
 				Result: 15,
 			},
+			wantProducedEvents: 1,
 		},
 	}
 	ctx := context.Background()
@@ -66,6 +76,7 @@ func TestDND_RollInitiative(t *testing.T) {
 		d := DND{
 			characters: characters,
 			d20:        tt.fields.d20,
+			events:     &tt.fields.producer,
 		}
 		t.Run(tt.name, func(t *testing.T) {
 			got, err := d.RollInitiative(ctx, tt.request)
@@ -75,6 +86,11 @@ func TestDND_RollInitiative(t *testing.T) {
 			}
 			if !reflect.DeepEqual(got, tt.want) {
 				t.Errorf("DND.RollInitiative() = %v, want %v", got, tt.want)
+			}
+
+			gotProducedEvents := tt.fields.producer.AmountOfMessagesProduced()
+			if gotProducedEvents != tt.wantProducedEvents {
+				t.Errorf("DND.RollInitiative() produced events = %d, want %d", gotProducedEvents, tt.wantProducedEvents)
 			}
 		})
 	}

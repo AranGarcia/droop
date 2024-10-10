@@ -5,6 +5,7 @@ import (
 
 	"github.com/AranGarcia/droop/dnd/internal/core/entities"
 	"github.com/AranGarcia/droop/dnd/internal/ports/core"
+	"github.com/AranGarcia/droop/dnd/internal/ports/events"
 	"github.com/AranGarcia/droop/dnd/internal/ports/external/characters"
 )
 
@@ -13,6 +14,7 @@ type DND struct {
 
 	// External ports
 	characters characters.Port
+	events     events.Producer
 }
 
 func NewDNDService(characters characters.Port) DND {
@@ -42,9 +44,16 @@ func (d DND) RollInitiative(ctx context.Context, request core.RollInitiativeRequ
 		}
 	}
 
-	dexMod := character.Dexterity.CalculateModifier()
+	result := character.Dexterity.CalculateModifier() + roll
 	response := &core.RollInitiativeResponse{
-		Result: dexMod + roll,
+		Result: result,
 	}
+
+	// Domain events
+	success := events.RollInitiativeSuccessMessage{
+		CharacterID: request.ID,
+		Result:      result,
+	}
+	d.events.RollInitiativeSuccess(ctx, success)
 	return response, nil
 }

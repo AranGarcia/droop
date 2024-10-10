@@ -36,12 +36,9 @@ func (d DND) RollInitiative(ctx context.Context, request core.RollInitiativeRequ
 		return nil, core.NewExternalServiceError("characters", err)
 	}
 
-	roll := d.d20.Roll()
-	if roll < 1 {
-		return nil, &core.InternalError{
-			Message: "failed to generate random roll",
-			Err:     err,
-		}
+	roll, err := d.d20.Roll()
+	if err != nil {
+		return nil, err
 	}
 
 	result := character.Dexterity.CalculateModifier() + roll

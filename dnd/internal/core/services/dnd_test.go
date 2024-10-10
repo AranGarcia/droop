@@ -2,6 +2,7 @@ package services
 
 import (
 	"context"
+	"errors"
 	"reflect"
 	"testing"
 
@@ -13,10 +14,10 @@ import (
 
 // Mock implementation of a D20 dice roll.
 type mockD20 struct {
-	expectedResult int
+	rollFunc func() (int, error)
 }
 
-func (m *mockD20) Roll() int { return m.expectedResult }
+func (m mockD20) Roll() (int, error) { return m.rollFunc() }
 
 func TestDND_RollInitiative(t *testing.T) {
 	dex, _ := entities.NewAbilityScore(14)
@@ -53,7 +54,7 @@ func TestDND_RollInitiative(t *testing.T) {
 		{
 			name: "failed to roll",
 			fields: fields{
-				d20: &mockD20{-1},
+				d20: &mockD20{rollFunc: func() (int, error) { return -1, errors.New("random gen error") }},
 			},
 			request: core.RollInitiativeRequest{ID: character.ID},
 			wantErr: true,
@@ -61,7 +62,7 @@ func TestDND_RollInitiative(t *testing.T) {
 		{
 			name: "success",
 			fields: fields{
-				d20:      &mockD20{13},
+				d20:      &mockD20{rollFunc: func() (int, error) { return 13, nil }},
 				producer: eventsmock.Producer{},
 			},
 			request: core.RollInitiativeRequest{ID: character.ID},

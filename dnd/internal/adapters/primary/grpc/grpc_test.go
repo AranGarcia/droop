@@ -26,6 +26,9 @@ func TestServer_RollInitiative(t *testing.T) {
 		{
 			name:    "invalid request",
 			request: &dndpb.RollInitiativeRequest{},
+			fields: fields{RollInitiativeFunc: func() (*core.RollInitiativeResponse, error) {
+				return nil, core.ErrInvalidInput
+			}},
 			wantErr: true,
 		},
 		{

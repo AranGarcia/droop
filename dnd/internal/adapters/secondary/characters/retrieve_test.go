@@ -36,14 +36,16 @@ func TestClient_Retrieve(t *testing.T) {
 				retrieveFunc: func() (*characterspb.RetrieveResponse, error) {
 					response := &characterspb.RetrieveResponse{
 						Character: &characterspb.Character{
-							Id: "character-id",
+							Id:        "character-id",
+							Dexterity: 10,
 						},
 					}
 					return response, nil
 				},
 			},
 			want: &entities.Character{
-				ID: "character-id",
+				ID:        "character-id",
+				Dexterity: entities.AbilityScore{Value: 10},
 			},
 		},
 	}

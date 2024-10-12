@@ -1,5 +1,7 @@
 package core
 
+// TODO: figure out if this needs to move to its own package.
+
 import "context"
 
 type DND interface {

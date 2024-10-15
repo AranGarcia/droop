@@ -7,6 +7,7 @@ import (
 	"testing"
 
 	"github.com/AranGarcia/droop/dnd/internal/ports/core"
+	"github.com/AranGarcia/droop/dnd/internal/ports/core/dnd"
 	"github.com/AranGarcia/droop/dnd/internal/ports/core/mock"
 
 	dndpb "github.com/AranGarcia/droop/proto/gen/dnd"
@@ -14,7 +15,7 @@ import (
 
 func TestServer_RollInitiative(t *testing.T) {
 	type fields struct {
-		RollInitiativeFunc func() (*core.RollInitiativeResponse, error)
+		RollInitiativeFunc func() (*dnd.RollInitiativeResponse, error)
 	}
 	tests := []struct {
 		name    string
@@ -26,7 +27,7 @@ func TestServer_RollInitiative(t *testing.T) {
 		{
 			name:    "invalid request",
 			request: &dndpb.RollInitiativeRequest{},
-			fields: fields{RollInitiativeFunc: func() (*core.RollInitiativeResponse, error) {
+			fields: fields{RollInitiativeFunc: func() (*dnd.RollInitiativeResponse, error) {
 				return nil, core.ErrInvalidInput
 			}},
 			wantErr: true,
@@ -34,7 +35,7 @@ func TestServer_RollInitiative(t *testing.T) {
 		{
 			name:    "internal error",
 			request: &dndpb.RollInitiativeRequest{Id: "character-id"},
-			fields: fields{RollInitiativeFunc: func() (*core.RollInitiativeResponse, error) {
+			fields: fields{RollInitiativeFunc: func() (*dnd.RollInitiativeResponse, error) {
 				return nil, errors.New("internal error")
 			}},
 			wantErr: true,
@@ -42,8 +43,8 @@ func TestServer_RollInitiative(t *testing.T) {
 		{
 			name:    "successful initiative roll",
 			request: &dndpb.RollInitiativeRequest{Id: "character-id"},
-			fields: fields{RollInitiativeFunc: func() (*core.RollInitiativeResponse, error) {
-				return &core.RollInitiativeResponse{Result: 14}, nil
+			fields: fields{RollInitiativeFunc: func() (*dnd.RollInitiativeResponse, error) {
+				return &dnd.RollInitiativeResponse{Result: 14}, nil
 			}},
 			want: &dndpb.RollInitiativeResponse{Result: 14},
 		},

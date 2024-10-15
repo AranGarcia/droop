@@ -3,13 +3,13 @@ package grpc
 import (
 	"context"
 
-	"github.com/AranGarcia/droop/dnd/internal/ports/core"
+	"github.com/AranGarcia/droop/dnd/internal/ports/core/dnd"
 
 	dndpb "github.com/AranGarcia/droop/proto/gen/dnd"
 )
 
 func (s Server) RollInitiative(ctx context.Context, request *dndpb.RollInitiativeRequest) (*dndpb.RollInitiativeResponse, error) {
-	apiRequest := core.RollInitiativeRequest{ID: request.Id}
+	apiRequest := dnd.RollInitiativeRequest{ID: request.Id}
 	apiResponse, err := s.DNDCore.RollInitiative(ctx, apiRequest)
 	if err != nil {
 		return nil, adaptCoreError(err)

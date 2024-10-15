@@ -5,6 +5,7 @@ import (
 
 	"github.com/AranGarcia/droop/dnd/internal/core/entities"
 	"github.com/AranGarcia/droop/dnd/internal/ports/core"
+	"github.com/AranGarcia/droop/dnd/internal/ports/core/dnd"
 	"github.com/AranGarcia/droop/dnd/internal/ports/events"
 	"github.com/AranGarcia/droop/dnd/internal/ports/external/characters"
 )
@@ -26,7 +27,7 @@ func NewDNDService(characters characters.Port) DND {
 	}
 }
 
-func (d DND) RollInitiative(ctx context.Context, request core.RollInitiativeRequest) (*core.RollInitiativeResponse, error) {
+func (d DND) RollInitiative(ctx context.Context, request dnd.RollInitiativeRequest) (*dnd.RollInitiativeResponse, error) {
 	if request.ID == "" {
 		return nil, core.ErrNoIDProvided
 	}
@@ -42,7 +43,7 @@ func (d DND) RollInitiative(ctx context.Context, request core.RollInitiativeRequ
 	}
 
 	result := character.Dexterity.CalculateModifier() + roll
-	response := &core.RollInitiativeResponse{
+	response := &dnd.RollInitiativeResponse{
 		Result: result,
 	}
 

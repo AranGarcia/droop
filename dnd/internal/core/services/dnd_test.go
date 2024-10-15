@@ -7,7 +7,7 @@ import (
 	"testing"
 
 	"github.com/AranGarcia/droop/dnd/internal/core/entities"
-	"github.com/AranGarcia/droop/dnd/internal/ports/core"
+	"github.com/AranGarcia/droop/dnd/internal/ports/core/dnd"
 	eventsmock "github.com/AranGarcia/droop/dnd/internal/ports/events/mock"
 	charactersmock "github.com/AranGarcia/droop/dnd/internal/ports/external/characters/mock"
 )
@@ -36,19 +36,19 @@ func TestDND_RollInitiative(t *testing.T) {
 	tests := []struct {
 		name               string
 		fields             fields
-		request            core.RollInitiativeRequest
-		want               *core.RollInitiativeResponse
+		request            dnd.RollInitiativeRequest
+		want               *dnd.RollInitiativeResponse
 		wantProducedEvents int
 		wantErr            bool
 	}{
 		{
 			name:    "empty ID",
-			request: core.RollInitiativeRequest{},
+			request: dnd.RollInitiativeRequest{},
 			wantErr: true,
 		},
 		{
 			name:    "failed to retrieve character",
-			request: core.RollInitiativeRequest{ID: "character-that-doesnt-exist"},
+			request: dnd.RollInitiativeRequest{ID: "character-that-doesnt-exist"},
 			wantErr: true,
 		},
 		{
@@ -56,7 +56,7 @@ func TestDND_RollInitiative(t *testing.T) {
 			fields: fields{
 				d20: &mockD20{rollFunc: func() (int, error) { return -1, errors.New("random gen error") }},
 			},
-			request: core.RollInitiativeRequest{ID: character.ID},
+			request: dnd.RollInitiativeRequest{ID: character.ID},
 			wantErr: true,
 		},
 		{
@@ -65,8 +65,8 @@ func TestDND_RollInitiative(t *testing.T) {
 				d20:      &mockD20{rollFunc: func() (int, error) { return 13, nil }},
 				producer: eventsmock.Producer{},
 			},
-			request: core.RollInitiativeRequest{ID: character.ID},
-			want: &core.RollInitiativeResponse{
+			request: dnd.RollInitiativeRequest{ID: character.ID},
+			want: &dnd.RollInitiativeResponse{
 				Result: 15,
 			},
 			wantProducedEvents: 1,

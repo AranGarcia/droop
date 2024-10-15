@@ -11,8 +11,8 @@ import (
 type Repository interface {
 	CreateCampaign(context.Context, entities.Campaign) (*entities.Campaign, error)
 	RetrieveCampaign(context.Context, string) (*entities.Campaign, error)
-	UpdateCampaign(context.Context, CampaignFields) (*entities.Campaign, error)
+	UpdateCampaign(context.Context, UpdateFields) (*entities.Campaign, error)
 	DeleteCampaign(context.Context, string) error
 }
 
-type CampaignFields struct{}
+type UpdateFields struct{}

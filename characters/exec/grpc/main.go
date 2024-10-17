@@ -5,7 +5,6 @@ import (
 	"log"
 
 	"github.com/AranGarcia/droop/characters/internal/adapters/primary/grpc"
-	"github.com/AranGarcia/droop/characters/internal/adapters/secondary/mongo"
 )
 
 var (
@@ -36,7 +35,7 @@ func init() {
 func main() {
 	log.Printf("Connection to repository in host %s...\n", mongoHost)
 	mongoConfig := buildMongoConfig()
-	repo := buildRepository(mongo.Config(mongoConfig))
+	repo := buildRepository(mongoConfig)
 	service := buildService(repo)
 	server := grpc.NewServer(addr, service)
 

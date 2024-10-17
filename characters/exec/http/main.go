@@ -5,7 +5,6 @@ import (
 	"log"
 
 	"github.com/AranGarcia/droop/characters/internal/adapters/primary/http"
-	"github.com/AranGarcia/droop/characters/internal/adapters/secondary/mongo"
 )
 
 var (
@@ -36,7 +35,7 @@ func init() {
 func main() {
 	log.Println("Initializing repository...")
 	mongoConfig := buildMongoConfig()
-	repo := buildRepository(mongo.Config(mongoConfig))
+	repo := buildRepository(mongoConfig)
 	service := buildService(repo)
 	server := http.NewServer(addr, service)
 	log.Println("Running server on", addr)

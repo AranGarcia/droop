@@ -1,4 +1,4 @@
-module github.com/AranGarcia/shared/mongo
+module github.com/AranGarcia/droop/shared/mongotools
 
 go 1.23.2
 

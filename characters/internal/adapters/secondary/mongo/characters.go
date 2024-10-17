@@ -7,6 +7,7 @@ import (
 
 	"github.com/AranGarcia/droop/characters/internal/core/entities"
 	"github.com/AranGarcia/droop/characters/internal/ports/repositories"
+	"github.com/AranGarcia/droop/shared/mongotools"
 
 	"go.mongodb.org/mongo-driver/bson"
 	"go.mongodb.org/mongo-driver/bson/primitive"
@@ -25,7 +26,7 @@ type CharacterRepository struct {
 	collection *mongo.Collection
 }
 
-func NewCharacterRepository(config Config) (*CharacterRepository, error) {
+func NewCharacterRepository(config mongotools.Config) (*CharacterRepository, error) {
 	client, err := config.InitializeClient()
 	if err != nil {
 		return nil, fmt.Errorf("failed to connect; %v", err)

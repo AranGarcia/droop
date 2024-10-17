@@ -8,11 +8,12 @@ import (
 	"github.com/AranGarcia/droop/characters/internal/core/services"
 	"github.com/AranGarcia/droop/characters/internal/ports/api"
 	"github.com/AranGarcia/droop/characters/internal/ports/repositories"
+	"github.com/AranGarcia/droop/shared/mongotools"
 )
 
 // buildMongoConfig is built from the configuration flags.
-func buildMongoConfig() mongo.Config {
-	return mongo.Config{
+func buildMongoConfig() mongotools.Config {
+	return mongotools.Config{
 		User:     mongoUser,
 		Password: mongoPassword,
 		Host:     mongoHost,
@@ -22,7 +23,7 @@ func buildMongoConfig() mongo.Config {
 	}
 }
 
-func buildRepository(mongoConfig mongo.Config) repositories.Characters {
+func buildRepository(mongoConfig mongotools.Config) repositories.Characters {
 	repo, err := mongo.NewCharacterRepository(mongoConfig)
 	if err != nil {
 		log.Fatalf("failed to initialize repo; %v", err)

@@ -30,6 +30,7 @@ services:
       - MONGO_HOST=mongodb
     volumes:
       - ./proto/:/proto/
+      - ./shared/:/shared/
 
   dnd:
     depends_on:

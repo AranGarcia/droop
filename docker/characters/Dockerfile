@@ -6,6 +6,8 @@ WORKDIR /app
 
 # Protocol Buffers (must be compiled)
 COPY proto/gen /proto/gen
+# Shared libraries
+COPY shared/ /shared
 # Character service
 COPY characters/ ./
 

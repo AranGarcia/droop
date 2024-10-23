@@ -8,8 +8,6 @@ import (
 
 // API is a core port for Tables.
 type API interface {
-	// RetrieveTable returns the current state of a Campaign's Table and all of the containing turns.
-	RetrieveTable(context.Context, RetrieveRequest) (*RetrieveResponse, error)
 	// StartTracking the turns for a campaign.
 	StartTracking(context.Context, StartTrackingRequest) (*StartTrackingResponse, error)
 	// StopTracking the turns for a campaign.

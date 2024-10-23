@@ -16,6 +16,14 @@ services:
         source: docker/mongo
         target: /docker-entrypoint-initdb.d
 
+  redis:
+    image: 'redis/redis-stack:6.2.6-v17'
+    ports:
+      - 6379:6379
+      - 8001:8001
+    environment:
+      REDIS_ARGS: '--requirepass password'
+
   characters:
     depends_on:
       mongodb:

@@ -5,4 +5,5 @@ use (
 	./dnd
 	./initiatives
 	./shared/mongotools
+	./shared/redistools
 )

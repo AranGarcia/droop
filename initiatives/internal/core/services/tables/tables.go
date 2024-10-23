@@ -27,11 +27,6 @@ func (s Service) RetrieveTable(ctx context.Context, request core.RetrieveRequest
 	return response, nil
 }
 
-// ClearTable resets a Table by deleting all of it's contained turns. It doesn't delete the Table.
-func (s Service) ClearTable(_ context.Context, _ core.ClearRequest) (*core.ClearResponse, error) {
-	panic("not implemented") // TODO: Implement
-}
-
 // StartTracking the turns for a campaign.
 func (s Service) StartTracking(ctx context.Context, request core.StartTrackingRequest) (*core.StartTrackingResponse, error) {
 	table := entities.Table{

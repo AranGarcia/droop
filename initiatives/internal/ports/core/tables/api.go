@@ -10,8 +10,6 @@ import (
 type API interface {
 	// RetrieveTable returns the current state of a Campaign's Table and all of the containing turns.
 	RetrieveTable(context.Context, RetrieveRequest) (*RetrieveResponse, error)
-	// ClearTable resets a Table by deleting all of it's contained turns. It doesn't delete the Table.
-	ClearTable(context.Context, ClearRequest) (*ClearResponse, error)
 	// StartTracking the turns for a campaign.
 	StartTracking(context.Context, StartTrackingRequest) (*StartTrackingResponse, error)
 	// StopTracking the turns for a campaign.
@@ -25,11 +23,6 @@ type RetrieveRequest struct {
 type RetrieveResponse struct {
 	Table entities.Table
 }
-
-type ClearRequest struct {
-	CampaignID string
-}
-type ClearResponse struct{}
 
 type StartTrackingRequest struct {
 	CampaignID string

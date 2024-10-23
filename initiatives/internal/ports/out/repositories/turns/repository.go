@@ -6,7 +6,7 @@ import (
 	"github.com/AranGarcia/initiatives/internal/core/entities"
 )
 
-type Turns interface {
+type Repository interface {
 	Upsert(context.Context, string, entities.Turn) error
 	Clear(context.Context, string) error
 }

@@ -8,4 +8,5 @@ import (
 
 type Turns interface {
 	Upsert(context.Context, string, entities.Turn) error
+	Clear(context.Context, string) error
 }

@@ -23,14 +23,18 @@ func (t *TableRepository) Create(_ context.Context, table entities.Table) error 
 }
 
 func (t *TableRepository) Retrieve(_ context.Context, id string) (*entities.Table, error) {
-	table, ok := t.Tables[id]
-	if !ok {
+	table, exists := t.Tables[id]
+	if !exists {
 		return nil, core.ErrNotFound
 	}
 	return table, nil
 }
 
 func (t *TableRepository) Delete(_ context.Context, id string) error {
+	_, exists := t.Tables[id]
+	if !exists {
+		return core.ErrNotFound
+	}
 	delete(t.Tables, id)
 	return nil
 }

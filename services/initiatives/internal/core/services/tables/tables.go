@@ -11,8 +11,18 @@ import (
 	core "github.com/AranGarcia/initiatives/internal/ports/core/tables"
 )
 
+type Dependencies struct {
+	Repository tables.Repository
+}
+
 type Service struct {
 	repository tables.Repository
+}
+
+func NewService(deps Dependencies) Service {
+	return Service{
+		repository: deps.Repository,
+	}
 }
 
 // StartTracking the turns for a campaign.

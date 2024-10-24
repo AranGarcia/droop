@@ -1,9 +1,12 @@
 package grpc
 
 import (
+	"context"
 	"net"
 
 	"google.golang.org/grpc"
+	"google.golang.org/grpc/codes"
+	"google.golang.org/grpc/status"
 
 	"github.com/AranGarcia/initiatives/internal/ports/core/tables"
 
@@ -31,4 +34,12 @@ func (s Server) Run() error {
 	}
 	grpcServer := grpc.NewServer()
 	return grpcServer.Serve(lis)
+}
+
+func (t Server) StartTracking(ctx context.Context, request *initiativespb.StartTrackingRequest) (*initiativespb.StartTrackingResponse, error) {
+	return nil, status.Error(codes.Unimplemented, "not implemented yet")
+}
+
+func (t Server) StopTracking(ctx context.Context, request *initiativespb.StopTrackingRequest) (*initiativespb.StopTrackingResponse, error) {
+	return nil, status.Error(codes.Unimplemented, "not implemented yet")
 }

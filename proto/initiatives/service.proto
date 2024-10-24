@@ -1,0 +1,20 @@
+syntax = "proto3";
+
+package initiatives;
+
+service API {
+    rpc StartTracking(StartTrackingRequest) returns (StartTrackingResponse);
+    rpc StopTracking(StopTrackingRequest) returns (StopTrackingResponse);
+}
+
+message StartTrackingRequest{
+    string campaign_id = 1;
+}
+
+message StartTrackingResponse {}
+
+message StopTrackingRequest{
+    string campaign_id = 1; 
+}
+
+message StopTrackingResponse {}

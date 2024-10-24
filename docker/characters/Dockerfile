@@ -9,7 +9,7 @@ COPY proto/gen /proto/gen
 # Shared libraries
 COPY shared/ /shared
 # Character service
-COPY characters/ ./
+COPY services/characters/ ./
 
 RUN go mod tidy
 RUN CGO_ENABLED=0 GOOS=linux go build -o /characters-server ./exec/grpc 

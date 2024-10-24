@@ -2,7 +2,7 @@ module github.com/AranGarcia/initiatives
 
 go 1.23.2
 
-replace github.com/AranGarcia/droop/proto/gen => ../proto/gen
+replace github.com/AranGarcia/droop/proto/gen => ../../proto/gen
 
 require (
 	github.com/AranGarcia/droop/proto/gen v0.0.0-00010101000000-000000000000

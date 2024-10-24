@@ -1,9 +1,9 @@
 go 1.23.2
 
 use (
-	./characters
-	./dnd
-	./initiatives
+	./services/characters
+	./services/dnd
+	./services/initiatives
 	./shared/mongotools
 	./shared/redistools
 )

@@ -8,7 +8,7 @@ import (
 	"google.golang.org/grpc/codes"
 	"google.golang.org/grpc/status"
 
-	"github.com/AranGarcia/initiatives/internal/ports/core/tables"
+	"github.com/AranGarcia/droop/initiatives/internal/ports/core/tables"
 
 	initiativespb "github.com/AranGarcia/droop/proto/gen/initiatives"
 )

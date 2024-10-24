@@ -5,10 +5,10 @@ import (
 	"reflect"
 	"testing"
 
-	"github.com/AranGarcia/initiatives/internal/core/entities"
-	"github.com/AranGarcia/initiatives/internal/ports/out/repositories/mocks"
+	"github.com/AranGarcia/droop/initiatives/internal/core/entities"
+	"github.com/AranGarcia/droop/initiatives/internal/ports/out/repositories/mocks"
 
-	core "github.com/AranGarcia/initiatives/internal/ports/core/tables"
+	core "github.com/AranGarcia/droop/initiatives/internal/ports/core/tables"
 )
 
 func TestService_StartTracking(t *testing.T) {

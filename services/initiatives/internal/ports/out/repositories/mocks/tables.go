@@ -4,9 +4,9 @@ import (
 	"context"
 	"fmt"
 
-	"github.com/AranGarcia/initiatives/internal/core/entities"
+	"github.com/AranGarcia/droop/initiatives/internal/core/entities"
 
-	"github.com/AranGarcia/initiatives/internal/ports/core"
+	"github.com/AranGarcia/droop/initiatives/internal/ports/core"
 )
 
 type TableRepository struct {

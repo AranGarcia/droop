@@ -3,10 +3,10 @@ package turns
 import (
 	"context"
 
-	"github.com/AranGarcia/initiatives/internal/ports/out/repositories/tables"
-	"github.com/AranGarcia/initiatives/internal/ports/out/repositories/turns"
+	"github.com/AranGarcia/droop/initiatives/internal/ports/out/repositories/tables"
+	"github.com/AranGarcia/droop/initiatives/internal/ports/out/repositories/turns"
 
-	core "github.com/AranGarcia/initiatives/internal/ports/core/turns"
+	core "github.com/AranGarcia/droop/initiatives/internal/ports/core/turns"
 )
 
 type Service struct {

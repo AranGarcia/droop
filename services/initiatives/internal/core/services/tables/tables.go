@@ -5,10 +5,10 @@ import (
 
 	// XXX: Not a fan of this import naming scheme. Is there a better way to do this?
 
-	"github.com/AranGarcia/initiatives/internal/core/entities"
-	"github.com/AranGarcia/initiatives/internal/ports/out/repositories/tables"
+	"github.com/AranGarcia/droop/initiatives/internal/core/entities"
+	"github.com/AranGarcia/droop/initiatives/internal/ports/out/repositories/tables"
 
-	core "github.com/AranGarcia/initiatives/internal/ports/core/tables"
+	core "github.com/AranGarcia/droop/initiatives/internal/ports/core/tables"
 )
 
 type Dependencies struct {

@@ -3,7 +3,7 @@ package turns
 import (
 	"context"
 
-	"github.com/AranGarcia/initiatives/internal/core/entities"
+	"github.com/AranGarcia/droop/initiatives/internal/core/entities"
 )
 
 // API is a core port for Turns.

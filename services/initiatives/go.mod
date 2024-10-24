@@ -1,4 +1,4 @@
-module github.com/AranGarcia/initiatives
+module github.com/AranGarcia/droop/initiatives
 
 go 1.23.2
 

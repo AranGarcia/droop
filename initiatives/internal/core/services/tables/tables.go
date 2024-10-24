@@ -15,18 +15,6 @@ type Service struct {
 	repository tables.Repository
 }
 
-// RetrieveTable returns the current state of a Campaign's Table and all of the containing turns.
-func (s Service) RetrieveTable(ctx context.Context, request core.RetrieveRequest) (*core.RetrieveResponse, error) {
-	table, err := s.repository.Retrieve(ctx, request.CampaignID)
-	if err != nil {
-		return nil, err // TODO: handle errors
-	}
-	response := &core.RetrieveResponse{
-		Table: *table,
-	}
-	return response, nil
-}
-
 // StartTracking the turns for a campaign.
 func (s Service) StartTracking(ctx context.Context, request core.StartTrackingRequest) (*core.StartTrackingResponse, error) {
 	table := entities.Table{

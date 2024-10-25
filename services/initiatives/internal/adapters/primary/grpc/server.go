@@ -5,8 +5,6 @@ import (
 	"net"
 
 	"google.golang.org/grpc"
-	"google.golang.org/grpc/codes"
-	"google.golang.org/grpc/status"
 
 	"github.com/AranGarcia/droop/initiatives/internal/ports/core/tables"
 
@@ -37,9 +35,23 @@ func (s Server) Run() error {
 }
 
 func (t Server) StartTracking(ctx context.Context, request *initiativespb.StartTrackingRequest) (*initiativespb.StartTrackingResponse, error) {
-	return nil, status.Error(codes.Unimplemented, "not implemented yet")
+	apiRequest := tables.StartTrackingRequest{CampaignID: request.CampaignId}
+	_, err := t.tablesAPI.StartTracking(ctx, apiRequest)
+	if err != nil {
+		// TODO: handle core errors
+		return nil, err
+	}
+	response := &initiativespb.StartTrackingResponse{}
+	return response, nil
 }
 
 func (t Server) StopTracking(ctx context.Context, request *initiativespb.StopTrackingRequest) (*initiativespb.StopTrackingResponse, error) {
-	return nil, status.Error(codes.Unimplemented, "not implemented yet")
+	apiRequest := tables.StopTrackingRequest{CampaignID: request.CampaignId}
+	_, err := t.tablesAPI.StopTracking(ctx, apiRequest)
+	if err != nil {
+		// TODO: handle core errors
+		return nil, err
+	}
+	response := &initiativespb.StopTrackingResponse{}
+	return response, nil
 }

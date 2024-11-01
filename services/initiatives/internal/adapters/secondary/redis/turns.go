@@ -2,6 +2,7 @@ package redis
 
 import (
 	"context"
+	"fmt"
 
 	"github.com/redis/go-redis/v9"
 
@@ -17,8 +18,13 @@ func NewTurnsRepository(redisClient *redis.Client) *TurnRepository {
 	return &repo
 }
 
-func (t TurnRepository) Upsert(_ context.Context, _ string, _ entities.Turn) error {
-	panic("not implemented") // TODO: Implement
+func (t TurnRepository) Upsert(ctx context.Context, campaignID string, turn entities.Turn) error {
+	z := redis.Z{
+		Score:  float64(turn.Result),
+		Member: fmt.Sprint(turn.CharacterID, ":", turn.CharacterName),
+	}
+	res := t.redisClient.ZAdd(ctx, campaignID, z)
+	return res.Err()
 }
 
 func (t TurnRepository) Clear(_ context.Context, _ string) error {

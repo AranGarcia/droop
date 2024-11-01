@@ -4,7 +4,7 @@ go 1.23.2
 
 replace (
 	github.com/AranGarcia/droop/proto/gen => ../../proto/gen
-	github.com/AranGarcia/droop/shared/mongotools => ../../shared/mongotools
+	github.com/AranGarcia/droop/shared => ../../shared
 )
 
 require (

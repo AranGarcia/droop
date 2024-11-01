@@ -6,7 +6,7 @@ import (
 	"github.com/redis/go-redis/v9"
 
 	"github.com/AranGarcia/droop/initiatives/internal/core/entities"
-	"github.com/AranGarcia/shared/redistools"
+	"github.com/AranGarcia/droop/shared/redistools"
 )
 
 type TablesRepository struct {

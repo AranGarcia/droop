@@ -1,4 +1,4 @@
-module github.com/AranGarcia/shared/redistools
+module github.com/AranGarcia/droop/shared/redistools
 
 go 1.23.2
 

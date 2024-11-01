@@ -4,7 +4,7 @@ import (
 	"log"
 
 	"github.com/AranGarcia/droop/initiatives/internal/adapters/secondary/redis"
-	"github.com/AranGarcia/shared/redistools"
+	"github.com/AranGarcia/droop/shared/redistools"
 )
 
 func buildRedisConfig() redistools.Config {

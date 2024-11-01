@@ -3,6 +3,7 @@ package turns
 import (
 	"context"
 
+	"github.com/AranGarcia/droop/initiatives/internal/core/entities"
 	"github.com/AranGarcia/droop/initiatives/internal/ports/out/repositories/turns"
 
 	core "github.com/AranGarcia/droop/initiatives/internal/ports/core/turns"
@@ -30,8 +31,13 @@ func (s Service) ListTurns(ctx context.Context, request core.ListTurnsRequest) (
 // Register inserts a Turn into a campaign's tracking registry. If it exists, it overwrites it.
 // It returns the resulting Table after the insert.
 func (s Service) Register(ctx context.Context, request core.RegisterRequest) (*core.RegisterResponse, error) {
-	if err := s.repo.Upsert(ctx, request.CampaignID, request.Turn); err != nil {
-		return nil, err // TODO: handle errors
+	turn := entities.Turn{
+		CharacterID:   request.CharacterID,
+		CharacterName: request.CharacterName,
+		Result:        request.Result,
+	}
+	if err := s.repo.Upsert(ctx, request.CampaignID, turn); err != nil {
+		return nil, handleRepositoryErrors(err)
 	}
 	response := &core.RegisterResponse{}
 	return response, nil

@@ -5,27 +5,29 @@ import (
 	"log"
 
 	"github.com/AranGarcia/droop/initiatives/internal/adapters/primary/grpc"
-	"github.com/AranGarcia/droop/initiatives/internal/core/entities"
 	"github.com/AranGarcia/droop/initiatives/internal/core/services/tables"
-	"github.com/AranGarcia/droop/initiatives/internal/ports/out/repositories/mocks"
 )
 
 var (
 	// addr is the address (HOST:PORT) where the server will run.
 	addr string
+
+	// redisHost is the hostname of the Redis
+	redisHost     string
+	redisPassword string
 )
 
 func init() {
 	flag.StringVar(&addr, "addr", ":8070", "the server address (host and port)")
+	flag.StringVar(&redisHost, "redis_host", ":6379", "host and port for the Redis database")
+	flag.StringVar(&redisPassword, "redis_password", "password", "password for the redis user")
 	flag.Parse()
 }
 
 func main() {
+	repo := buildRepository()
 	deps := tables.Dependencies{
-		// TODO: change for redis adapter
-		Repository: &mocks.TableRepository{
-			Tables: make(map[string]*entities.Table),
-		},
+		Repository: repo,
 	}
 	tableService := tables.NewService(deps)
 	server := grpc.NewServer(addr, tableService)

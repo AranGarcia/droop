@@ -26,8 +26,14 @@ type ListTurnsResponse struct {
 }
 
 type RegisterRequest struct {
+	// CampaignID to which the turn wil be registered to.
 	CampaignID string
-	Turn       entities.Turn
+	// CharacterID is the ID of the character that the turn belongs to.
+	CharacterID string
+	// CharacterName is the name of the character that the turn belongs to.
+	CharacterName string
+	// Result of the initiative roll.
+	Result int
 }
 
 type RegisterResponse struct {

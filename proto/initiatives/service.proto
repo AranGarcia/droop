@@ -5,7 +5,17 @@ package initiatives;
 service API {
     rpc StartTracking(StartTrackingRequest) returns (StartTrackingResponse);
     rpc StopTracking(StopTrackingRequest) returns (StopTrackingResponse);
+    rpc RegisterTurn(RegisterTurnRequest) returns (RegisterTurnResponse);
 }
+
+message RegisterTurnRequest {
+    string campaign_id = 1;
+    string character_id = 2;
+    string character_name = 3;
+    int32 result = 4;
+}
+
+message RegisterTurnResponse {}
 
 message StartTrackingRequest{
     string campaign_id = 1;

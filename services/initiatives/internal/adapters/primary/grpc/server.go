@@ -6,9 +6,13 @@ import (
 	"google.golang.org/grpc"
 
 	"github.com/AranGarcia/droop/initiatives/internal/ports/core/turns"
+
+	pb "github.com/AranGarcia/droop/proto/gen/initiatives"
 )
 
 type Server struct {
+	pb.UnimplementedAPIServer
+
 	addr string
 	api  turns.API
 }

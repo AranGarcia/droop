@@ -3,12 +3,11 @@ package tables
 import (
 	"context"
 
-	// XXX: Not a fan of this import naming scheme. Is there a better way to do this?
-
 	"github.com/AranGarcia/droop/initiatives/internal/core/entities"
 	"github.com/AranGarcia/droop/initiatives/internal/ports/out/repositories/tables"
 
-	core "github.com/AranGarcia/droop/initiatives/internal/ports/core/tables"
+	coreerrors "github.com/AranGarcia/droop/initiatives/internal/ports/core"
+	tablescore "github.com/AranGarcia/droop/initiatives/internal/ports/core/tables"
 )
 
 type Dependencies struct {
@@ -26,7 +25,11 @@ func NewService(deps Dependencies) Service {
 }
 
 // StartTracking the turns for a campaign.
-func (s Service) StartTracking(ctx context.Context, request core.StartTrackingRequest) (*core.StartTrackingResponse, error) {
+func (s Service) StartTracking(ctx context.Context, request tablescore.StartTrackingRequest) (*tablescore.StartTrackingResponse, error) {
+	if request.CampaignID == "" {
+		return nil, coreerrors.ErrInvalidID
+	}
+
 	table := entities.Table{
 		CampaignID: request.CampaignID,
 	}
@@ -34,16 +37,16 @@ func (s Service) StartTracking(ctx context.Context, request core.StartTrackingRe
 		return nil, err // TODO: handle errors
 	}
 
-	response := &core.StartTrackingResponse{}
+	response := &tablescore.StartTrackingResponse{}
 	return response, nil
 }
 
 // StopTracking the turns for a campaign.
-func (s Service) StopTracking(ctx context.Context, request core.StopTrackingRequest) (*core.StopTrackingResponse, error) {
+func (s Service) StopTracking(ctx context.Context, request tablescore.StopTrackingRequest) (*tablescore.StopTrackingResponse, error) {
 	if err := s.repository.Delete(ctx, request.CampaignID); err != nil {
 		return nil, err // TODO: handle errors
 	}
 
-	response := &core.StopTrackingResponse{}
+	response := &tablescore.StopTrackingResponse{}
 	return response, nil
 }

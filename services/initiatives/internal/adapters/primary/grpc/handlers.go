@@ -12,8 +12,7 @@ func (t Server) StartTracking(ctx context.Context, request *initiativespb.StartT
 	apiRequest := tables.StartTrackingRequest{CampaignID: request.CampaignId}
 	_, err := t.tablesAPI.StartTracking(ctx, apiRequest)
 	if err != nil {
-		// TODO: handle core errors
-		return nil, err
+		return nil, handleAPIError(err)
 	}
 	response := &initiativespb.StartTrackingResponse{}
 	return response, nil

@@ -22,8 +22,11 @@ func NewTablesRepository(config redistools.Config) (*TablesRepository, error) {
 	return repo, nil
 }
 
-func (t TablesRepository) Create(ctx context.Context, _ entities.Table) error {
-	_ = t.client.SAdd(ctx, "", nil)
+func (t TablesRepository) Create(ctx context.Context, table entities.Table) error {
+	res := t.client.SAdd(ctx, "initiatives:campaigns", table.CampaignID)
+	if res.Err() != nil {
+		return res.Err()
+	}
 	return nil
 }
 

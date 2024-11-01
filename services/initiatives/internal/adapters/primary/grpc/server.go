@@ -30,5 +30,6 @@ func (s Server) Run() error {
 		return err
 	}
 	grpcServer := grpc.NewServer()
+	initiativespb.RegisterAPIServer(grpcServer, s)
 	return grpcServer.Serve(lis)
 }

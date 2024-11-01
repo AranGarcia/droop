@@ -9,10 +9,14 @@ import (
 	"github.com/AranGarcia/droop/shared/redistools"
 )
 
+// TablesRepository ...
+// Deprecated: Use only the TurnsRepository.
 type TablesRepository struct {
 	client redis.Client
 }
 
+// NewTablesRepository ...
+// Deprecated: Use only the TurnsRepository.
 func NewTablesRepository(config redistools.Config) (*TablesRepository, error) {
 	client, err := config.InitializeClient()
 	if err != nil {

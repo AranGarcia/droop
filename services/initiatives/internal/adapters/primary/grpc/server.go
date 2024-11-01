@@ -5,22 +5,18 @@ import (
 
 	"google.golang.org/grpc"
 
-	"github.com/AranGarcia/droop/initiatives/internal/ports/core/tables"
-
-	initiativespb "github.com/AranGarcia/droop/proto/gen/initiatives"
+	"github.com/AranGarcia/droop/initiatives/internal/ports/core/turns"
 )
 
 type Server struct {
-	initiativespb.UnimplementedAPIServer
-
-	addr      string
-	tablesAPI tables.API
+	addr string
+	api  turns.API
 }
 
-func NewServer(addr string, tables tables.API) *Server {
+func NewServer(addr string, turns turns.API) *Server {
 	return &Server{
-		addr:      addr,
-		tablesAPI: tables,
+		addr: addr,
+		api:  turns,
 	}
 }
 
@@ -30,6 +26,6 @@ func (s Server) Run() error {
 		return err
 	}
 	grpcServer := grpc.NewServer()
-	initiativespb.RegisterAPIServer(grpcServer, s)
+	// initiativespb.RegisterAPIServer(grpcServer, s)
 	return grpcServer.Serve(lis)
 }

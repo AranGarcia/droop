@@ -14,11 +14,12 @@ func buildRedisConfig() redistools.Config {
 	}
 }
 
-func buildRepository() *redis.TablesRepository {
+func initRepository() *redis.TurnRepository {
 	config := buildRedisConfig()
-	repo, err := redis.NewTablesRepository(config)
+	client, err := config.InitializeClient()
 	if err != nil {
-		log.Fatalf("failed to initialize tables repository; %v", err)
+		log.Fatalf("failed to initialize redis client: %v", err)
 	}
+	repo := redis.NewTurnsRepository(client)
 	return repo
 }

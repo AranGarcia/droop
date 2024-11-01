@@ -5,7 +5,7 @@ import (
 	"log"
 
 	"github.com/AranGarcia/droop/initiatives/internal/adapters/primary/grpc"
-	"github.com/AranGarcia/droop/initiatives/internal/core/services/tables"
+	"github.com/AranGarcia/droop/initiatives/internal/core/services/turns"
 )
 
 var (
@@ -25,12 +25,12 @@ func init() {
 }
 
 func main() {
-	repo := buildRepository()
-	deps := tables.Dependencies{
+	repo := initRepository()
+	deps := turns.Dependencies{
 		Repository: repo,
 	}
-	tableService := tables.NewService(deps)
-	server := grpc.NewServer(addr, tableService)
+	turnService := turns.NewService(deps)
+	server := grpc.NewServer(addr, turnService)
 	log.Println("Running the server on", addr)
 	if err := server.Run(); err != nil {
 		log.Fatalf("server.Run failure; %v", err)

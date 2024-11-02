@@ -3,9 +3,8 @@ syntax = "proto3";
 package initiatives;
 
 service API {
-    rpc StartTracking(StartTrackingRequest) returns (StartTrackingResponse);
-    rpc StopTracking(StopTrackingRequest) returns (StopTrackingResponse);
     rpc RegisterTurn(RegisterTurnRequest) returns (RegisterTurnResponse);
+    rpc ClearAll(ClearAllRequest) returns (ClearAllResponse);
 }
 
 message RegisterTurnRequest {
@@ -17,14 +16,8 @@ message RegisterTurnRequest {
 
 message RegisterTurnResponse {}
 
-message StartTrackingRequest{
+message ClearAllRequest {
     string campaign_id = 1;
 }
 
-message StartTrackingResponse {}
-
-message StopTrackingRequest{
-    string campaign_id = 1; 
-}
-
-message StopTrackingResponse {}
+message ClearAllResponse {}

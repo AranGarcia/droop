@@ -14,3 +14,9 @@ func RegisterRequestToAPI(request *pb.RegisterTurnRequest) turns.RegisterRequest
 		Result:        int(request.Result),
 	}
 }
+
+func ClearAllRequestToAPI(request *pb.ClearAllRequest) turns.ClearAllRequest {
+	return turns.ClearAllRequest{
+		CampaignID: request.CampaignId,
+	}
+}

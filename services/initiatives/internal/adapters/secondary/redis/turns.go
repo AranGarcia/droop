@@ -3,6 +3,7 @@ package redis
 import (
 	"context"
 	"fmt"
+	"time"
 
 	"github.com/redis/go-redis/v9"
 
@@ -24,9 +25,11 @@ func (t TurnRepository) Upsert(ctx context.Context, campaignID string, turn enti
 		Member: fmt.Sprint(turn.CharacterID, ":", turn.CharacterName),
 	}
 	res := t.redisClient.ZAdd(ctx, campaignID, z)
+	t.redisClient.Expire(ctx, campaignID, 4*time.Hour)
 	return res.Err()
 }
 
-func (t TurnRepository) Clear(_ context.Context, _ string) error {
-	panic("not implemented") // TODO: Implement
+func (t TurnRepository) Clear(ctx context.Context, campaignID string) error {
+	res := t.redisClient.Del(ctx, campaignID)
+	return res.Err()
 }

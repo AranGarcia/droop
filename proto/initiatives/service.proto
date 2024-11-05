@@ -4,8 +4,11 @@ package initiatives;
 
 service API {
     rpc RegisterTurn(RegisterTurnRequest) returns (RegisterTurnResponse);
+    rpc ListTurns(ListTurnsRequest) returns (ListTurnsResponse);
     rpc ClearAll(ClearAllRequest) returns (ClearAllResponse);
 }
+
+// RPC inputs & outputs
 
 message RegisterTurnRequest {
     string campaign_id = 1;
@@ -16,8 +19,24 @@ message RegisterTurnRequest {
 
 message RegisterTurnResponse {}
 
+message ListTurnsRequest {
+    string campaign_id = 1;
+}
+
+message ListTurnsResponse {
+
+}
+
 message ClearAllRequest {
     string campaign_id = 1;
 }
 
 message ClearAllResponse {}
+
+// Resources
+
+message Turn {
+    string character_id = 1;
+    string character_name = 2;
+    string result = 3;
+}

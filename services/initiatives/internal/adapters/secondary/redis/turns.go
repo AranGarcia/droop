@@ -21,16 +21,24 @@ func NewTurnsRepository(redisClient *redis.Client) *TurnRepository {
 
 // List the turns for a given campaign.
 func (t TurnRepository) List(ctx context.Context, campaignID string) ([]entities.Turn, error) {
-	res := t.redisClient.ZRange(ctx, campaignID, 0, -1)
-	if res.Err() != nil {
-		return nil, fmt.Errorf("failed to range over set; %v", res.Err())
+	args := redis.ZRangeArgs{
+		Key:   campaignID,
+		Start: 0,
+		Stop:  -1,
+		Rev:   true,
 	}
-	results, err := res.Result() // TODO: make sure that this and res.Err() could be two separate errors.
+	res := t.redisClient.ZRangeArgsWithScores(ctx, args)
+	results, err := res.Result()
 	if err != nil {
 		return nil, fmt.Errorf("failed to extract results; %v", err)
 	}
 	turns := make([]entities.Turn, len(results))
-	// TODO: parse result into an entities.Turn
+	for i, z := range results {
+		turns[i], err = ZMemberToTurn(z)
+		if err != nil {
+			return nil, err
+		}
+	}
 	return turns, nil
 }
 

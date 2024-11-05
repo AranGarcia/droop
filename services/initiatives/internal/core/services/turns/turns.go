@@ -24,7 +24,13 @@ func NewService(deps Dependencies) *Service {
 }
 
 func (s Service) ListTurns(ctx context.Context, request core.ListTurnsRequest) (*core.ListTurnsResponse, error) {
-	response := &core.ListTurnsResponse{}
+	turns, err := s.repo.List(ctx, request.CampaignID)
+	if err != nil {
+		return nil, handleRepositoryErrors(err)
+	}
+	response := &core.ListTurnsResponse{
+		Turns: turns,
+	}
 	return response, nil
 }
 

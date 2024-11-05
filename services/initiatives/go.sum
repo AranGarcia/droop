@@ -1,3 +1,5 @@
+github.com/AranGarcia/droop/shared/redistools v0.0.0-20241105061033-22dbd0ad8d15 h1:aEPe5AzDFAhW2S/oExINcwZ0jf4rb/ym3V3qvJRDDBE=
+github.com/AranGarcia/droop/shared/redistools v0.0.0-20241105061033-22dbd0ad8d15/go.mod h1:Tw7g61jeaZtTLtM1PjD0dPA1Fk6TBq+Holuu0yQZpfQ=
 github.com/bsm/ginkgo/v2 v2.12.0 h1:Ny8MWAHyOepLGlLKYmXG4IEkioBysk6GpaRTLC8zwWs=
 github.com/bsm/ginkgo/v2 v2.12.0/go.mod h1:SwYbGRRDovPVboqFv0tPTcG1sN61LM1Z4ARdbAV9g4c=
 github.com/bsm/gomega v1.27.10 h1:yeMWxP2pV2fG3FgAODIY8EiRE3dy0aeFYt4l7wh6yKA=

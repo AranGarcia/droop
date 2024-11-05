@@ -9,6 +9,7 @@ replace (
 
 require (
 	github.com/AranGarcia/droop/proto/gen v0.0.0-00010101000000-000000000000
+	github.com/AranGarcia/droop/shared/redistools v0.0.0-20241105061033-22dbd0ad8d15
 	github.com/redis/go-redis/v9 v9.7.0
 	google.golang.org/grpc v1.67.1
 )

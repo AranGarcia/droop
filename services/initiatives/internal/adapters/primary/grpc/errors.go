@@ -8,6 +8,9 @@ import (
 )
 
 func handleAPIError(err error) error {
+	if err == nil {
+		return nil
+	}
 	return status.Error(apiErrToCode(err), err.Error())
 }
 

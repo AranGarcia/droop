@@ -24,7 +24,7 @@ message ListTurnsRequest {
 }
 
 message ListTurnsResponse {
-
+    repeated Turn turns = 1;
 }
 
 message ClearAllRequest {
@@ -38,5 +38,5 @@ message ClearAllResponse {}
 message Turn {
     string character_id = 1;
     string character_name = 2;
-    string result = 3;
+    int32 result = 3;
 }

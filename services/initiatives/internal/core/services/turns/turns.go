@@ -52,7 +52,7 @@ func (s Service) Register(ctx context.Context, request core.RegisterRequest) (*c
 // ClearTable resets a Table by deleting all of it's contained turns. It doesn't delete the Table.
 func (s Service) ClearAll(ctx context.Context, request core.ClearAllRequest) (*core.ClearAllResponse, error) {
 	if err := s.repo.Clear(ctx, request.CampaignID); err != nil {
-		return nil, err // TODO: handle errors
+		return nil, handleRepositoryErrors(err)
 	}
 	response := &core.ClearAllResponse{}
 	return response, nil

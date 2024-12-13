@@ -7,15 +7,15 @@ import (
 	"testing"
 
 	"github.com/AranGarcia/droop/dnd/internal/ports/core"
-	"github.com/AranGarcia/droop/dnd/internal/ports/core/dnd"
 	"github.com/AranGarcia/droop/dnd/internal/ports/core/mock"
+	"github.com/AranGarcia/droop/dnd/internal/ports/core/rules"
 
 	dndpb "github.com/AranGarcia/droop/proto/gen/dnd"
 )
 
 func TestServer_RollInitiative(t *testing.T) {
 	type fields struct {
-		RollInitiativeFunc func() (*dnd.RollInitiativeResponse, error)
+		RollInitiativeFunc func() (*rules.RollInitiativeResponse, error)
 	}
 	tests := []struct {
 		name    string
@@ -27,7 +27,7 @@ func TestServer_RollInitiative(t *testing.T) {
 		{
 			name:    "invalid request",
 			request: &dndpb.RollInitiativeRequest{},
-			fields: fields{RollInitiativeFunc: func() (*dnd.RollInitiativeResponse, error) {
+			fields: fields{RollInitiativeFunc: func() (*rules.RollInitiativeResponse, error) {
 				return nil, core.ErrInvalidInput
 			}},
 			wantErr: true,
@@ -35,7 +35,7 @@ func TestServer_RollInitiative(t *testing.T) {
 		{
 			name:    "internal error",
 			request: &dndpb.RollInitiativeRequest{Id: "character-id"},
-			fields: fields{RollInitiativeFunc: func() (*dnd.RollInitiativeResponse, error) {
+			fields: fields{RollInitiativeFunc: func() (*rules.RollInitiativeResponse, error) {
 				return nil, errors.New("internal error")
 			}},
 			wantErr: true,
@@ -43,8 +43,8 @@ func TestServer_RollInitiative(t *testing.T) {
 		{
 			name:    "successful initiative roll",
 			request: &dndpb.RollInitiativeRequest{Id: "character-id"},
-			fields: fields{RollInitiativeFunc: func() (*dnd.RollInitiativeResponse, error) {
-				return &dnd.RollInitiativeResponse{Result: 14}, nil
+			fields: fields{RollInitiativeFunc: func() (*rules.RollInitiativeResponse, error) {
+				return &rules.RollInitiativeResponse{Result: 14}, nil
 			}},
 			want: &dndpb.RollInitiativeResponse{Result: 14},
 		},
@@ -52,7 +52,7 @@ func TestServer_RollInitiative(t *testing.T) {
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
 			s := Server{
-				DNDCore: mock.DND{RollInitiativeFunc: tt.fields.RollInitiativeFunc},
+				DNDCore: mock.Rules{RollInitiativeFunc: tt.fields.RollInitiativeFunc},
 			}
 
 			ctx := context.Background()

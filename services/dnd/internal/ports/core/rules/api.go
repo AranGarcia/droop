@@ -1,6 +1,5 @@
-package dnd
-
-// TODO: figure out if this needs to move to its own package.
+// Package rules is the API for the D&D interactions and rules for playing.
+package rules
 
 import "context"
 

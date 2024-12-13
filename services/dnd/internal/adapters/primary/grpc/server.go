@@ -6,7 +6,7 @@ import (
 
 	"google.golang.org/grpc"
 
-	"github.com/AranGarcia/droop/dnd/internal/ports/core/dnd"
+	"github.com/AranGarcia/droop/dnd/internal/ports/core/rules"
 
 	dndpb "github.com/AranGarcia/droop/proto/gen/dnd"
 )
@@ -17,7 +17,7 @@ type Config struct {
 	Addr string
 
 	// DND is a port to the core service.
-	DND dnd.API
+	DND rules.API
 }
 
 // Server is a primary port implemented with GRPC.
@@ -28,7 +28,7 @@ type Server struct {
 	addr string
 
 	// DND is a port to the core service.
-	DNDCore dnd.API
+	DNDCore rules.API
 }
 
 // NewServer constructs the server using the configuration parameters.

@@ -6,6 +6,7 @@ replace github.com/AranGarcia/droop/proto/gen => ../../proto/gen
 
 require (
 	github.com/AranGarcia/droop/proto/gen v0.0.0-00010101000000-000000000000
+	github.com/segmentio/kafka-go v0.4.47
 	go.mongodb.org/mongo-driver v1.17.1
 	google.golang.org/grpc v1.67.1
 )
@@ -15,7 +16,7 @@ require (
 	github.com/klauspost/compress v1.15.9 // indirect
 	github.com/montanaflynn/stats v0.7.1 // indirect
 	github.com/pierrec/lz4/v4 v4.1.15 // indirect
-	github.com/segmentio/kafka-go v0.4.47 // indirect
+	github.com/stretchr/testify v1.9.0 // indirect
 	github.com/xdg-go/pbkdf2 v1.0.0 // indirect
 	github.com/xdg-go/scram v1.1.2 // indirect
 	github.com/xdg-go/stringprep v1.0.4 // indirect

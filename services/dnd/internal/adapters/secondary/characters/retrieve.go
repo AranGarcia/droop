@@ -13,7 +13,7 @@ func (c Client) Retrieve(ctx context.Context, id string) (*entities.Character, e
 	request := characterspb.RetrieveRequest{Id: id}
 	response, err := c.grpcClient.Retrieve(ctx, &request)
 	if err != nil {
-		return nil, ErrCharacterServiceError
+		return nil, translateGRPCError(err)
 	}
 
 	character, err := CharacterCoreFromExternal(response.Character)

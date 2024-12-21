@@ -2,6 +2,7 @@ package services
 
 import (
 	"context"
+	"log"
 
 	"github.com/AranGarcia/droop/dnd/internal/core/entities"
 	"github.com/AranGarcia/droop/dnd/internal/ports/core"
@@ -15,15 +16,16 @@ type DND struct {
 
 	// External ports
 	characters characters.Port
-	events     events.Producer
+	events     events.Port
 }
 
-func NewDNDService(characters characters.Port) DND {
+func NewDNDService(characters characters.Port, events events.Port) DND {
 	d20 := entities.D20{}
 
 	return DND{
 		d20:        d20,
 		characters: characters,
+		events:     events,
 	}
 }
 
@@ -52,6 +54,9 @@ func (d DND) RollInitiative(ctx context.Context, request rules.RollInitiativeReq
 		CharacterID: request.ID,
 		Result:      result,
 	}
-	d.events.RollInitiativeSuccess(ctx, success)
+	err = d.events.RollInitiativeSuccess(ctx, success)
+	if err != nil {
+		log.Println("failed to produce: %v", err)
+	}
 	return response, nil
 }

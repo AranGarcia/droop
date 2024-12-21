@@ -8,14 +8,16 @@ import (
 )
 
 var (
-	addr string
-	// charactersServiceAddr is the host where Character Service is running on.
+	addr                  string
 	charactersServiceAddr string
+	kafkaBrokerAddr       string
 )
 
 func init() {
 	flag.StringVar(&addr, "addr", ":8010", "the server address (host:port)")
 	flag.StringVar(&charactersServiceAddr, "character_service_addr", ":8090", "host where Character Service is running")
+	flag.StringVar(&kafkaBrokerAddr, "kafka_broker_addr", ":9092", "")
+
 	flag.Parse()
 }
 

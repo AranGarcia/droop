@@ -4,7 +4,7 @@ package events
 import "context"
 
 // Producer of domain events.
-type Producer interface {
+type Port interface {
 	// RollInitiativeSuccess produces the event of a successful execution of RollInitiative.
 	RollInitiativeSuccess(context.Context, RollInitiativeSuccessMessage) error
 }

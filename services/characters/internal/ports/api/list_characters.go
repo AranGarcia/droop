@@ -7,7 +7,14 @@ import (
 	"github.com/AranGarcia/droop/characters/internal/core/entities"
 )
 
+const (
+	CreatedAt string = "created_at"
+	UpdatedAt string = "updated_at"
+)
+
 type ListCharactersRequest struct {
+	// Sort is the key to sort the results.
+	Sort string
 	// Size of the page
 	Size int `json:"size"`
 	// Offset of the result set
@@ -15,6 +22,7 @@ type ListCharactersRequest struct {
 }
 
 // ListCharactersRequestFromURLQuery extracts the request's fields from the URL query parameters.
+// Deprecated: Don't use adapters with the core.
 func ListCharactersRequestFromURLQuery(q url.Values) (*ListCharactersRequest, error) {
 	r := &ListCharactersRequest{}
 

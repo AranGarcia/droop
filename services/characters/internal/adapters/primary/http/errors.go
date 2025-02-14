@@ -3,10 +3,30 @@ package http
 import (
 	"encoding/json"
 	"errors"
+	"fmt"
 	"net/http"
 
 	"github.com/AranGarcia/droop/characters/internal/ports/api"
 )
+
+// InvalidInputError is thrown whenever an input to the adapter cannot be used.
+type InvalidInputError struct {
+	// Field that caused the error.
+	Field string
+	// Reason of being invalid.
+	Reason string
+}
+
+// Error implements the error interface.
+func (i InvalidInputError) Error() string {
+	return fmt.Sprintf("invalid value for %q: %s", i.Field, i.Reason)
+}
+
+// Is allows comparison through the errors.Is function.
+func (i InvalidInputError) Is(target error) bool {
+	_, ok := target.(InvalidInputError)
+	return ok
+}
 
 type ErrorResponse struct {
 	// Message is the error message.

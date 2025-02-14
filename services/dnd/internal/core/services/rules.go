@@ -56,7 +56,7 @@ func (d DND) RollInitiative(ctx context.Context, request rules.RollInitiativeReq
 	}
 	err = d.events.RollInitiativeSuccess(ctx, success)
 	if err != nil {
-		log.Println("failed to produce: %v", err)
+		log.Printf("failed to produce: %v", err)
 	}
 	return response, nil
 }

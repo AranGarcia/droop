@@ -68,8 +68,7 @@ func (h Handler) listCharacters(w http.ResponseWriter, r *http.Request) {
 	var err error
 	defer func() { handleAPIError(w, err) }()
 
-	// TODO: support  filtering
-	apiRequest, err := api.ListCharactersRequestFromURLQuery(r.URL.Query())
+	apiRequest, err := listCharactersRequestFromHTTP(r)
 	if err != nil {
 		return
 	}

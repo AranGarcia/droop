@@ -1,6 +1,6 @@
 module github.com/AranGarcia/droop/shared/redistools
 
-go 1.23.2
+go 1.24.0
 
 require github.com/redis/go-redis/v9 v9.7.0
 

@@ -8,7 +8,7 @@ Herramienta para jugar D&D
 
 - Docker
 - Docker Compose
-- Go 1.23.2
+- Go 1.24.0
 - [buf CLI v.1.44.0](https://buf.build/docs/ecosystem/cli-overview)
 
 # Instalación

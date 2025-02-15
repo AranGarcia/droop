@@ -39,19 +39,19 @@ func (r ListCharactersRequest) Validate() error {
 	if !r.Sort.IsValid() {
 		return commonerrors.InvalidInputError{
 			Field:  "sort",
-			Reason: fmt.Sprintf("invalid value for sort '%s'", r.Sort),
+			Reason: fmt.Sprintf("invalid sort key '%s'", r.Sort),
 		}
 	}
 	if r.Size < 0 {
 		return commonerrors.InvalidInputError{
 			Field:  "size",
-			Reason: "size must be greater than 0",
+			Reason: "must be greater than 0",
 		}
 	}
 	if r.Offset < 0 {
 		return commonerrors.InvalidInputError{
 			Field:  "offset",
-			Reason: "offset must be greater than 0",
+			Reason: "must be greater than 0",
 		}
 	}
 	return nil

@@ -12,7 +12,7 @@ type InvalidInputError struct {
 
 // Error implements the error interface.
 func (i InvalidInputError) Error() string {
-	return fmt.Sprintf("invalid input for field '%s': :%s", i.Field, i.Reason)
+	return fmt.Sprintf("invalid input for field '%s': %s", i.Field, i.Reason)
 }
 
 func (i InvalidInputError) Is(err error) bool {

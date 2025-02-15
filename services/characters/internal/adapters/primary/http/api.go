@@ -37,7 +37,7 @@ func listCharactersRequestFromHTTP(r *http.Request) (*api.ListCharactersRequest,
 	}
 	var err error
 	q := r.URL.Query()
-	apiRequest.Sort = getStringParam(q, "sort", api.CreatedAt)
+	apiRequest.Sort = api.ListSortType(getStringParam(q, "sort", string(api.CreatedAt)))
 	apiRequest.Size, err = getIntParam(q, "size", 10)
 	if err != nil {
 		return nil, err

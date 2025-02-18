@@ -1,5 +1,8 @@
 # Builds
 proto/gen/
+node_modules/
+dist/
+.parcel-cache/
 
 # IDEs
 .vscode/

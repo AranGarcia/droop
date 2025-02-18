@@ -29,7 +29,7 @@ const (
 
 type Character struct {
 	Base
-	Class        ClassName `json:"class" validate:"required"`
+	Class        ClassName `json:"class" validate:"required,oneof='barbarian bard cleric druid fighter monk paladin ranger rogue sorcerer warlock wizard druid'"`
 	Level        int       `json:"level" validate:"required,gte=1,lte=20"`
 	Name         string    `json:"name" validate:"required"`
 	HealthPoints int       `json:"health_points"`
@@ -51,6 +51,7 @@ func (c Character) Copy() Character {
 			UpdatedAt: c.UpdatedAt,
 			DeletedAt: copyTimePtr(c.DeletedAt),
 		},
+		Class:        c.Class,
 		Level:        c.Level,
 		Name:         c.Name,
 		HealthPoints: c.HealthPoints,

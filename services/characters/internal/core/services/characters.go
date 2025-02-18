@@ -24,6 +24,7 @@ func NewCharacters(deps Dependencies) Characters {
 
 func (c Characters) Create(ctx context.Context, request api.CreateCharacterRequest) (*api.CreateCharacterResponse, error) {
 	requestEntity := entities.Character{
+		Class:        request.Class,
 		Level:        request.Level,
 		Name:         request.Name,
 		HealthPoints: request.HealthPoints,

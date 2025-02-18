@@ -10,18 +10,36 @@ type Base struct {
 	DeletedAt *time.Time `json:"deleted_at,omitempty"`
 }
 
+type ClassName string
+
+const (
+	BarbarianClass ClassName = "barbarian"
+	BardClass      ClassName = "bard"
+	ClericClass    ClassName = "cleric"
+	DruidClass     ClassName = "druid"
+	FighterClass   ClassName = "fighter"
+	MonkClass      ClassName = "monk"
+	PaladinClass   ClassName = "paladin"
+	RangerClass    ClassName = "ranger"
+	RogueClass     ClassName = "rogue"
+	SorcererClass  ClassName = "sorcerer"
+	WarlockClass   ClassName = "warlock"
+	WizardClass    ClassName = "wizard"
+)
+
 type Character struct {
 	Base
-	Level        int    `json:"level" validate:"required,gte=1,lte=20"`
-	Name         string `json:"name" validate:"required"`
-	HealthPoints int    `json:"health_points"`
-	ArmorClass   int    `json:"armor_class"`
-	Strength     int    `json:"strength" validate:"required"`
-	Dexterity    int    `json:"dexterity" validate:"required"`
-	Constitution int    `json:"constitution" validate:"required"`
-	Intelligence int    `json:"intelligence" validate:"required"`
-	Wisdom       int    `json:"wisdom" validate:"required"`
-	Charisma     int    `json:"charisma" validate:"required"`
+	Class        ClassName `json:"class" validate:"required"`
+	Level        int       `json:"level" validate:"required,gte=1,lte=20"`
+	Name         string    `json:"name" validate:"required"`
+	HealthPoints int       `json:"health_points"`
+	ArmorClass   int       `json:"armor_class"`
+	Strength     int       `json:"strength" validate:"required"`
+	Dexterity    int       `json:"dexterity" validate:"required"`
+	Constitution int       `json:"constitution" validate:"required"`
+	Intelligence int       `json:"intelligence" validate:"required"`
+	Wisdom       int       `json:"wisdom" validate:"required"`
+	Charisma     int       `json:"charisma" validate:"required"`
 }
 
 // Copy creates a deep copy of the character.

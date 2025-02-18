@@ -1,11 +1,45 @@
 package entities
 
 import (
+	"math/rand/v2"
 	"testing"
 	"time"
 
 	"github.com/google/go-cmp/cmp"
 )
+
+func TestCharacter_Validate(t *testing.T) {
+	classes := []ClassName{
+		BarbarianClass,
+		BardClass,
+		ClericClass,
+		DruidClass,
+		FighterClass,
+		MonkClass,
+		PaladinClass,
+		RangerClass,
+		RogueClass,
+		SorcererClass,
+		WarlockClass,
+		WizardClass,
+	}
+	character := Character{
+		Class:        classes[rand.IntN(len(classes))],
+		Level:        rand.IntN(20) + 1,
+		Name:         "The Hero",
+		HealthPoints: 5,
+		ArmorClass:   10,
+		Strength:     10,
+		Dexterity:    10,
+		Constitution: 10,
+		Intelligence: 10,
+		Wisdom:       10,
+		Charisma:     10,
+	}
+	if err := character.Validate(); err != nil {
+		t.Fatalf("validation error; %v", err)
+	}
+}
 
 func TestCharacter_Copy(t *testing.T) {
 	now := time.Now()

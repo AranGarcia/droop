@@ -15,8 +15,7 @@ type Base struct {
 }
 
 type Character struct {
-	Base `bson:",inline"`
-
+	Base         `bson:",inline"`
 	Class        string `bson:"class"`
 	Level        int    `bson:"level"`
 	Name         string `bson:"name"`
@@ -38,6 +37,7 @@ func NewCharacterFromEntity(entity entities.Character) Character {
 			UpdatedAt: entity.UpdatedAt,
 			DeletedAt: entity.DeletedAt,
 		},
+		Class:        string(entity.Class),
 		Level:        entity.Level,
 		Name:         entity.Name,
 		HealthPoints: entity.HealthPoints,
@@ -60,6 +60,7 @@ func (c *Character) ToEntity() entities.Character {
 			UpdatedAt: c.UpdatedAt,
 			DeletedAt: c.DeletedAt,
 		},
+		Class:        entities.ClassName(c.Class),
 		Level:        c.Level,
 		Name:         c.Name,
 		HealthPoints: c.HealthPoints,

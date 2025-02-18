@@ -3,7 +3,6 @@ package api
 import "github.com/AranGarcia/droop/characters/internal/core/entities"
 
 // CreateCharacterRequest is the input for Characters.Create.
-// TODO: implement validation
 type CreateCharacterRequest struct {
 	Level        int                `json:"level"`
 	Class        entities.ClassName `json:"class"`

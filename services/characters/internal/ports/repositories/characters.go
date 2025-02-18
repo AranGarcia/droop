@@ -23,6 +23,7 @@ type Characters interface {
 // be ignored.
 type CharacterFields struct {
 	Level        *int
+	Class        *string
 	Name         *string
 	HealthPoints *int
 	ArmorClass   *int

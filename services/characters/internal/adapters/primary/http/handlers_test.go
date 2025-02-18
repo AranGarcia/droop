@@ -3,6 +3,7 @@ package http
 import (
 	"encoding/json"
 	"io"
+	"math/rand/v2"
 	"net/http"
 	"net/http/httptest"
 	"strings"
@@ -13,6 +14,21 @@ import (
 	"github.com/AranGarcia/droop/characters/internal/ports/api/mock"
 	"github.com/google/go-cmp/cmp"
 )
+
+var classNames = []entities.ClassName{
+	entities.BarbarianClass,
+	entities.BardClass,
+	entities.ClericClass,
+	entities.DruidClass,
+	entities.FighterClass,
+	entities.MonkClass,
+	entities.PaladinClass,
+	entities.RangerClass,
+	entities.RogueClass,
+	entities.SorcererClass,
+	entities.WarlockClass,
+	entities.WizardClass,
+}
 
 func TestHandler_postCharacter(t *testing.T) {
 	tests := []struct {
@@ -54,6 +70,7 @@ func TestHandler_getCharacter(t *testing.T) {
 			CreatedAt: now,
 			UpdatedAt: now,
 		},
+		Class: classNames[rand.IntN(len(classNames))],
 		Name:  "Get Character - Name",
 		Level: 7,
 	}
@@ -78,6 +95,7 @@ func TestHandler_getCharacter(t *testing.T) {
 			wantStatusCode: http.StatusOK,
 			wantBody: map[string]any{
 				"id":            character.ID,
+				"class":         string(character.Class),
 				"created_at":    character.CreatedAt.Format(time.RFC3339Nano),
 				"updated_at":    character.UpdatedAt.Format(time.RFC3339Nano),
 				"name":          character.Name,

@@ -8,6 +8,9 @@ import (
 
 func characterFieldsToBSONMap(fields repositories.CharacterFields) bson.M {
 	m := bson.M{}
+	if fields.Class != nil {
+		m["class"] = *fields.Class
+	}
 	if fields.Level != nil {
 		m["level"] = *fields.Level
 	}

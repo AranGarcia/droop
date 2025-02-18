@@ -13,6 +13,7 @@ func CreateRequestToAPI(request *characterspb.CreateRequest) api.CreateCharacter
 	}
 
 	return api.CreateCharacterRequest{
+		Class:        entities.ClassName(request.Class),
 		Level:        int(request.Level),
 		Name:         request.Name,
 		HealthPoints: int(request.HealthPoints),
@@ -34,6 +35,7 @@ func CreateResponseToProto(response *api.CreateCharacterResponse) *characterspb.
 	return &characterspb.CreateResponse{
 		Character: &characterspb.Character{
 			Id:           response.Character.ID,
+			Class:        string(response.Character.Class),
 			Level:        int32(response.Character.Level),
 			Name:         response.Character.Name,
 			HealthPoints: int32(response.Character.HealthPoints),
@@ -65,6 +67,7 @@ func RetrieveResponseToProto(response *api.RetrieveCharacterResponse) *character
 	return &characterspb.RetrieveResponse{
 		Character: &characterspb.Character{
 			Id:           response.Character.ID,
+			Class:        string(response.Character.Class),
 			Level:        int32(response.Character.Level),
 			Name:         response.Character.Name,
 			HealthPoints: int32(response.Character.HealthPoints),
@@ -82,6 +85,7 @@ func RetrieveResponseToProto(response *api.RetrieveCharacterResponse) *character
 func CharacterPBFromCore(character entities.Character) *characterspb.Character {
 	return &characterspb.Character{
 		Id:           character.ID,
+		Class:        string(character.Class),
 		Level:        int32(character.Level),
 		Name:         character.Name,
 		HealthPoints: int32(character.HealthPoints),

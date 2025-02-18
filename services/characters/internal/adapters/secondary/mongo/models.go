@@ -17,6 +17,7 @@ type Base struct {
 type Character struct {
 	Base `bson:",inline"`
 
+	Class        string `bson:"class"`
 	Level        int    `bson:"level"`
 	Name         string `bson:"name"`
 	HealthPoints int    `bson:"health_points"`

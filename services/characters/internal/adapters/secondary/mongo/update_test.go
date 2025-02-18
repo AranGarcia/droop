@@ -15,6 +15,11 @@ func Test_characterFieldsToBSONMap(t *testing.T) {
 		want   bson.M
 	}{
 		{
+			name:   "class",
+			fields: repositories.CharacterFields{Class: repositories.StringPtr("character_class")},
+			want:   bson.M{"class": "character_class"},
+		},
+		{
 			name:   "level",
 			fields: repositories.CharacterFields{Level: repositories.IntPtr(1)},
 			want:   bson.M{"level": 1},

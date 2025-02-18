@@ -18,15 +18,21 @@ const Fetch = () => {
     }
 
     return <table>
-        <tr>
-            <th>Name</th>
-            <th>Level</th>
-        </tr>
-        {characters.map(character =>
-            <tr key={character.id}>
-                <td>{character.name}</td>
-                <td>{character.level}</td>
-            </tr>)}
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Class</th>
+                <th>Level</th>
+            </tr>
+        </thead>
+        <tbody>
+            {characters.map(character =>
+                <tr key={character.id}>
+                    <td>{character.name}</td>
+                    <td>{character.class}</td>
+                    <td>{character.level}</td>
+                </tr>)}
+        </tbody>
     </table>
 }
 

@@ -4,30 +4,33 @@ import (
 	"fmt"
 
 	"github.com/AranGarcia/droop/characters/internal/core/entities"
-	"github.com/AranGarcia/droop/shared/common-errors"
+	commonerrors "github.com/AranGarcia/droop/shared/common-errors"
 )
 
-type ListSortType string
+// ListSortyKey is the key in which the ListCharacter results will be sorted with.
+type ListSortKey string
 
 const (
-	CreatedAt ListSortType = "created_at"
-	UpdatedAt ListSortType = "updated_at"
+	CreatedAt ListSortKey = "created_at"
+	UpdatedAt ListSortKey = "updated_at"
 )
 
 var (
-	listSorts map[ListSortType]struct{} = map[ListSortType]struct{}{
+	listSorts map[ListSortKey]struct{} = map[ListSortKey]struct{}{
 		CreatedAt: {}, UpdatedAt: {},
 	}
 )
 
-func (s ListSortType) IsValid() bool {
+// IsValid returns true if the sort key is a one of the valid options.
+// TODO: Use validations with core/service.
+func (s ListSortKey) IsValid() bool {
 	_, ok := listSorts[s]
 	return ok
 }
 
 type ListCharactersRequest struct {
 	// Sort is the key to sort the results.
-	Sort ListSortType
+	Sort ListSortKey
 	// Size of the page
 	Size int `json:"size"`
 	// Offset of the result set

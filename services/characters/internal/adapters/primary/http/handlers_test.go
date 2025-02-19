@@ -10,8 +10,8 @@ import (
 	"testing"
 	"time"
 
+	"github.com/AranGarcia/droop/characters/internal/core/api/mock"
 	"github.com/AranGarcia/droop/characters/internal/core/entities"
-	"github.com/AranGarcia/droop/characters/internal/ports/api/mock"
 	"github.com/google/go-cmp/cmp"
 )
 

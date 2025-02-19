@@ -6,7 +6,7 @@ import (
 	"github.com/go-playground/validator/v10"
 
 	"github.com/AranGarcia/droop/characters/internal/adapters/secondary/mongo"
-	"github.com/AranGarcia/droop/characters/internal/ports/api"
+	"github.com/AranGarcia/droop/characters/internal/core/api"
 )
 
 func repositoryErrorToAPI(err error) error {

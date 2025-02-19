@@ -5,7 +5,7 @@ import (
 	"net/url"
 	"strconv"
 
-	"github.com/AranGarcia/droop/characters/internal/ports/api"
+	"github.com/AranGarcia/droop/characters/internal/core/api"
 )
 
 func getStringParam(q url.Values, paramName, defaultValue string) string {

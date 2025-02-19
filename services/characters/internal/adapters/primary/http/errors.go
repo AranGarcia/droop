@@ -6,7 +6,7 @@ import (
 	"fmt"
 	"net/http"
 
-	"github.com/AranGarcia/droop/characters/internal/ports/api"
+	"github.com/AranGarcia/droop/characters/internal/core/api"
 )
 
 // InvalidInputError is thrown whenever an input to the adapter cannot be used.

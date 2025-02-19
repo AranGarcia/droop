@@ -4,7 +4,7 @@ import (
 	"log"
 	"net/http"
 
-	"github.com/AranGarcia/droop/characters/internal/ports/api"
+	"github.com/AranGarcia/droop/characters/internal/core/api"
 )
 
 // Server is an HTTP server.

@@ -1,8 +1,8 @@
 package grpc
 
 import (
+	"github.com/AranGarcia/droop/characters/internal/core/api"
 	"github.com/AranGarcia/droop/characters/internal/core/entities"
-	"github.com/AranGarcia/droop/characters/internal/ports/api"
 
 	characterspb "github.com/AranGarcia/droop/proto/gen/characters"
 )

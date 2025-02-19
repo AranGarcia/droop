@@ -5,8 +5,8 @@ import (
 	"time"
 
 	"github.com/AranGarcia/droop/characters/internal/adapters/secondary/mongo"
+	"github.com/AranGarcia/droop/characters/internal/core/api"
 	"github.com/AranGarcia/droop/characters/internal/core/services"
-	"github.com/AranGarcia/droop/characters/internal/ports/api"
 	"github.com/AranGarcia/droop/characters/internal/ports/repositories"
 	"github.com/AranGarcia/droop/shared/mongotools"
 )

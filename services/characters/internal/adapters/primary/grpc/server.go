@@ -5,7 +5,7 @@ import (
 
 	"google.golang.org/grpc"
 
-	"github.com/AranGarcia/droop/characters/internal/ports/api"
+	"github.com/AranGarcia/droop/characters/internal/core/api"
 
 	characterspb "github.com/AranGarcia/droop/proto/gen/characters"
 )

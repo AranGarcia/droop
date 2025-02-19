@@ -3,8 +3,8 @@ package services
 import (
 	"context"
 
+	"github.com/AranGarcia/droop/characters/internal/core/api"
 	"github.com/AranGarcia/droop/characters/internal/core/entities"
-	"github.com/AranGarcia/droop/characters/internal/ports/api"
 	"github.com/AranGarcia/droop/characters/internal/ports/repositories"
 )
 

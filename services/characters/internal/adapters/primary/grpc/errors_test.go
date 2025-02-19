@@ -5,7 +5,7 @@ import (
 	"reflect"
 	"testing"
 
-	"github.com/AranGarcia/droop/characters/internal/ports/api"
+	"github.com/AranGarcia/droop/characters/internal/core/api"
 	"google.golang.org/grpc/codes"
 )
 

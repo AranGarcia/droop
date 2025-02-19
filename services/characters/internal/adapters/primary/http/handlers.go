@@ -5,7 +5,7 @@ import (
 	"io"
 	"net/http"
 
-	"github.com/AranGarcia/droop/characters/internal/ports/api"
+	"github.com/AranGarcia/droop/characters/internal/core/api"
 )
 
 type Handler struct {

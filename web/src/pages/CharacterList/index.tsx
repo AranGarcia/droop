@@ -1,3 +1,4 @@
+import React from 'react';
 import { useState, useEffect } from 'react';
 
 const Fetch = () => {
@@ -36,9 +37,11 @@ const Fetch = () => {
     </table>
 }
 
-export function App() {
+const CharacterList = () => {
     return (<div>
         <h1>Characters</h1>
         <Fetch />
     </div>)
 }
+
+export default CharacterList;

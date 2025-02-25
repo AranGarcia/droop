@@ -1,13 +1,14 @@
 {
   "name": "droop",
-  "source": "src/index.html",
+  "source": "public/index.html",
   "scripts": {
     "start": "parcel",
     "build": "parcel build"
   },
   "dependencies": {
     "react": "^19.0.0",
-    "react-dom": "^19.0.0"
+    "react-dom": "^19.0.0",
+    "react-router": "^7.2.0"
   },
   "devDependencies": {
     "parcel": "^2.13.3",

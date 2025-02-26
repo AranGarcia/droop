@@ -24,17 +24,20 @@ func NewCharacters(deps Dependencies) Characters {
 
 func (c Characters) Create(ctx context.Context, request api.CreateCharacterRequest) (*api.CreateCharacterResponse, error) {
 	requestEntity := entities.Character{
-		Class:        request.Class,
-		Level:        request.Level,
-		Name:         request.Name,
-		HealthPoints: request.HealthPoints,
-		ArmorClass:   request.ArmorClass,
-		Strength:     request.Strength,
-		Dexterity:    request.Dexterity,
-		Constitution: request.Constitution,
-		Intelligence: request.Intelligence,
-		Wisdom:       request.Wisdom,
-		Charisma:     request.Charisma,
+		Class:         request.Class,
+		Level:         request.Level,
+		Name:          request.Name,
+		MaxHealth:     request.MaxHealth,
+		CurrentHealth: request.CurrentHealth,
+		TempHealth:    request.TempHealth,
+		HealthPoints:  request.HealthPoints, // TODO: remove
+		ArmorClass:    request.ArmorClass,
+		Strength:      request.Strength,
+		Dexterity:     request.Dexterity,
+		Constitution:  request.Constitution,
+		Intelligence:  request.Intelligence,
+		Wisdom:        request.Wisdom,
+		Charisma:      request.Charisma,
 	}
 
 	if err := requestEntity.Validate(); err != nil {

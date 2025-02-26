@@ -27,7 +27,7 @@ func TestCharacter_Validate(t *testing.T) {
 		Class:        classes[rand.IntN(len(classes))],
 		Level:        rand.IntN(20) + 1,
 		Name:         "The Hero",
-		HealthPoints: 5,
+		MaxHealth:    5,
 		ArmorClass:   10,
 		Strength:     10,
 		Dexterity:    10,

@@ -1,12 +1,16 @@
 import React from 'react';
 import { useState, useEffect } from 'react';
+import { Link, generatePath } from "react-router";
+
 
 import { characterType } from '../../types/character.types'
 
-function CharacterRow ({character}: {character: characterType}) {
+function CharacterRow({ character }: { character: characterType }) {
     return (
         <tr key={character.id}>
-            <td>{character.name}</td>
+            <td>
+                <Link to={generatePath("/character/:id", {id: character.id})}>{character.name}</Link>
+            </td>
             <td>{character.class}</td>
             <td>{character.level}</td>
         </tr>)
@@ -31,7 +35,7 @@ const Rows = () => {
         return <CharacterRow
             character={c}
             key={c.id}
-            />;
+        />;
     });
     return (
         <table>

@@ -3,9 +3,9 @@ import { useState, useEffect } from 'react';
 
 import { characterType } from '../../types/character.types'
 
-function CharacterRow ({character}) {
+function CharacterRow ({character}: {character: characterType}) {
     return (
-        <tr>
+        <tr key={character.id}>
             <td>{character.name}</td>
             <td>{character.class}</td>
             <td>{character.level}</td>
@@ -29,8 +29,9 @@ const Rows = () => {
 
     const rows = characters.map((c: characterType) => {
         return <CharacterRow
-            key ={c.id}
-            character={c} />;
+            character={c}
+            key={c.id}
+            />;
     });
     return (
         <table>

@@ -29,7 +29,23 @@ const Attribute = ({ name, attribute }) => {
 
 const CharacterDetail = () => {
     let { id } = useParams();
-    const [character, setCharacter] = useState<characterType>({ id: "", class: "", level: 0, name: "" });
+    const [character, setCharacter] = useState<characterType>({
+        id: "",
+        name: "",
+        class: "",
+        level: 0,
+        proficiency_bonus: 0,
+
+        max_health: 0,
+        current_health: 0,
+        temp_health: 0,
+        strength: 0,
+        dexterity: 0,
+        constitution: 0,
+        intelligence: 0,
+        wisdom: 0,
+        charisma: 0,
+    });
     useEffect(() => {
         fetch(`http://localhost:8080/character/${id}`)
             .then((res) => {
@@ -43,6 +59,17 @@ const CharacterDetail = () => {
         <div>
             <h1>{character.name}</h1>
             <h2> {toTitleCase(character.class)} level {character.level}</h2>
+
+            <div>
+                <b>Health</b>: {character.current_health} / {character.max_health}
+            </div>
+
+            <br/>
+            <div>
+                <b>Proficiency Bonus</b>: {character.proficiency_bonus}
+            </div>
+            <br />
+
             <Attribute name="Strength" attribute={character.strength} />
             <Attribute name="Dexterity" attribute={character.dexterity} />
             <Attribute name="Constitution" attribute={character.constitution} />

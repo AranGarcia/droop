@@ -3,7 +3,6 @@ export interface characterType {
     name: string;
     class: string;
     level: number;
-    proficiency_bonus: number;
 
     max_health: number;
     current_health: number;

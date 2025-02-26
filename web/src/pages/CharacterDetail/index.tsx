@@ -21,6 +21,10 @@ function modifier(attribute: number): string {
     return getSignedNumber(Math.floor((attribute / 2) - 5))
 }
 
+function calculateProficiency(level: number): number {
+    return 2 + Math.floor((level - 1)/4)
+}
+
 const Attribute = ({ name, attribute }) => {
     return <div>
         <b>{name}: </b> {attribute} ({modifier(attribute)})
@@ -34,7 +38,6 @@ const CharacterDetail = () => {
         name: "",
         class: "",
         level: 0,
-        proficiency_bonus: 0,
 
         max_health: 0,
         current_health: 0,
@@ -66,7 +69,7 @@ const CharacterDetail = () => {
 
             <br/>
             <div>
-                <b>Proficiency Bonus</b>: {character.proficiency_bonus}
+                <b>Proficiency Bonus</b>: +{calculateProficiency(character.level)}
             </div>
             <br />
 

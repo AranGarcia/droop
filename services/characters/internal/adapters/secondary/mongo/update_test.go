@@ -35,6 +35,21 @@ func Test_characterFieldsToBSONMap(t *testing.T) {
 			want:   bson.M{"health_points": 1},
 		},
 		{
+			name:   "max_health",
+			fields: repositories.CharacterFields{MaxHealth: repositories.IntPtr(1)},
+			want:   bson.M{"max_health": 1},
+		},
+		{
+			name:   "current_health",
+			fields: repositories.CharacterFields{CurrentHealth: repositories.IntPtr(1)},
+			want:   bson.M{"current_health": 1},
+		},
+		{
+			name:   "temp_health",
+			fields: repositories.CharacterFields{TempHealth: repositories.IntPtr(1)},
+			want:   bson.M{"temp_health": 1},
+		},
+		{
 			name:   "armor_class",
 			fields: repositories.CharacterFields{ArmorClass: repositories.IntPtr(1)},
 			want:   bson.M{"armor_class": 1},

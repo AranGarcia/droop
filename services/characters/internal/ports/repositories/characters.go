@@ -22,15 +22,18 @@ type Characters interface {
 // CharacterFields helps define the subset of fields of a entities.Character. Any nil value will
 // be ignored.
 type CharacterFields struct {
-	Level        *int
-	Class        *string
-	Name         *string
-	HealthPoints *int
-	ArmorClass   *int
-	Strength     *int
-	Dexterity    *int
-	Constitution *int
-	Intelligence *int
-	Wisdom       *int
-	Charisma     *int
+	Level         *int
+	Class         *string
+	Name          *string
+	MaxHealth     *int
+	CurrentHealth *int
+	TempHealth    *int
+	ArmorClass    *int
+	Strength      *int
+	Dexterity     *int
+	Constitution  *int
+	Intelligence  *int
+	Wisdom        *int
+	Charisma      *int
+	HealthPoints  *int // TODO: remove
 }

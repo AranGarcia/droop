@@ -15,18 +15,23 @@ type Base struct {
 }
 
 type Character struct {
-	Base         `bson:",inline"`
-	Class        string `bson:"class"`
-	Level        int    `bson:"level"`
-	Name         string `bson:"name"`
-	HealthPoints int    `bson:"health_points"`
-	ArmorClass   int    `bson:"armor_class"`
-	Strength     int    `bson:"strength"`
-	Dexterity    int    `bson:"dexterity"`
-	Constitution int    `bson:"constitution"`
-	Intelligence int    `bson:"intelligence"`
-	Wisdom       int    `bson:"wisdom"`
-	Charisma     int    `bson:"charisma"`
+	Base          `bson:",inline"`
+	Class         string `bson:"class"`
+	Level         int    `bson:"level"`
+	Name          string `bson:"name"`
+	MaxHealth     int    `bson:"max_health"`
+	CurrentHealth int    `bson:"current_health"`
+	TempHealth    int    `bson:"temp_health"`
+	ArmorClass    int    `bson:"armor_class"`
+	Strength      int    `bson:"strength"`
+	Dexterity     int    `bson:"dexterity"`
+	Constitution  int    `bson:"constitution"`
+	Intelligence  int    `bson:"intelligence"`
+	Wisdom        int    `bson:"wisdom"`
+	Charisma      int    `bson:"charisma"`
+
+	// Deprecated: use MaxHealth, CurrentHealth, and TempHealth instead
+	HealthPoints int `bson:"health_points"` // TODO: remove
 }
 
 func NewCharacterFromEntity(entity entities.Character) Character {
@@ -37,17 +42,22 @@ func NewCharacterFromEntity(entity entities.Character) Character {
 			UpdatedAt: entity.UpdatedAt,
 			DeletedAt: entity.DeletedAt,
 		},
-		Class:        string(entity.Class),
-		Level:        entity.Level,
-		Name:         entity.Name,
-		HealthPoints: entity.HealthPoints,
-		ArmorClass:   entity.ArmorClass,
-		Strength:     entity.Strength,
-		Dexterity:    entity.Dexterity,
-		Constitution: entity.Constitution,
-		Intelligence: entity.Intelligence,
-		Wisdom:       entity.Wisdom,
-		Charisma:     entity.Charisma,
+		Class: string(entity.Class),
+		Level: entity.Level,
+		Name:  entity.Name,
+
+		MaxHealth:     entity.MaxHealth,
+		CurrentHealth: entity.CurrentHealth,
+		TempHealth:    entity.TempHealth,
+		ArmorClass:    entity.ArmorClass,
+		Strength:      entity.Strength,
+		Dexterity:     entity.Dexterity,
+		Constitution:  entity.Constitution,
+		Intelligence:  entity.Intelligence,
+		Wisdom:        entity.Wisdom,
+		Charisma:      entity.Charisma,
+
+		HealthPoints: entity.HealthPoints, // TODO: remove
 	}
 	return character
 }
@@ -60,17 +70,20 @@ func (c *Character) ToEntity() entities.Character {
 			UpdatedAt: c.UpdatedAt,
 			DeletedAt: c.DeletedAt,
 		},
-		Class:        entities.ClassName(c.Class),
-		Level:        c.Level,
-		Name:         c.Name,
-		HealthPoints: c.HealthPoints,
-		ArmorClass:   c.ArmorClass,
-		Strength:     c.Strength,
-		Dexterity:    c.Dexterity,
-		Constitution: c.Constitution,
-		Intelligence: c.Intelligence,
-		Wisdom:       c.Wisdom,
-		Charisma:     c.Charisma,
+		Class:         entities.ClassName(c.Class),
+		Level:         c.Level,
+		Name:          c.Name,
+		MaxHealth:     c.MaxHealth,
+		CurrentHealth: c.CurrentHealth,
+		TempHealth:    c.TempHealth,
+		ArmorClass:    c.ArmorClass,
+		Strength:      c.Strength,
+		Dexterity:     c.Dexterity,
+		Constitution:  c.Constitution,
+		Intelligence:  c.Intelligence,
+		Wisdom:        c.Wisdom,
+		Charisma:      c.Charisma,
+		HealthPoints:  c.HealthPoints, // TODO: remove
 	}
 	return entity
 }

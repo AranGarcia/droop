@@ -17,7 +17,16 @@ func characterFieldsToBSONMap(fields repositories.CharacterFields) bson.M {
 	if fields.Name != nil {
 		m["name"] = *fields.Name
 	}
-	if fields.HealthPoints != nil {
+	if fields.MaxHealth != nil {
+		m["max_health"] = *fields.MaxHealth
+	}
+	if fields.CurrentHealth != nil {
+		m["current_health"] = *fields.CurrentHealth
+	}
+	if fields.TempHealth != nil {
+		m["temp_health"] = *fields.TempHealth
+	}
+	if fields.HealthPoints != nil { // TODO: remove
 		m["health_points"] = *fields.HealthPoints
 	}
 	if fields.ArmorClass != nil {

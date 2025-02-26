@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react';
 import { Link, generatePath } from "react-router";
 
 
-import { characterType } from '../../types/character.types'
+import { characterType } from '../../types/character.ts'
 
 function CharacterRow({ character }: { character: characterType }) {
     return (

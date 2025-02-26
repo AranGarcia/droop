@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router";
 
-import { characterType } from "../../types/character.types";
+import { characterType } from "../../types/character";
 import { toTitleCase } from "../../shared/strings";
 
 function getSignedNumber(value: number): string {

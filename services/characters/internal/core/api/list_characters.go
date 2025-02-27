@@ -4,6 +4,7 @@ import (
 	"fmt"
 
 	"github.com/AranGarcia/droop/characters/internal/core/entities"
+
 	commonerrors "github.com/AranGarcia/droop/shared/common-errors"
 )
 
@@ -13,16 +14,17 @@ type ListSortKey string
 const (
 	CreatedAt ListSortKey = "created_at"
 	UpdatedAt ListSortKey = "updated_at"
+	Level     ListSortKey = "level"
 )
 
 var (
+	// listSorts is used to test if a ListSortKey is valid.
 	listSorts map[ListSortKey]struct{} = map[ListSortKey]struct{}{
-		CreatedAt: {}, UpdatedAt: {},
+		CreatedAt: {}, UpdatedAt: {}, Level: {},
 	}
 )
 
 // IsValid returns true if the sort key is a one of the valid options.
-// TODO: Use validations with core/service.
 func (s ListSortKey) IsValid() bool {
 	_, ok := listSorts[s]
 	return ok

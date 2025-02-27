@@ -1,6 +1,44 @@
 package api
 
-import "testing"
+import (
+	"testing"
+)
+
+func TestListSortKey_IsValid(t *testing.T) {
+	tests := []struct {
+		name string
+		s    ListSortKey
+		want bool
+	}{
+		{
+			name: "created at valid",
+			s:    CreatedAt,
+			want: true,
+		},
+		{
+			name: "updated at valid",
+			s:    UpdatedAt,
+			want: true,
+		},
+		{
+			name: "level valid",
+			s:    Level,
+			want: true,
+		},
+		{
+			name: "",
+			s:    ListSortKey("not a valid key"),
+			want: false,
+		},
+	}
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			if got := tt.s.IsValid(); got != tt.want {
+				t.Errorf("ListSortKey.IsValid() = %v, want %v", got, tt.want)
+			}
+		})
+	}
+}
 
 func TestListCharactersRequest_Validate(t *testing.T) {
 	tests := []struct {

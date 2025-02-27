@@ -10,9 +10,10 @@ import (
 	"testing"
 	"time"
 
+	"github.com/google/go-cmp/cmp"
+
 	"github.com/AranGarcia/droop/characters/internal/core/api/mock"
 	"github.com/AranGarcia/droop/characters/internal/core/entities"
-	"github.com/google/go-cmp/cmp"
 )
 
 var classNames = []entities.ClassName{

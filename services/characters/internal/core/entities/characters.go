@@ -10,23 +10,6 @@ type Base struct {
 	DeletedAt *time.Time `json:"deleted_at,omitempty"`
 }
 
-type ClassName string
-
-const (
-	BarbarianClass ClassName = "barbarian"
-	BardClass      ClassName = "bard"
-	ClericClass    ClassName = "cleric"
-	DruidClass     ClassName = "druid"
-	FighterClass   ClassName = "fighter"
-	MonkClass      ClassName = "monk"
-	PaladinClass   ClassName = "paladin"
-	RangerClass    ClassName = "ranger"
-	RogueClass     ClassName = "rogue"
-	SorcererClass  ClassName = "sorcerer"
-	WarlockClass   ClassName = "warlock"
-	WizardClass    ClassName = "wizard"
-)
-
 type Character struct {
 	Base
 	Class         ClassName `json:"class" validate:"required,oneof=barbarian bard cleric druid fighter monk paladin ranger rogue sorcerer warlock wizard druid"`
@@ -42,6 +25,7 @@ type Character struct {
 	Intelligence  int       `json:"intelligence" validate:"required"`
 	Wisdom        int       `json:"wisdom" validate:"required"`
 	Charisma      int       `json:"charisma" validate:"required"`
+	Proficiencies []Skill   `json:"proficiencies" validate:"oneof=dive,acrobatics animal_handling arcana athletics deception history insight intimidation investigation medicine nature perception performance persuasion religion sleight_of_hand stealth survival"`
 }
 
 // Copy creates a deep copy of the character.

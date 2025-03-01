@@ -36,6 +36,7 @@ func (c Characters) Create(ctx context.Context, request api.CreateCharacterReque
 		Intelligence:  request.Intelligence,
 		Wisdom:        request.Wisdom,
 		Charisma:      request.Charisma,
+		Proficiencies: request.Proficiencies,
 	}
 
 	if err := requestEntity.Validate(); err != nil {

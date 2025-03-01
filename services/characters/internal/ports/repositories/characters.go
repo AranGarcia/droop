@@ -35,4 +35,5 @@ type CharacterFields struct {
 	Intelligence  *int
 	Wisdom        *int
 	Charisma      *int
+	Proficiencies []string
 }

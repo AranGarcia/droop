@@ -23,6 +23,26 @@ func TestCharacter_Validate(t *testing.T) {
 		WarlockClass,
 		WizardClass,
 	}
+	proficiencies := []Skill{
+		AcrobaticsSkill,
+		AnimalHandlingSkill,
+		ArcanaSkill,
+		AthleticsSkill,
+		DeceptionSkill,
+		HistorySkill,
+		InsightSkill,
+		IntimidationSkill,
+		InvestigationSkill,
+		MedicineSkill,
+		NatureSkill,
+		PerceptionSkill,
+		PerformanceSkill,
+		PersuasionSkill,
+		ReligionSkill,
+		SleightOfHandSkill,
+		StealthSkill,
+		SurvivalSkill,
+	}
 	character := Character{
 		Class:        classes[rand.IntN(len(classes))],
 		Level:        rand.IntN(20) + 1,
@@ -35,6 +55,11 @@ func TestCharacter_Validate(t *testing.T) {
 		Intelligence: 10,
 		Wisdom:       10,
 		Charisma:     10,
+		Proficiencies: []Skill{
+			proficiencies[rand.IntN(len(proficiencies))],
+			proficiencies[rand.IntN(len(proficiencies))],
+			proficiencies[rand.IntN(len(proficiencies))],
+		},
 	}
 	if err := character.Validate(); err != nil {
 		t.Fatalf("validation error; %v", err)

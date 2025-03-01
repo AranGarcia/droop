@@ -16,19 +16,20 @@ type Base struct {
 
 type Character struct {
 	Base          `bson:",inline"`
-	Class         string `bson:"class"`
-	Level         int    `bson:"level"`
-	Name          string `bson:"name"`
-	MaxHealth     int    `bson:"max_health"`
-	CurrentHealth int    `bson:"current_health"`
-	TempHealth    int    `bson:"temp_health"`
-	ArmorClass    int    `bson:"armor_class"`
-	Strength      int    `bson:"strength"`
-	Dexterity     int    `bson:"dexterity"`
-	Constitution  int    `bson:"constitution"`
-	Intelligence  int    `bson:"intelligence"`
-	Wisdom        int    `bson:"wisdom"`
-	Charisma      int    `bson:"charisma"`
+	Class         string   `bson:"class"`
+	Level         int      `bson:"level"`
+	Name          string   `bson:"name"`
+	MaxHealth     int      `bson:"max_health"`
+	CurrentHealth int      `bson:"current_health"`
+	TempHealth    int      `bson:"temp_health"`
+	ArmorClass    int      `bson:"armor_class"`
+	Strength      int      `bson:"strength"`
+	Dexterity     int      `bson:"dexterity"`
+	Constitution  int      `bson:"constitution"`
+	Intelligence  int      `bson:"intelligence"`
+	Wisdom        int      `bson:"wisdom"`
+	Charisma      int      `bson:"charisma"`
+	Proficiencies []string `bson:"proficiencies"`
 }
 
 func NewCharacterFromEntity(entity entities.Character) Character {
@@ -53,7 +54,13 @@ func NewCharacterFromEntity(entity entities.Character) Character {
 		Intelligence:  entity.Intelligence,
 		Wisdom:        entity.Wisdom,
 		Charisma:      entity.Charisma,
+		Proficiencies: make([]string, len(entity.Proficiencies)),
 	}
+
+	for i, v := range entity.Proficiencies {
+		character.Proficiencies[i] = string(v)
+	}
+
 	return character
 }
 
@@ -78,7 +85,13 @@ func (c *Character) ToEntity() entities.Character {
 		Intelligence:  c.Intelligence,
 		Wisdom:        c.Wisdom,
 		Charisma:      c.Charisma,
+		Proficiencies: make([]entities.Skill, len(c.Proficiencies)),
 	}
+
+	for i, v := range c.Proficiencies {
+		entity.Proficiencies[i] = entities.Skill(v)
+	}
+
 	return entity
 }
 

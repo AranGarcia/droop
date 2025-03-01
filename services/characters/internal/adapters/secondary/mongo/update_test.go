@@ -79,6 +79,11 @@ func Test_characterFieldsToBSONMap(t *testing.T) {
 			fields: repositories.CharacterFields{Charisma: repositories.IntPtr(1)},
 			want:   bson.M{"charisma": 1},
 		},
+		{
+			name:   "proficiencies",
+			fields: repositories.CharacterFields{Proficiencies: []string{"skilla", "skillb"}},
+			want:   bson.M{"proficiencies": []string{"skilla", "skillb"}},
+		},
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {

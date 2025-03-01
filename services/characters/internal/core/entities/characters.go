@@ -25,7 +25,7 @@ type Character struct {
 	Intelligence  int       `json:"intelligence" validate:"required"`
 	Wisdom        int       `json:"wisdom" validate:"required"`
 	Charisma      int       `json:"charisma" validate:"required"`
-	Proficiencies []Skill   `json:"proficiencies" validate:"oneof=dive,acrobatics animal_handling arcana athletics deception history insight intimidation investigation medicine nature perception performance persuasion religion sleight_of_hand stealth survival"`
+	Proficiencies []Skill   `json:"proficiencies,omitempty" validate:"dive,oneof=acrobatics animal_handling arcana athletics deception history insight intimidation investigation medicine nature perception performance persuasion religion sleight_of_hand stealth survival"`
 }
 
 // Copy creates a deep copy of the character.
@@ -50,6 +50,7 @@ func (c Character) Copy() Character {
 		Intelligence:  c.Intelligence,
 		Wisdom:        c.Wisdom,
 		Charisma:      c.Charisma,
+		Proficiencies: c.Proficiencies,
 	}
 }
 

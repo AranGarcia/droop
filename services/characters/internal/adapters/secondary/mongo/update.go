@@ -47,5 +47,8 @@ func characterFieldsToBSONMap(fields repositories.CharacterFields) bson.M {
 	if fields.Charisma != nil {
 		m["charisma"] = *fields.Charisma
 	}
+	if len(fields.Proficiencies) > 0 {
+		m["proficiencies"] = fields.Proficiencies
+	}
 	return m
 }

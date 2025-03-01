@@ -104,7 +104,6 @@ func TestHandler_getCharacter(t *testing.T) {
 				"max_health":     float64(0),
 				"current_health": float64(0),
 				"temp_health":    float64(0),
-				"health_points":  float64(0),
 				"armor_class":    float64(0),
 				"strength":       float64(0),
 				"dexterity":      float64(0),

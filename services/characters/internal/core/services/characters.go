@@ -28,8 +28,7 @@ func (c Characters) Create(ctx context.Context, request api.CreateCharacterReque
 		Level:         request.Level,
 		Name:          request.Name,
 		MaxHealth:     request.MaxHealth,
-		CurrentHealth: request.MaxHealth,    // Set initial current health as the max
-		HealthPoints:  request.HealthPoints, // TODO: remove
+		CurrentHealth: request.MaxHealth, // Set initial current health as the max
 		ArmorClass:    request.ArmorClass,
 		Strength:      request.Strength,
 		Dexterity:     request.Dexterity,

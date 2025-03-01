@@ -35,5 +35,4 @@ type CharacterFields struct {
 	Intelligence  *int
 	Wisdom        *int
 	Charisma      *int
-	HealthPoints  *int // TODO: remove
 }

@@ -42,9 +42,6 @@ type Character struct {
 	Intelligence  int       `json:"intelligence" validate:"required"`
 	Wisdom        int       `json:"wisdom" validate:"required"`
 	Charisma      int       `json:"charisma" validate:"required"`
-
-	// Deprecated: Use MaxHealth, CurrentHealth, and TempHealth instead.
-	HealthPoints int `json:"health_points"`
 }
 
 // Copy creates a deep copy of the character.
@@ -69,7 +66,6 @@ func (c Character) Copy() Character {
 		Intelligence:  c.Intelligence,
 		Wisdom:        c.Wisdom,
 		Charisma:      c.Charisma,
-		HealthPoints:  c.HealthPoints, // TODO: remove
 	}
 }
 

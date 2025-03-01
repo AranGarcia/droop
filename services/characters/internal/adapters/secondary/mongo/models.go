@@ -29,9 +29,6 @@ type Character struct {
 	Intelligence  int    `bson:"intelligence"`
 	Wisdom        int    `bson:"wisdom"`
 	Charisma      int    `bson:"charisma"`
-
-	// Deprecated: use MaxHealth, CurrentHealth, and TempHealth instead
-	HealthPoints int `bson:"health_points"` // TODO: remove
 }
 
 func NewCharacterFromEntity(entity entities.Character) Character {
@@ -56,8 +53,6 @@ func NewCharacterFromEntity(entity entities.Character) Character {
 		Intelligence:  entity.Intelligence,
 		Wisdom:        entity.Wisdom,
 		Charisma:      entity.Charisma,
-
-		HealthPoints: entity.HealthPoints, // TODO: remove
 	}
 	return character
 }
@@ -83,7 +78,6 @@ func (c *Character) ToEntity() entities.Character {
 		Intelligence:  c.Intelligence,
 		Wisdom:        c.Wisdom,
 		Charisma:      c.Charisma,
-		HealthPoints:  c.HealthPoints, // TODO: remove
 	}
 	return entity
 }

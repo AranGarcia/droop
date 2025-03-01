@@ -44,9 +44,6 @@ func (c *Characters) Update(ctx context.Context, id string, fields repositories.
 	if fields.Name != nil {
 		character.Name = *fields.Name
 	}
-	if fields.HealthPoints != nil {
-		character.HealthPoints = *fields.HealthPoints
-	}
 	if fields.ArmorClass != nil {
 		character.ArmorClass = *fields.ArmorClass
 	}

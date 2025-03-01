@@ -26,9 +26,6 @@ func characterFieldsToBSONMap(fields repositories.CharacterFields) bson.M {
 	if fields.TempHealth != nil {
 		m["temp_health"] = *fields.TempHealth
 	}
-	if fields.HealthPoints != nil { // TODO: remove
-		m["health_points"] = *fields.HealthPoints
-	}
 	if fields.ArmorClass != nil {
 		m["armor_class"] = *fields.ArmorClass
 	}

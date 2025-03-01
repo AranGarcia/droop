@@ -15,9 +15,6 @@ type CreateCharacterRequest struct {
 	Intelligence int                `json:"intelligence"`
 	Wisdom       int                `json:"wisdom"`
 	Charisma     int                `json:"charisma"`
-
-	// Deprecated: Use MaxHealth, CurrentHealth, and TempHealth instead.
-	HealthPoints int `json:"health_points"` // TODO: remove
 }
 
 // CreateCharacterResponse is the output for Characters.Create.

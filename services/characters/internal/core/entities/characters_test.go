@@ -52,7 +52,6 @@ func TestCharacter_Copy(t *testing.T) {
 		},
 		Level:        0,
 		Name:         "",
-		HealthPoints: 0,
 		ArmorClass:   0,
 		Strength:     0,
 		Dexterity:    0,

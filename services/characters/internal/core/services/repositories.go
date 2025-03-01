@@ -7,16 +7,18 @@ import (
 
 func getRepositoryUpdateFields(request api.UpdateCharacterRequest) repositories.CharacterFields {
 	fields := repositories.CharacterFields{
-		Level:        request.Level,
-		Name:         request.Name,
-		HealthPoints: request.HealthPoints,
-		ArmorClass:   request.ArmorClass,
-		Strength:     request.Strength,
-		Dexterity:    request.Dexterity,
-		Constitution: request.Constitution,
-		Intelligence: request.Intelligence,
-		Wisdom:       request.Wisdom,
-		Charisma:     request.Charisma,
+		Level:         request.Level,
+		Name:          request.Name,
+		MaxHealth:     request.MaxHealth,
+		CurrentHealth: request.CurrentHealth,
+		TempHealth:    request.TempHealth,
+		ArmorClass:    request.ArmorClass,
+		Strength:      request.Strength,
+		Dexterity:     request.Dexterity,
+		Constitution:  request.Constitution,
+		Intelligence:  request.Intelligence,
+		Wisdom:        request.Wisdom,
+		Charisma:      request.Charisma,
 	}
 	return fields
 }

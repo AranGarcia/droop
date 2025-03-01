@@ -120,13 +120,6 @@ func TestCharacters_Update(t *testing.T) {
 			want:            &entities.Character{Base: entities.Base{ID: characterID}, Name: "new-character-name"},
 		},
 		{
-			name:            "health points",
-			id:              characterID,
-			characterFields: repositories.CharacterFields{HealthPoints: repositories.IntPtr(15)},
-			fields:          fields{map[string]entities.Character{characterID: {Base: entities.Base{ID: characterID}}}},
-			want:            &entities.Character{Base: entities.Base{ID: characterID}, HealthPoints: 15},
-		},
-		{
 			name:            "armorclass",
 			id:              characterID,
 			characterFields: repositories.CharacterFields{ArmorClass: repositories.IntPtr(15)},

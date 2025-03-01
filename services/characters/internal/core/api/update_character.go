@@ -17,8 +17,6 @@ type UpdateCharacterRequest struct {
 	Intelligence  *int                `json:"intelligence,omitempty"`
 	Wisdom        *int                `json:"wisdom,omitempty"`
 	Charisma      *int                `json:"charisma,omitempty"`
-
-	HealthPoints *int `json:"health_points,omitempty"`
 }
 
 type UpdateCharacterResponse struct {

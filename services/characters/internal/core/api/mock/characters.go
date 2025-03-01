@@ -24,7 +24,6 @@ func (c *Characters) Create(_ context.Context, request api.CreateCharacterReques
 	character := entities.Character{
 		Level:        request.Level,
 		Name:         request.Name,
-		HealthPoints: request.HealthPoints,
 		ArmorClass:   request.ArmorClass,
 		Strength:     request.Strength,
 		Dexterity:    request.Dexterity,
@@ -57,9 +56,6 @@ func (c *Characters) Update(_ context.Context, request api.UpdateCharacterReques
 	}
 	if request.Name != nil {
 		character.Name = *request.Name
-	}
-	if request.HealthPoints != nil {
-		character.HealthPoints = *request.HealthPoints
 	}
 	if request.ArmorClass != nil {
 		character.ArmorClass = *request.ArmorClass

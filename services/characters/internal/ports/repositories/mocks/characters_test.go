@@ -10,6 +10,8 @@ import (
 	"github.com/google/go-cmp/cmp"
 )
 
+func levelPtr(i entities.Level) *entities.Level { return &i }
+
 // TestImplementation is expected to throw a compile error rather than a runtime assertion to
 // validate that the mock is an implementation of the expected repository.
 func TestImplementation(t *testing.T) {
@@ -108,7 +110,7 @@ func TestCharacters_Update(t *testing.T) {
 		{
 			name:            "level",
 			id:              characterID,
-			characterFields: repositories.CharacterFields{Level: repositories.IntPtr(10)},
+			characterFields: repositories.CharacterFields{Level: levelPtr(entities.Level(10))},
 			fields:          fields{map[string]entities.Character{characterID: {Base: entities.Base{ID: characterID}}}},
 			want:            &entities.Character{Base: entities.Base{ID: characterID}, Level: 10},
 		},

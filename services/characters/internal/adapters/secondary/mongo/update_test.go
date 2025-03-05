@@ -1,12 +1,16 @@
 package mongo
 
 import (
-	"reflect"
 	"testing"
 
-	"github.com/AranGarcia/droop/characters/internal/ports/repositories"
+	"github.com/google/go-cmp/cmp"
 	"go.mongodb.org/mongo-driver/bson"
+
+	"github.com/AranGarcia/droop/characters/internal/core/entities"
+	"github.com/AranGarcia/droop/characters/internal/ports/repositories"
 )
+
+func levelPtr(l entities.Level) *entities.Level { return &l }
 
 func Test_characterFieldsToBSONMap(t *testing.T) {
 	tests := []struct {
@@ -21,8 +25,8 @@ func Test_characterFieldsToBSONMap(t *testing.T) {
 		},
 		{
 			name:   "level",
-			fields: repositories.CharacterFields{Level: repositories.IntPtr(1)},
-			want:   bson.M{"level": 1},
+			fields: repositories.CharacterFields{Level: levelPtr(entities.Level(1))},
+			want:   bson.M{"level": entities.Level(1)},
 		},
 		{
 			name:   "name",
@@ -87,8 +91,10 @@ func Test_characterFieldsToBSONMap(t *testing.T) {
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			if got := characterFieldsToBSONMap(tt.fields); !reflect.DeepEqual(got, tt.want) {
-				t.Errorf("characterFieldsToBSONMap() = %v, want %v", got, tt.want)
+			got := characterFieldsToBSONMap(tt.fields)
+
+			if diff := cmp.Diff(tt.want, got); diff != "" {
+				t.Fatalf("characterFieldsToBSONMap() mismatch (-want,+got):\n%s", diff)
 			}
 		})
 	}

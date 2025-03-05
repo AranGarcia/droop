@@ -22,7 +22,7 @@ type Characters interface {
 // CharacterFields helps define the subset of fields of a entities.Character. Any nil value will
 // be ignored.
 type CharacterFields struct {
-	Level         *int
+	Level         *entities.Level
 	Class         *string
 	Name          *string
 	MaxHealth     *int

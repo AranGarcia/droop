@@ -45,7 +45,7 @@ func TestCharacter_Validate(t *testing.T) {
 	}
 	character := Character{
 		Class:        classes[rand.IntN(len(classes))],
-		Level:        rand.IntN(20) + 1,
+		Level:        Level(rand.IntN(20) + 1),
 		Name:         "The Hero",
 		MaxHealth:    5,
 		ArmorClass:   10,

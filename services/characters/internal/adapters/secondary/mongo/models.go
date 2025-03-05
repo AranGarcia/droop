@@ -41,7 +41,7 @@ func NewCharacterFromEntity(entity entities.Character) Character {
 			DeletedAt: entity.DeletedAt,
 		},
 		Class: string(entity.Class),
-		Level: entity.Level,
+		Level: int(entity.Level),
 		Name:  entity.Name,
 
 		MaxHealth:     entity.MaxHealth,
@@ -73,7 +73,7 @@ func (c *Character) ToEntity() entities.Character {
 			DeletedAt: c.DeletedAt,
 		},
 		Class:         entities.ClassName(c.Class),
-		Level:         c.Level,
+		Level:         entities.Level(c.Level),
 		Name:          c.Name,
 		MaxHealth:     c.MaxHealth,
 		CurrentHealth: c.CurrentHealth,

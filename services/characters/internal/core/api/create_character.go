@@ -4,7 +4,7 @@ import "github.com/AranGarcia/droop/characters/internal/core/entities"
 
 // CreateCharacterRequest is the input for Characters.Create.
 type CreateCharacterRequest struct {
-	Level         int                `json:"level"`
+	Level         entities.Level     `json:"level"`
 	Class         entities.ClassName `json:"class"`
 	Name          string             `json:"name"`
 	MaxHealth     int                `json:"max_health"`

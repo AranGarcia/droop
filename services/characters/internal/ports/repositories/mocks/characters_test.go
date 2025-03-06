@@ -41,7 +41,7 @@ func TestCharacters_Create(t *testing.T) {
 	ctx := context.Background()
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			c := &Characters{inMemory: inMemory}
+			c := &Characters{InMemory: inMemory}
 			_, err := c.Create(ctx, tt.in)
 			if !errors.Is(err, tt.wantErr) {
 				t.Errorf("Characters.Create() error = %v, wantErr %v", err, tt.wantErr)
@@ -78,7 +78,7 @@ func TestCharacters_Retrieve(t *testing.T) {
 	ctx := context.Background()
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			c := &Characters{inMemory: inMemory}
+			c := &Characters{InMemory: inMemory}
 			got, err := c.Retrieve(ctx, tt.in)
 			if !errors.Is(err, tt.wantErr) {
 				t.Errorf("Characters.Create() error = %v, wantErr %v", err, tt.wantErr)
@@ -177,7 +177,7 @@ func TestCharacters_Update(t *testing.T) {
 	ctx := context.Background()
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			c := &Characters{inMemory: tt.fields.inMemory}
+			c := &Characters{InMemory: tt.fields.inMemory}
 			got, err := c.Update(ctx, tt.id, tt.characterFields)
 			if !errors.Is(err, tt.wantErr) {
 				t.Errorf("Characters.Update() error = %v, wantErr %v", err, tt.wantErr)
@@ -192,7 +192,7 @@ func TestCharacters_Update(t *testing.T) {
 
 func TestCharacters_Delete(t *testing.T) {
 	type fields struct {
-		inMemory map[string]entities.Character
+		InMemory map[string]entities.Character
 	}
 	type args struct {
 		id string
@@ -210,7 +210,7 @@ func TestCharacters_Delete(t *testing.T) {
 				id: "non-existing-character-id",
 			},
 			fields: fields{
-				inMemory: map[string]entities.Character{
+				InMemory: map[string]entities.Character{
 					"non-affected-id": {Base: entities.Base{ID: "non-affected-id"}},
 				},
 			},
@@ -224,7 +224,7 @@ func TestCharacters_Delete(t *testing.T) {
 				id: "expected-to-delete",
 			},
 			fields: fields{
-				inMemory: map[string]entities.Character{
+				InMemory: map[string]entities.Character{
 					"expected-to-delete": {Base: entities.Base{ID: "expected-to-delete"}},
 				},
 			},
@@ -236,10 +236,10 @@ func TestCharacters_Delete(t *testing.T) {
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
 			c := &Characters{
-				inMemory: tt.fields.inMemory,
+				InMemory: tt.fields.InMemory,
 			}
 			_ = c.Delete(ctx, tt.args.id) // mock doesn't throw errors
-			if diff := cmp.Diff(tt.want, c.inMemory); diff != "" {
+			if diff := cmp.Diff(tt.want, c.InMemory); diff != "" {
 				t.Errorf("mismatch(-want,+got):\n%s", diff)
 			}
 		})

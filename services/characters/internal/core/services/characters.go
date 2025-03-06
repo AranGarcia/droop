@@ -84,7 +84,3 @@ func (c Characters) List(ctx context.Context, request api.ListCharactersRequest)
 	}
 	return &api.ListCharactersResponse{Characters: characters}, nil
 }
-
-func (c Characters) GenerateSheet(_ context.Context, _ api.GenerateSheetRequest) (*api.GenerateSheetResponse, error) {
-	panic("not implemented") // TODO: Implement
-}

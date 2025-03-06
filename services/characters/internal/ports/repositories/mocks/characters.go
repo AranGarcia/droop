@@ -10,7 +10,7 @@ import (
 )
 
 type Characters struct {
-	inMemory map[string]entities.Character
+	InMemory map[string]entities.Character
 }
 
 // Create a Character in memory. It returns a copy of the created entity with a newly set ID.
@@ -18,15 +18,15 @@ func (c *Characters) Create(_ context.Context, character entities.Character) (*e
 	createdCharacter := character.Copy()
 	id := time.Now().Format(time.RFC3339Nano)
 	createdCharacter.ID = id
-	if _, ok := c.inMemory[id]; ok {
+	if _, ok := c.InMemory[id]; ok {
 		return nil, repositories.ErrDuplicateEntity
 	}
-	c.inMemory[createdCharacter.ID] = createdCharacter
+	c.InMemory[createdCharacter.ID] = createdCharacter
 	return &createdCharacter, nil
 }
 
 func (c *Characters) Retrieve(_ context.Context, id string) (*entities.Character, error) {
-	character, ok := c.inMemory[id]
+	character, ok := c.InMemory[id]
 	if !ok {
 		return nil, repositories.ErrNotFound
 	}
@@ -34,7 +34,7 @@ func (c *Characters) Retrieve(_ context.Context, id string) (*entities.Character
 }
 
 func (c *Characters) Update(ctx context.Context, id string, fields repositories.CharacterFields) (*entities.Character, error) {
-	character, ok := c.inMemory[id]
+	character, ok := c.InMemory[id]
 	if !ok {
 		return nil, repositories.ErrNotFound
 	}
@@ -73,7 +73,7 @@ func (c *Characters) Update(ctx context.Context, id string, fields repositories.
 }
 
 func (c *Characters) Delete(_ context.Context, id string) error {
-	delete(c.inMemory, id)
+	delete(c.InMemory, id)
 	return nil
 }
 

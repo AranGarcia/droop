@@ -1,5 +1,14 @@
 package api
 
-type GenerateSheetRequest struct{}
+import "github.com/AranGarcia/droop/characters/internal/core/entities"
 
-type GenerateSheetResponse struct{}
+type GenerateSheetRequest struct {
+	// ID of the character to generate the sheet for.
+	ID string
+}
+
+type GenerateSheetResponse struct {
+	Characer    entities.Character
+	Proficiency int
+	Initiative  int
+}

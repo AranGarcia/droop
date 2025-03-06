@@ -5,6 +5,7 @@ import (
 	"github.com/AranGarcia/droop/characters/internal/ports/repositories"
 )
 
+// getRepositoryUpdateFields adapts the UpdateCharacterRequest to the fields required by the repository.
 func getRepositoryUpdateFields(request api.UpdateCharacterRequest) repositories.CharacterFields {
 	fields := repositories.CharacterFields{
 		Level:         request.Level,

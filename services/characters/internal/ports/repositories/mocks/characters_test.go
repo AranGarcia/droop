@@ -12,6 +12,8 @@ import (
 
 func levelPtr(i entities.Level) *entities.Level { return &i }
 
+func abilityScorePtr(a entities.AbilityScore) *entities.AbilityScore { return &a }
+
 // TestImplementation is expected to throw a compile error rather than a runtime assertion to
 // validate that the mock is an implementation of the expected repository.
 func TestImplementation(t *testing.T) {
@@ -131,42 +133,42 @@ func TestCharacters_Update(t *testing.T) {
 		{
 			name:            "strength",
 			id:              characterID,
-			characterFields: repositories.CharacterFields{Strength: repositories.IntPtr(15)},
+			characterFields: repositories.CharacterFields{Strength: abilityScorePtr(entities.AbilityScore(15))},
 			fields:          fields{map[string]entities.Character{characterID: {Base: entities.Base{ID: characterID}}}},
 			want:            &entities.Character{Base: entities.Base{ID: characterID}, Strength: 15},
 		},
 		{
 			name:            "dexterity",
 			id:              characterID,
-			characterFields: repositories.CharacterFields{Dexterity: repositories.IntPtr(15)},
+			characterFields: repositories.CharacterFields{Dexterity: abilityScorePtr(entities.AbilityScore(15))},
 			fields:          fields{map[string]entities.Character{characterID: {Base: entities.Base{ID: characterID}}}},
 			want:            &entities.Character{Base: entities.Base{ID: characterID}, Dexterity: 15},
 		},
 		{
 			name:            "constitution",
 			id:              characterID,
-			characterFields: repositories.CharacterFields{Constitution: repositories.IntPtr(15)},
+			characterFields: repositories.CharacterFields{Constitution: abilityScorePtr(entities.AbilityScore(15))},
 			fields:          fields{map[string]entities.Character{characterID: {Base: entities.Base{ID: characterID}}}},
 			want:            &entities.Character{Base: entities.Base{ID: characterID}, Constitution: 15},
 		},
 		{
 			name:            "intelligence",
 			id:              characterID,
-			characterFields: repositories.CharacterFields{Intelligence: repositories.IntPtr(15)},
+			characterFields: repositories.CharacterFields{Intelligence: abilityScorePtr(entities.AbilityScore(15))},
 			fields:          fields{map[string]entities.Character{characterID: {Base: entities.Base{ID: characterID}}}},
 			want:            &entities.Character{Base: entities.Base{ID: characterID}, Intelligence: 15},
 		},
 		{
 			name:            "wisdom",
 			id:              characterID,
-			characterFields: repositories.CharacterFields{Wisdom: repositories.IntPtr(15)},
+			characterFields: repositories.CharacterFields{Wisdom: abilityScorePtr(entities.AbilityScore(15))},
 			fields:          fields{map[string]entities.Character{characterID: {Base: entities.Base{ID: characterID}}}},
 			want:            &entities.Character{Base: entities.Base{ID: characterID}, Wisdom: 15},
 		},
 		{
 			name:            "charisma",
 			id:              characterID,
-			characterFields: repositories.CharacterFields{Charisma: repositories.IntPtr(15)},
+			characterFields: repositories.CharacterFields{Charisma: abilityScorePtr(entities.AbilityScore(15))},
 			fields:          fields{map[string]entities.Character{characterID: {Base: entities.Base{ID: characterID}}}},
 			want:            &entities.Character{Base: entities.Base{ID: characterID}, Charisma: 15},
 		},

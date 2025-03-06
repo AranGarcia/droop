@@ -10,7 +10,11 @@ import (
 	"github.com/AranGarcia/droop/characters/internal/ports/repositories"
 )
 
+func classNamePtr(c entities.ClassName) *entities.ClassName { return &c }
+
 func levelPtr(l entities.Level) *entities.Level { return &l }
+
+func abilityScorePtr(a entities.AbilityScore) *entities.AbilityScore { return &a }
 
 func Test_characterFieldsToBSONMap(t *testing.T) {
 	tests := []struct {
@@ -20,8 +24,8 @@ func Test_characterFieldsToBSONMap(t *testing.T) {
 	}{
 		{
 			name:   "class",
-			fields: repositories.CharacterFields{Class: repositories.StringPtr("character_class")},
-			want:   bson.M{"class": "character_class"},
+			fields: repositories.CharacterFields{Class: classNamePtr(entities.ClassName("character_class"))},
+			want:   bson.M{"class": entities.ClassName("character_class")},
 		},
 		{
 			name:   "level",
@@ -55,33 +59,33 @@ func Test_characterFieldsToBSONMap(t *testing.T) {
 		},
 		{
 			name:   "strength",
-			fields: repositories.CharacterFields{Strength: repositories.IntPtr(1)},
-			want:   bson.M{"strength": 1},
+			fields: repositories.CharacterFields{Strength: abilityScorePtr(entities.AbilityScore(1))},
+			want:   bson.M{"strength": entities.AbilityScore(1)},
 		},
 		{
 			name:   "dexterity",
-			fields: repositories.CharacterFields{Dexterity: repositories.IntPtr(1)},
-			want:   bson.M{"dexterity": 1},
+			fields: repositories.CharacterFields{Dexterity: abilityScorePtr(entities.AbilityScore(1))},
+			want:   bson.M{"dexterity": entities.AbilityScore(1)},
 		},
 		{
 			name:   "constitution",
-			fields: repositories.CharacterFields{Constitution: repositories.IntPtr(1)},
-			want:   bson.M{"constitution": 1},
+			fields: repositories.CharacterFields{Constitution: abilityScorePtr(entities.AbilityScore(1))},
+			want:   bson.M{"constitution": entities.AbilityScore(1)},
 		},
 		{
 			name:   "intelligence",
-			fields: repositories.CharacterFields{Intelligence: repositories.IntPtr(1)},
-			want:   bson.M{"intelligence": 1},
+			fields: repositories.CharacterFields{Intelligence: abilityScorePtr(entities.AbilityScore(1))},
+			want:   bson.M{"intelligence": entities.AbilityScore(1)},
 		},
 		{
 			name:   "wisdom",
-			fields: repositories.CharacterFields{Wisdom: repositories.IntPtr(1)},
-			want:   bson.M{"wisdom": 1},
+			fields: repositories.CharacterFields{Wisdom: abilityScorePtr(entities.AbilityScore(1))},
+			want:   bson.M{"wisdom": entities.AbilityScore(1)},
 		},
 		{
 			name:   "charisma",
-			fields: repositories.CharacterFields{Charisma: repositories.IntPtr(1)},
-			want:   bson.M{"charisma": 1},
+			fields: repositories.CharacterFields{Charisma: abilityScorePtr(entities.AbilityScore(1))},
+			want:   bson.M{"charisma": entities.AbilityScore(1)},
 		},
 		{
 			name:   "proficiencies",

@@ -12,20 +12,20 @@ type Base struct {
 
 type Character struct {
 	Base
-	Class         ClassName `json:"class" validate:"required,oneof=barbarian bard cleric druid fighter monk paladin ranger rogue sorcerer warlock wizard druid"`
-	Level         Level     `json:"level" validate:"required,gte=1,lte=20"`
-	Name          string    `json:"name" validate:"required"`
-	MaxHealth     int       `json:"max_health" validate:"required,gt=0"`
-	CurrentHealth int       `json:"current_health" validate:"ltefield=MaxHealth"`
-	TempHealth    int       `json:"temp_health"`
-	ArmorClass    int       `json:"armor_class"`
-	Strength      int       `json:"strength" validate:"required"`
-	Dexterity     int       `json:"dexterity" validate:"required"`
-	Constitution  int       `json:"constitution" validate:"required"`
-	Intelligence  int       `json:"intelligence" validate:"required"`
-	Wisdom        int       `json:"wisdom" validate:"required"`
-	Charisma      int       `json:"charisma" validate:"required"`
-	Proficiencies []Skill   `json:"proficiencies,omitempty" validate:"dive,oneof=acrobatics animal_handling arcana athletics deception history insight intimidation investigation medicine nature perception performance persuasion religion sleight_of_hand stealth survival"`
+	Class         ClassName    `json:"class" validate:"required,oneof=barbarian bard cleric druid fighter monk paladin ranger rogue sorcerer warlock wizard druid"`
+	Level         Level        `json:"level" validate:"required,gte=1,lte=20"`
+	Name          string       `json:"name" validate:"required"`
+	MaxHealth     int          `json:"max_health" validate:"required,gt=0"`
+	CurrentHealth int          `json:"current_health" validate:"ltefield=MaxHealth"`
+	TempHealth    int          `json:"temp_health"`
+	ArmorClass    int          `json:"armor_class"`
+	Strength      AbilityScore `json:"strength" validate:"required"`
+	Dexterity     AbilityScore `json:"dexterity" validate:"required"`
+	Constitution  AbilityScore `json:"constitution" validate:"required"`
+	Intelligence  AbilityScore `json:"intelligence" validate:"required"`
+	Wisdom        AbilityScore `json:"wisdom" validate:"required"`
+	Charisma      AbilityScore `json:"charisma" validate:"required"`
+	Proficiencies []Skill      `json:"proficiencies,omitempty" validate:"dive,oneof=acrobatics animal_handling arcana athletics deception history insight intimidation investigation medicine nature perception performance persuasion religion sleight_of_hand stealth survival"`
 }
 
 // Copy creates a deep copy of the character.

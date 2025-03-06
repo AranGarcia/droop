@@ -14,15 +14,15 @@ func CreateRequestToAPI(request *characterspb.CreateRequest) api.CreateCharacter
 
 	return api.CreateCharacterRequest{
 		Class:        entities.ClassName(request.Class),
-		Level:        entities.NewLevelFrom32(request.Level),
+		Level:        entities.Level(request.Level),
 		Name:         request.Name,
 		ArmorClass:   int(request.ArmorClass),
-		Strength:     int(request.Strength),
-		Dexterity:    int(request.Dexterity),
-		Constitution: int(request.Constitution),
-		Intelligence: int(request.Intelligence),
-		Wisdom:       int(request.Wisdom),
-		Charisma:     int(request.Charisma),
+		Strength:     entities.AbilityScore(request.Strength),
+		Dexterity:    entities.AbilityScore(request.Dexterity),
+		Constitution: entities.AbilityScore(request.Constitution),
+		Intelligence: entities.AbilityScore(request.Intelligence),
+		Wisdom:       entities.AbilityScore(request.Wisdom),
+		Charisma:     entities.AbilityScore(request.Charisma),
 	}
 }
 

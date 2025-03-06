@@ -23,17 +23,17 @@ type Characters interface {
 // be ignored.
 type CharacterFields struct {
 	Level         *entities.Level
-	Class         *string
+	Class         *entities.ClassName
 	Name          *string
 	MaxHealth     *int
 	CurrentHealth *int
 	TempHealth    *int
 	ArmorClass    *int
-	Strength      *int
-	Dexterity     *int
-	Constitution  *int
-	Intelligence  *int
-	Wisdom        *int
-	Charisma      *int
+	Strength      *entities.AbilityScore
+	Dexterity     *entities.AbilityScore
+	Constitution  *entities.AbilityScore
+	Intelligence  *entities.AbilityScore
+	Wisdom        *entities.AbilityScore
+	Charisma      *entities.AbilityScore
 	Proficiencies []string
 }

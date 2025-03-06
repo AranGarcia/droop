@@ -38,6 +38,9 @@ func (c *Characters) Update(ctx context.Context, id string, fields repositories.
 	if !ok {
 		return nil, repositories.ErrNotFound
 	}
+	if fields.Class != nil {
+		character.Class = *fields.Class
+	}
 	if fields.Level != nil {
 		character.Level = *fields.Level
 	}

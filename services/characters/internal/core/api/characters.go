@@ -10,4 +10,5 @@ type Characters interface {
 	Update(context.Context, UpdateCharacterRequest) (*UpdateCharacterResponse, error)
 	Delete(context.Context, DeleteCharacterRequest) (*DeleteCharacterResponse, error)
 	List(context.Context, ListCharactersRequest) (*ListCharactersResponse, error)
+	GenerateSheet(context.Context, GenerateSheetRequest) (*GenerateSheetResponse, error)
 }

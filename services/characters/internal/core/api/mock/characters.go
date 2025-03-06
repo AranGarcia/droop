@@ -95,3 +95,7 @@ func (c *Characters) Delete(_ context.Context, request api.DeleteCharacterReques
 func (c *Characters) List(_ context.Context, request api.ListCharactersRequest) (*api.ListCharactersResponse, error) {
 	return nil, errors.New("not implemented")
 }
+
+func (c *Characters) GenerateSheet(_ context.Context, _ api.GenerateSheetRequest) (*api.GenerateSheetResponse, error) {
+	panic("not implemented") // TODO: Implement
+}

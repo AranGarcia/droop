@@ -12,9 +12,9 @@ func (c Characters) GenerateSheet(ctx context.Context, request api.GenerateSheet
 		return nil, repositoryErrorToAPI(err)
 	}
 	response := &api.GenerateSheetResponse{
-		Characer:    *character,
-		Proficiency: character.Level.CalculateProficiencyBonus(),
-		Initiative:  character.Dexterity.Modifier(),
+		Characer:         *character,
+		ProficiencyBonus: character.Level.CalculateProficiencyBonus(),
+		InitiativeBonus:  character.Dexterity.Modifier(),
 	}
 	return response, nil
 }

@@ -43,8 +43,8 @@ func TestCharacters_GenerateSheet(t *testing.T) {
 					Level:     entities.Level(6),
 					Dexterity: entities.AbilityScore(15),
 				},
-				Proficiency: 3,
-				Initiative:  2,
+				ProficiencyBonus: 3,
+				InitiativeBonus:  2,
 			},
 		},
 	}

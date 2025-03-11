@@ -2,13 +2,13 @@ package services
 
 import (
 	"context"
-	"reflect"
 	"testing"
 
 	"github.com/AranGarcia/droop/characters/internal/core/api"
 	"github.com/AranGarcia/droop/characters/internal/core/entities"
 	"github.com/AranGarcia/droop/characters/internal/ports/repositories"
 	"github.com/AranGarcia/droop/characters/internal/ports/repositories/mocks"
+	"github.com/google/go-cmp/cmp"
 )
 
 func TestCharacters_GenerateSheet(t *testing.T) {
@@ -34,6 +34,7 @@ func TestCharacters_GenerateSheet(t *testing.T) {
 				InMemory: map[string]entities.Character{
 					"character-id": {
 						Level:     entities.Level(6),
+						Armor:     entities.NewArmor(entities.ScaleMailArmor), // 14 + DEX mod
 						Dexterity: entities.AbilityScore(15),
 					},
 				},
@@ -41,8 +42,10 @@ func TestCharacters_GenerateSheet(t *testing.T) {
 			want: &api.GenerateSheetResponse{
 				Characer: entities.Character{
 					Level:     entities.Level(6),
+					Armor:     entities.NewArmor(entities.ScaleMailArmor),
 					Dexterity: entities.AbilityScore(15),
 				},
+				ArmorClass:       16,
 				ProficiencyBonus: 3,
 				InitiativeBonus:  2,
 			},
@@ -59,8 +62,8 @@ func TestCharacters_GenerateSheet(t *testing.T) {
 				t.Errorf("Characters.GenerateSheet() error = %v, wantErr %v", err, tt.wantErr)
 				return
 			}
-			if !reflect.DeepEqual(got, tt.want) {
-				t.Errorf("Characters.GenerateSheet() = %v, want %v", got, tt.want)
+			if diff := cmp.Diff(tt.want, got); diff != "" {
+				t.Fatalf("Characters.GenerateSheet() mismatch (-want,+got):\n%s", diff)
 			}
 		})
 	}

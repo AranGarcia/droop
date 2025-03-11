@@ -64,6 +64,8 @@ func (c Character) Validate() error {
 	return validate.Struct(c)
 }
 
+// CalculateArrmorClass uses the character's inner state from the armor, class feats, and shield
+// to calculate the total AC.
 func (c Character) CalculateArmorClass() int {
 	var shieldBonus int
 	if c.Shield {
@@ -82,6 +84,9 @@ func (c Character) CalculateArmorClass() int {
 	return 10 + c.Dexterity.Modifier()
 }
 
+// unarmoredDefenseFeat calculates the character's unarmored defense status according to the class.
+// If it applies, then it returns true plus the sum of appropriate modifiers to calculate the AC
+// bonus.
 func (c Character) unarmoredDefenseFeat(shieldBonus int) (bool, int) {
 	switch c.Class {
 	case BarbarianClass:

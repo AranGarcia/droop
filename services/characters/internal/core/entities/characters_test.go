@@ -121,3 +121,81 @@ func Test_copyTimePtr(t *testing.T) {
 		})
 	}
 }
+
+func TestCharacter_CalculateArmorClass(t *testing.T) {
+	tests := []struct {
+		name      string
+		character Character
+		want      int
+	}{
+		{
+			name: "no armor and no unarmored defense",
+			character: Character{
+				Dexterity: AbilityScore(12),
+			},
+			want: 11,
+		},
+		{
+			name: "barbarian with no armor",
+			character: Character{
+				Class:        BarbarianClass,
+				Dexterity:    AbilityScore(13), // +1
+				Constitution: AbilityScore(15), // +2
+			},
+			want: 13,
+		},
+		{
+			name: "barbarian with shield but no armor",
+			character: Character{
+				Class:        BarbarianClass,
+				Dexterity:    AbilityScore(13), // +1
+				Constitution: AbilityScore(15), // +2
+				Shield:       true,
+			},
+			want: 15,
+		},
+		{
+			name: "monk with no armor",
+			character: Character{
+				Class:     MonkClass,
+				Dexterity: AbilityScore(13), // +1
+				Wisdom:    AbilityScore(15), // +2
+			},
+			want: 13,
+		},
+		{
+			name: "monk with shield but no armor",
+			character: Character{
+				Class:     MonkClass,
+				Dexterity: AbilityScore(13), // +1
+				Wisdom:    AbilityScore(15), // +2
+				Shield:    true,
+			},
+			want: 11,
+		},
+		{
+			name: "armor with no shield",
+			character: Character{
+				Dexterity: AbilityScore(15), // +2
+				Armor:     NewArmor(StudedLeatherArmor),
+			},
+			want: 14,
+		},
+		{
+			name: "armor with shield",
+			character: Character{
+				Dexterity: AbilityScore(15), // +2
+				Armor:     NewArmor(RingMailArmor),
+				Shield:    true,
+			},
+			want: 18,
+		},
+	}
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			if got := tt.character.CalculateArmorClass(); got != tt.want {
+				t.Errorf("Character.CalculateArmorClass() = %v, want %v", got, tt.want)
+			}
+		})
+	}
+}

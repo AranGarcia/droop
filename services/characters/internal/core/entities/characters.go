@@ -65,30 +65,32 @@ func (c Character) Validate() error {
 }
 
 func (c Character) CalculateArmorClass() int {
-	var ac int
-	switch {
-	case c.Armor != nil && c.Shield:
-		ac = c.Armor.ArmorClass + c.Dexterity.Modifier() + 2
-		// Armor + shield: Armor class + Dexterity
-	case c.Armor != nil && !c.Shield:
-		// Armor: Armor class + Dexterity
-		ac = c.Armor.ArmorClass + c.Dexterity.Modifier()
-	case c.Armor == nil && c.Class == BarbarianClass:
-		//  - Barbarian: 10 + Dexterity + Constitution
-		shieldBonus := 0
-		if c.Shield {
-			shieldBonus = 2
-		}
-		ac = 10 + c.Dexterity.Modifier() + c.Constitution.Modifier() + shieldBonus
-	case c.Armor == nil && c.Class == MonkClass && !c.Shield:
-		//  - Monk: 10 + Dexterity + Wisdom
-		ac = 10 + c.Dexterity.Modifier() + c.Wisdom.Modifier()
-	default:
-		// No armor: 10 + Dexterity modifier
-		ac = 10 + c.Dexterity.Modifier()
+	var shieldBonus int
+	if c.Shield {
+		shieldBonus = 2
+	}
+	hasUnarmoredDefenseFeat, unarmoredDefenseAC := c.unarmoredDefenseFeat(shieldBonus)
+	if hasUnarmoredDefenseFeat {
+		return unarmoredDefenseAC
 	}
 
-	return ac
+	if c.Armor != nil {
+		acBonus := c.Armor.CalculateArmorBonus(c)
+		return acBonus + shieldBonus
+	}
+
+	return 10 + c.Dexterity.Modifier()
+}
+
+func (c Character) unarmoredDefenseFeat(shieldBonus int) (bool, int) {
+	switch c.Class {
+	case BarbarianClass:
+		return true, 10 + c.Dexterity.Modifier() + c.Constitution.Modifier() + shieldBonus
+	case MonkClass:
+		return !c.Shield, 10 + c.Dexterity.Modifier() + c.Wisdom.Modifier()
+	default:
+		return false, 0
+	}
 }
 
 func copyTimePtr(t *time.Time) *time.Time {

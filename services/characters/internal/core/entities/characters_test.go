@@ -184,11 +184,11 @@ func TestCharacter_CalculateArmorClass(t *testing.T) {
 		{
 			name: "armor with shield",
 			character: Character{
-				Dexterity: AbilityScore(15), // +2
-				Armor:     NewArmor(RingMailArmor),
+				Dexterity: AbilityScore(15),         // +2
+				Armor:     NewArmor(HalfPlateArmor), // 15 AC bonus
 				Shield:    true,
 			},
-			want: 18,
+			want: 19,
 		},
 	}
 	for _, tt := range tests {

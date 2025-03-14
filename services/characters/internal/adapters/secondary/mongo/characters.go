@@ -46,7 +46,7 @@ func (c CharacterRepository) Create(ctx context.Context, entity entities.Charact
 	if err != nil {
 		return nil, fmt.Errorf("failed to insert character; %v", err)
 	}
-	created := entity.Copy()
+	created := entity
 	if oid, ok := result.InsertedID.(primitive.ObjectID); ok {
 		created.ID = oid.Hex()
 	}

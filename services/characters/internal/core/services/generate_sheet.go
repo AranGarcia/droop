@@ -12,8 +12,8 @@ func (c Characters) GenerateSheet(ctx context.Context, request api.GenerateSheet
 		return nil, repositoryErrorToAPI(err)
 	}
 	response := &api.GenerateSheetResponse{
-		Characer:         *character,
-		ArmorClass:       character.CalculateArmorClass(),
+		Characer: *character,
+		// ArmorClass:       character.CalculateArmorClass(),
 		ProficiencyBonus: character.Level.CalculateProficiencyBonus(),
 		InitiativeBonus:  character.Dexterity.Modifier(),
 	}

@@ -15,7 +15,7 @@ type Characters struct {
 
 // Create a Character in memory. It returns a copy of the created entity with a newly set ID.
 func (c *Characters) Create(_ context.Context, character entities.Character) (*entities.Character, error) {
-	createdCharacter := character.Copy()
+	createdCharacter := character
 	id := time.Now().Format(time.RFC3339Nano)
 	createdCharacter.ID = id
 	if _, ok := c.InMemory[id]; ok {

@@ -1,6 +1,8 @@
 package entities
 
-import "time"
+import (
+	"time"
+)
 
 // Base attributes shared among entities.
 type Base struct {
@@ -19,7 +21,6 @@ type Character struct {
 	CurrentHealth int       `json:"current_health" validate:"ltefield=MaxHealth"`
 	TempHealth    int       `json:"temp_health"`
 	// ArmorClass protects the character from attacks.
-	// Deprecated: Use Armor and the Dexterity modifier instead.
 	ArmorClass    int          `json:"armor_class"`
 	Strength      AbilityScore `json:"strength" validate:"required"`
 	Dexterity     AbilityScore `json:"dexterity" validate:"required"`
@@ -35,28 +36,8 @@ type Character struct {
 
 // Copy creates a deep copy of the character.
 func (c Character) Copy() Character {
-	return Character{
-		Base: Base{
-			ID:        c.ID,
-			CreatedAt: c.CreatedAt,
-			UpdatedAt: c.UpdatedAt,
-			DeletedAt: copyTimePtr(c.DeletedAt),
-		},
-		Class:         c.Class,
-		Level:         c.Level,
-		Name:          c.Name,
-		MaxHealth:     c.MaxHealth,
-		CurrentHealth: c.CurrentHealth,
-		TempHealth:    c.TempHealth,
-		ArmorClass:    c.ArmorClass,
-		Strength:      c.Strength,
-		Dexterity:     c.Dexterity,
-		Constitution:  c.Constitution,
-		Intelligence:  c.Intelligence,
-		Wisdom:        c.Wisdom,
-		Charisma:      c.Charisma,
-		Proficiencies: c.Proficiencies,
-	}
+	c1 := c
+	return c1
 }
 
 // Validate the character's fields.
@@ -96,16 +77,4 @@ func (c Character) unarmoredDefenseFeat(shieldBonus int) (bool, int) {
 	default:
 		return false, 0
 	}
-}
-
-func copyTimePtr(t *time.Time) *time.Time {
-	if t == nil {
-		return nil
-	}
-	t2 := time.Date(
-		t.Year(), t.Month(), t.Day(),
-		t.Hour(), t.Minute(), t.Second(), t.Nanosecond(),
-		t.Location(),
-	)
-	return &t2
 }

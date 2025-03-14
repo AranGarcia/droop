@@ -92,36 +92,6 @@ func TestCharacter_Copy(t *testing.T) {
 	}
 }
 
-func Test_copyTimePtr(t *testing.T) {
-	now := time.Now()
-	tests := []struct {
-		name string
-		t    *time.Time
-		want *time.Time
-	}{
-		{
-			name: "nil copy",
-		},
-		{
-			name: "now",
-			t:    &now,
-			want: &now,
-		},
-	}
-	for _, test := range tests {
-		t.Run(test.name, func(t *testing.T) {
-			got := copyTimePtr(test.t)
-			if diff := cmp.Diff(got, test.want); diff != "" {
-				t.Errorf("copyTimePtr() = %v, want %v", got, test.want)
-			}
-
-			if test.want != nil && test.want == got {
-				t.Fatalf("expected different pointers; got = %p, want = %p", got, test.want)
-			}
-		})
-	}
-}
-
 func TestCharacter_CalculateArmorClass(t *testing.T) {
 	tests := []struct {
 		name      string

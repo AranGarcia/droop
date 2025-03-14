@@ -14,22 +14,41 @@ type Base struct {
 	DeletedAt *time.Time `bson:"deleted_at,omitempty"`
 }
 
+type Skill struct {
+	Proficient bool `bson:"proficient"`
+	Bonus      int  `bson:"proficient"`
+}
+
+func NewSkillFromEntity(entity entities.Skill) Skill {
+	return Skill{
+		Proficient: entity.Proficient,
+		Bonus:      entity.Bonus,
+	}
+}
+
+func (s Skill) ToEntity() entities.Skill {
+	return entities.Skill{
+		Proficient: s.Proficient,
+		Bonus:      s.Bonus,
+	}
+}
+
 type Character struct {
 	Base          `bson:",inline"`
-	Class         string   `bson:"class"`
-	Level         int      `bson:"level"`
-	Name          string   `bson:"name"`
-	MaxHealth     int      `bson:"max_health"`
-	CurrentHealth int      `bson:"current_health"`
-	TempHealth    int      `bson:"temp_health"`
-	ArmorClass    int      `bson:"armor_class"`
-	Strength      int      `bson:"strength"`
-	Dexterity     int      `bson:"dexterity"`
-	Constitution  int      `bson:"constitution"`
-	Intelligence  int      `bson:"intelligence"`
-	Wisdom        int      `bson:"wisdom"`
-	Charisma      int      `bson:"charisma"`
-	Proficiencies []string `bson:"proficiencies"`
+	Class         string           `bson:"class"`
+	Level         int              `bson:"level"`
+	Name          string           `bson:"name"`
+	MaxHealth     int              `bson:"max_health"`
+	CurrentHealth int              `bson:"current_health"`
+	TempHealth    int              `bson:"temp_health"`
+	ArmorClass    int              `bson:"armor_class"`
+	Strength      int              `bson:"strength"`
+	Dexterity     int              `bson:"dexterity"`
+	Constitution  int              `bson:"constitution"`
+	Intelligence  int              `bson:"intelligence"`
+	Wisdom        int              `bson:"wisdom"`
+	Charisma      int              `bson:"charisma"`
+	Abilities     map[string]Skill `bson:"proficiencies"`
 }
 
 func NewCharacterFromEntity(entity entities.Character) Character {
@@ -54,11 +73,11 @@ func NewCharacterFromEntity(entity entities.Character) Character {
 		Intelligence:  int(entity.Intelligence),
 		Wisdom:        int(entity.Wisdom),
 		Charisma:      int(entity.Charisma),
-		Proficiencies: make([]string, len(entity.Proficiencies)),
+		Abilities:     make(map[string]Skill, len(entity.Abilities)),
 	}
 
-	for i, v := range entity.Proficiencies {
-		character.Proficiencies[i] = string(v)
+	for k, v := range entity.Abilities {
+		character.Abilities[k] = NewSkillFromEntity(v)
 	}
 
 	return character
@@ -85,11 +104,11 @@ func (c *Character) ToEntity() entities.Character {
 		Intelligence:  entities.AbilityScore(c.Intelligence),
 		Wisdom:        entities.AbilityScore(c.Wisdom),
 		Charisma:      entities.AbilityScore(c.Charisma),
-		Proficiencies: make([]entities.Skill, len(c.Proficiencies)),
+		Abilities:     make(entities.Abilities, len(c.Abilities)),
 	}
 
-	for i, v := range c.Proficiencies {
-		entity.Proficiencies[i] = entities.Skill(v)
+	for k, v := range c.Abilities {
+		entity.Abilities[k] = v.ToEntity()
 	}
 
 	return entity

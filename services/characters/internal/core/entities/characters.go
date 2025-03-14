@@ -27,44 +27,10 @@ type Character struct {
 	Intelligence  AbilityScore `json:"intelligence" validate:"required"`
 	Wisdom        AbilityScore `json:"wisdom" validate:"required"`
 	Charisma      AbilityScore `json:"charisma" validate:"required"`
-	Proficiencies []Skill      `json:"proficiencies,omitempty" validate:"dive,oneof=acrobatics animal_handling arcana athletics deception history insight intimidation investigation medicine nature perception performance persuasion religion sleight_of_hand stealth survival"`
+	Abilities     Abilities    `json:"abilities,omitempty" validate:"dive,keys,oneof=acrobatics animal_handling arcana athletics deception history insight intimidation investigation medicine nature perception performance persuasion religion sleight_of_hand stealth survival,endkeys"`
 }
 
 // Validate the character's fields.
 func (c Character) Validate() error {
 	return validate.Struct(c)
 }
-
-// // CalculateArrmorClass uses the character's inner state from the armor, class feats, and shield
-// // to calculate the total AC.
-// func (c Character) CalculateArmorClass() int {
-// 	var shieldBonus int
-// 	if c.Shield {
-// 		shieldBonus = 2
-// 	}
-// 	hasUnarmoredDefenseFeat, unarmoredDefenseAC := c.unarmoredDefenseFeat(shieldBonus)
-// 	if hasUnarmoredDefenseFeat {
-// 		return unarmoredDefenseAC
-// 	}
-
-// 	if c.Armor != nil {
-// 		acBonus := c.Armor.CalculateArmorBonus(c)
-// 		return acBonus + shieldBonus
-// 	}
-
-// 	return 10 + c.Dexterity.Modifier()
-// }
-
-// // unarmoredDefenseFeat calculates the character's unarmored defense status according to the class.
-// // If it applies, then it returns true plus the sum of appropriate modifiers to calculate the AC
-// // bonus.
-// func (c Character) unarmoredDefenseFeat(shieldBonus int) (bool, int) {
-// 	switch c.Class {
-// 	case BarbarianClass:
-// 		return true, 10 + c.Dexterity.Modifier() + c.Constitution.Modifier() + shieldBonus
-// 	case MonkClass:
-// 		return !c.Shield, 10 + c.Dexterity.Modifier() + c.Wisdom.Modifier()
-// 	default:
-// 		return false, 0
-// 	}
-// }

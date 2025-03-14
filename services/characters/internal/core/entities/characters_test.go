@@ -20,7 +20,7 @@ func TestCharacter_Validate(t *testing.T) {
 		WarlockClass,
 		WizardClass,
 	}
-	proficiencies := []Skill{
+	proficiencies := []string{
 		AcrobaticsSkill,
 		AnimalHandlingSkill,
 		ArcanaSkill,
@@ -52,91 +52,22 @@ func TestCharacter_Validate(t *testing.T) {
 		Intelligence: 10,
 		Wisdom:       10,
 		Charisma:     10,
-		Proficiencies: []Skill{
-			proficiencies[rand.IntN(len(proficiencies))],
-			proficiencies[rand.IntN(len(proficiencies))],
-			proficiencies[rand.IntN(len(proficiencies))],
+		Abilities: map[string]Skill{
+			proficiencies[rand.IntN(len(proficiencies))]: {
+				Proficient: rand.IntN(2) == 1,
+				Bonus:      rand.IntN(4),
+			},
+			proficiencies[rand.IntN(len(proficiencies))]: {
+				Proficient: rand.IntN(2) == 1,
+				Bonus:      rand.IntN(4),
+			},
+			proficiencies[rand.IntN(len(proficiencies))]: {
+				Proficient: rand.IntN(2) == 1,
+				Bonus:      rand.IntN(4),
+			},
 		},
 	}
 	if err := character.Validate(); err != nil {
 		t.Fatalf("validation error; %v", err)
 	}
 }
-
-// func TestCharacter_CalculateArmorClass(t *testing.T) {
-// 	tests := []struct {
-// 		name      string
-// 		character Character
-// 		want      int
-// 	}{
-// 		{
-// 			name: "no armor and no unarmored defense",
-// 			character: Character{
-// 				Dexterity: AbilityScore(12),
-// 			},
-// 			want: 11,
-// 		},
-// 		{
-// 			name: "barbarian with no armor",
-// 			character: Character{
-// 				Class:        BarbarianClass,
-// 				Dexterity:    AbilityScore(13), // +1
-// 				Constitution: AbilityScore(15), // +2
-// 			},
-// 			want: 13,
-// 		},
-// 		{
-// 			name: "barbarian with shield but no armor",
-// 			character: Character{
-// 				Class:        BarbarianClass,
-// 				Dexterity:    AbilityScore(13), // +1
-// 				Constitution: AbilityScore(15), // +2
-// 				Shield:       true,
-// 			},
-// 			want: 15,
-// 		},
-// 		{
-// 			name: "monk with no armor",
-// 			character: Character{
-// 				Class:     MonkClass,
-// 				Dexterity: AbilityScore(13), // +1
-// 				Wisdom:    AbilityScore(15), // +2
-// 			},
-// 			want: 13,
-// 		},
-// 		{
-// 			name: "monk with shield but no armor",
-// 			character: Character{
-// 				Class:     MonkClass,
-// 				Dexterity: AbilityScore(13), // +1
-// 				Wisdom:    AbilityScore(15), // +2
-// 				Shield:    true,
-// 			},
-// 			want: 11,
-// 		},
-// 		{
-// 			name: "armor with no shield",
-// 			character: Character{
-// 				Dexterity: AbilityScore(15), // +2
-// 				Armor:     NewArmor(StudedLeatherArmor),
-// 			},
-// 			want: 14,
-// 		},
-// 		{
-// 			name: "armor with shield",
-// 			character: Character{
-// 				Dexterity: AbilityScore(15),         // +2
-// 				Armor:     NewArmor(HalfPlateArmor), // 15 AC bonus
-// 				Shield:    true,
-// 			},
-// 			want: 19,
-// 		},
-// 	}
-// 	for _, tt := range tests {
-// 		t.Run(tt.name, func(t *testing.T) {
-// 			if got := tt.character.CalculateArmorClass(); got != tt.want {
-// 				t.Errorf("Character.CalculateArmorClass() = %v, want %v", got, tt.want)
-// 			}
-// 		})
-// 	}
-// }

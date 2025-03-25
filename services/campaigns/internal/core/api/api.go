@@ -3,11 +3,11 @@ package api
 import "context"
 
 type Campaigns interface {
-	Create(context.Context, CreateRequest) (CreateResponse, error)
-	Retrieve(context.Context, RetrieveRequest) (RetrieveResponse, error)
-	Update(context.Context, UpdateRequest) (UpdateResponse, error)
-	Delete(context.Context, DeleteRequest) (DeleteResponse, error)
-	List(context.Context, ListRequest) (ListResponse, error)
+	Create(context.Context, CreateRequest) (*CreateResponse, error)
+	Retrieve(context.Context, RetrieveRequest) (*RetrieveResponse, error)
+	Update(context.Context, UpdateRequest) (*UpdateResponse, error)
+	Delete(context.Context, DeleteRequest) (*DeleteResponse, error)
+	List(context.Context, ListRequest) (*ListResponse, error)
 }
 
 type CreateRequest struct{}

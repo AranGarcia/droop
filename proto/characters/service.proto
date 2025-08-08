@@ -13,7 +13,7 @@ message CreateRequest {
     string class = 1;
     int32 level = 2;
     string name = 3;
-    int32 health_points = 4;
+    int32 max_health = 4;
     int32 armor_class = 5;
     int32 strength = 6;
     int32 dexterity = 7;
@@ -64,7 +64,7 @@ message Character {
     string class = 2;
     int32 level = 3;
     string name = 4;
-    int32 health_points = 5;
+    int32 max_health = 5;
     int32 armor_class = 6;
     int32 strength = 7;
     int32 dexterity = 8;

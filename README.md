@@ -26,3 +26,5 @@ Se pueden levantar todos los servicios con Docker Compose:
 ```sh
 docker-compose up
 ```
+
+Y podrás acceder a la pagina http://localhost:1234

@@ -16,6 +16,7 @@ func CreateRequestToAPI(request *characterspb.CreateRequest) api.CreateCharacter
 		Class:        entities.ClassName(request.Class),
 		Level:        entities.Level(request.Level),
 		Name:         request.Name,
+		MaxHealth:    int(request.MaxHealth),
 		ArmorClass:   int(request.ArmorClass),
 		Strength:     entities.AbilityScore(request.Strength),
 		Dexterity:    entities.AbilityScore(request.Dexterity),

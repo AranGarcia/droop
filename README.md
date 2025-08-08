@@ -4,14 +4,14 @@ Herramienta para jugar D&D
 
 > :construction: Actualmente en construción. 
 
-# Requisitos
+## Requisitos
 
 - Docker
 - Docker Compose
-- Go 1.24.0
+- Go
 - [buf CLI v.1.44.0](https://buf.build/docs/ecosystem/cli-overview)
 
-# Instalación
+## Instalación
 
 Compila los protobufs
 
@@ -19,12 +19,15 @@ Compila los protobufs
 make proto
 ```
 
-# Ejecución
+## Ejecución
 
 Se pueden levantar todos los servicios con Docker Compose:
 
 ```sh
-docker-compose up
+docker compose build
+docker compose up
 ```
 
-Y podrás acceder a la pagina http://localhost:1234
+## Web
+
+Para ejecutar la página web en local, revisa el directorio [`web/`](web/README.md)

@@ -3,12 +3,12 @@ module github.com/AranGarcia/droop/initiatives
 go 1.24.6
 
 replace (
-	github.com/AranGarcia/droop/proto/gen => ../../proto/gen
+	github.com/AranGarcia/droop/protoapis => ../../protoapis
 	github.com/AranGarcia/droop/shared => ../../shared
 )
 
 require (
-	github.com/AranGarcia/droop/proto/gen v0.0.0-00010101000000-000000000000
+	github.com/AranGarcia/droop/protoapis v0.0.0-00010101000000-000000000000
 	github.com/AranGarcia/droop/shared/redistools v0.0.0-20241105061033-22dbd0ad8d15
 	github.com/redis/go-redis/v9 v9.7.0
 	google.golang.org/grpc v1.75.1

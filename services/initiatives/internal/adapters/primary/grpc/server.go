@@ -7,7 +7,7 @@ import (
 
 	"github.com/AranGarcia/droop/initiatives/internal/ports/core/turns"
 
-	pb "github.com/AranGarcia/droop/proto/gen/initiatives"
+	pb "github.com/AranGarcia/droop/protoapis/proto/initiatives"
 )
 
 type Server struct {

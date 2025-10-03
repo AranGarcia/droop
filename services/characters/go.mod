@@ -3,13 +3,13 @@ module github.com/AranGarcia/droop/characters
 go 1.24.6
 
 replace (
-	github.com/AranGarcia/droop/proto/gen => ../../proto/gen
+	github.com/AranGarcia/droop/protoapis => ../../protoapis
 	github.com/AranGarcia/droop/shared/common-errors => ../../shared/common-errors
 	github.com/AranGarcia/droop/shared/mongotools => ../../shared/mongotools
 )
 
 require (
-	github.com/AranGarcia/droop/proto/gen v0.0.0-00010101000000-000000000000
+	github.com/AranGarcia/droop/protoapis v0.0.0-00010101000000-000000000000
 	github.com/AranGarcia/droop/shared/common-errors v0.0.0-00010101000000-000000000000
 	github.com/AranGarcia/droop/shared/mongotools v0.0.0-00010101000000-000000000000
 	github.com/go-playground/validator/v10 v10.22.0

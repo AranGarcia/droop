@@ -2,10 +2,10 @@ module github.com/AranGarcia/droop/dnd
 
 go 1.24.6
 
-replace github.com/AranGarcia/droop/proto/gen => ../../proto/gen
+replace github.com/AranGarcia/droop/protoapis => ../../protoapis
 
 require (
-	github.com/AranGarcia/droop/proto/gen v0.0.0-00010101000000-000000000000
+	github.com/AranGarcia/droop/protoapis v0.0.0-00010101000000-000000000000
 	github.com/segmentio/kafka-go v0.4.47
 	go.mongodb.org/mongo-driver v1.17.1
 	google.golang.org/grpc v1.75.1

@@ -8,7 +8,7 @@ import (
 
 	"github.com/AranGarcia/droop/dnd/internal/ports/core/rules"
 
-	dndpb "github.com/AranGarcia/droop/proto/gen/dnd"
+	dndpb "github.com/AranGarcia/droop/protoapis/proto/dnd"
 )
 
 // Config for the server.

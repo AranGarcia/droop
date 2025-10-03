@@ -5,7 +5,7 @@ import (
 
 	"github.com/AranGarcia/droop/dnd/internal/ports/core/rules"
 
-	dndpb "github.com/AranGarcia/droop/proto/gen/dnd"
+	dndpb "github.com/AranGarcia/droop/protoapis/proto/dnd"
 )
 
 func (s Server) RollInitiative(ctx context.Context, request *dndpb.RollInitiativeRequest) (*dndpb.RollInitiativeResponse, error) {

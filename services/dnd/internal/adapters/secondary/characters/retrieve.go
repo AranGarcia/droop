@@ -5,7 +5,7 @@ import (
 
 	"github.com/AranGarcia/droop/dnd/internal/core/entities"
 
-	characterspb "github.com/AranGarcia/droop/proto/gen/characters"
+	characterspb "github.com/AranGarcia/droop/protoapis/proto/characters"
 )
 
 // Retrieve a Character from the service.

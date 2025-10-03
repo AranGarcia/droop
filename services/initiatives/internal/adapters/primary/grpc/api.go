@@ -3,7 +3,7 @@ package grpc
 import (
 	"github.com/AranGarcia/droop/initiatives/internal/ports/core/turns"
 
-	pb "github.com/AranGarcia/droop/proto/gen/initiatives"
+	pb "github.com/AranGarcia/droop/protoapis/proto/initiatives"
 )
 
 func RegisterRequestToAPI(request *pb.RegisterTurnRequest) turns.RegisterRequest {

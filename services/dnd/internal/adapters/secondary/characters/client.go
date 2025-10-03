@@ -6,7 +6,7 @@ import (
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/credentials/insecure"
 
-	characterspb "github.com/AranGarcia/droop/proto/gen/characters"
+	characterspb "github.com/AranGarcia/droop/protoapis/proto/characters"
 )
 
 type Client struct {

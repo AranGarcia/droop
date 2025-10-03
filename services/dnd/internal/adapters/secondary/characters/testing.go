@@ -5,7 +5,7 @@ import (
 
 	"google.golang.org/grpc"
 
-	characterspb "github.com/AranGarcia/droop/proto/gen/characters"
+	characterspb "github.com/AranGarcia/droop/protoapis/proto/characters"
 )
 
 type mockClient struct {

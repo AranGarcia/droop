@@ -7,7 +7,7 @@ import (
 
 	"github.com/AranGarcia/droop/characters/internal/core/api"
 
-	characterspb "github.com/AranGarcia/droop/proto/gen/characters"
+	characterspb "github.com/AranGarcia/droop/protoapis/proto/characters"
 )
 
 // Server is a gRPC adapter for the character service.

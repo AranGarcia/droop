@@ -3,7 +3,7 @@ package grpc
 import (
 	"context"
 
-	pb "github.com/AranGarcia/droop/proto/gen/initiatives"
+	pb "github.com/AranGarcia/droop/protoapis/proto/initiatives"
 )
 
 func (s Server) RegisterTurn(ctx context.Context, request *pb.RegisterTurnRequest) (*pb.RegisterTurnResponse, error) {

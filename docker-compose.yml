@@ -6,6 +6,7 @@ services:
       - 27017:27017
     command: --config /etc/mongo/mongod.conf
     environment:
+      # Are these credentials even valid?
       MONGO_INITDB_ROOT_USERNAME: mongoadmin
       MONGO_INITDB_ROOT_PASSWORD: mongoadmin
       MONGO_INITDB_DATABASE: droop

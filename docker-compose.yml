@@ -1,9 +1,10 @@
 services:
   mongodb:
-    image: mongo:8.0-rc-jammy
+    image: mongo:8.0.15
     restart: always
     ports:
       - 27017:27017
+    command: --config /etc/mongo/mongod.conf
     environment:
       MONGO_INITDB_ROOT_USERNAME: mongoadmin
       MONGO_INITDB_ROOT_PASSWORD: mongoadmin
@@ -16,8 +17,11 @@ services:
       retries: 5
     volumes:
       - type: bind
-        source: docker/mongo
+        source: docker/mongo/entrypoint-initdb.d
         target: /docker-entrypoint-initdb.d
+      - type: bind
+        source: docker/mongo/conf
+        target: /etc/mongo/
 
   redis:
     image: redis/redis-stack:6.2.6-v17

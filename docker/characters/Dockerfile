@@ -5,7 +5,7 @@ EXPOSE 8090
 WORKDIR /app
 
 # Protocol Buffers (must be compiled)
-COPY proto/gen /proto/gen
+COPY protoapis/ /protoapis
 # Shared libraries
 COPY shared/ /shared
 # Character service

@@ -5,7 +5,7 @@ EXPOSE 8010
 WORKDIR /app
 
 # Protocol Buffers (must be compiled)
-COPY proto/gen /proto/gen
+COPY protoapis/ /protoapis
 # Character service
 COPY services/dnd/ ./
 

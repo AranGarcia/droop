@@ -10,7 +10,7 @@ import (
 	"github.com/AranGarcia/droop/dnd/internal/ports/core/mock"
 	"github.com/AranGarcia/droop/dnd/internal/ports/core/rules"
 
-	dndpb "github.com/AranGarcia/droop/protoapis/proto/dnd"
+	dndpb "github.com/AranGarcia/droop/protoapis/dnd/v1"
 )
 
 func TestServer_RollInitiative(t *testing.T) {

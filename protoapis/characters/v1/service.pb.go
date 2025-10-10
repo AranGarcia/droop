@@ -2,9 +2,9 @@
 // versions:
 // 	protoc-gen-go v1.36.6
 // 	protoc        (unknown)
-// source: characters/service.proto
+// source: characters/v1/service.proto
 
-package characters
+package v1
 
 import (
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
@@ -40,7 +40,7 @@ type CreateRequest struct {
 
 func (x *CreateRequest) Reset() {
 	*x = CreateRequest{}
-	mi := &file_characters_service_proto_msgTypes[0]
+	mi := &file_characters_v1_service_proto_msgTypes[0]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -52,7 +52,7 @@ func (x *CreateRequest) String() string {
 func (*CreateRequest) ProtoMessage() {}
 
 func (x *CreateRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_characters_service_proto_msgTypes[0]
+	mi := &file_characters_v1_service_proto_msgTypes[0]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -65,7 +65,7 @@ func (x *CreateRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use CreateRequest.ProtoReflect.Descriptor instead.
 func (*CreateRequest) Descriptor() ([]byte, []int) {
-	return file_characters_service_proto_rawDescGZIP(), []int{0}
+	return file_characters_v1_service_proto_rawDescGZIP(), []int{0}
 }
 
 func (x *CreateRequest) GetClass() string {
@@ -154,7 +154,7 @@ type CreateResponse struct {
 
 func (x *CreateResponse) Reset() {
 	*x = CreateResponse{}
-	mi := &file_characters_service_proto_msgTypes[1]
+	mi := &file_characters_v1_service_proto_msgTypes[1]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -166,7 +166,7 @@ func (x *CreateResponse) String() string {
 func (*CreateResponse) ProtoMessage() {}
 
 func (x *CreateResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_characters_service_proto_msgTypes[1]
+	mi := &file_characters_v1_service_proto_msgTypes[1]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -179,7 +179,7 @@ func (x *CreateResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use CreateResponse.ProtoReflect.Descriptor instead.
 func (*CreateResponse) Descriptor() ([]byte, []int) {
-	return file_characters_service_proto_rawDescGZIP(), []int{1}
+	return file_characters_v1_service_proto_rawDescGZIP(), []int{1}
 }
 
 func (x *CreateResponse) GetCharacter() *Character {
@@ -198,7 +198,7 @@ type RetrieveRequest struct {
 
 func (x *RetrieveRequest) Reset() {
 	*x = RetrieveRequest{}
-	mi := &file_characters_service_proto_msgTypes[2]
+	mi := &file_characters_v1_service_proto_msgTypes[2]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -210,7 +210,7 @@ func (x *RetrieveRequest) String() string {
 func (*RetrieveRequest) ProtoMessage() {}
 
 func (x *RetrieveRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_characters_service_proto_msgTypes[2]
+	mi := &file_characters_v1_service_proto_msgTypes[2]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -223,7 +223,7 @@ func (x *RetrieveRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use RetrieveRequest.ProtoReflect.Descriptor instead.
 func (*RetrieveRequest) Descriptor() ([]byte, []int) {
-	return file_characters_service_proto_rawDescGZIP(), []int{2}
+	return file_characters_v1_service_proto_rawDescGZIP(), []int{2}
 }
 
 func (x *RetrieveRequest) GetId() string {
@@ -242,7 +242,7 @@ type RetrieveResponse struct {
 
 func (x *RetrieveResponse) Reset() {
 	*x = RetrieveResponse{}
-	mi := &file_characters_service_proto_msgTypes[3]
+	mi := &file_characters_v1_service_proto_msgTypes[3]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -254,7 +254,7 @@ func (x *RetrieveResponse) String() string {
 func (*RetrieveResponse) ProtoMessage() {}
 
 func (x *RetrieveResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_characters_service_proto_msgTypes[3]
+	mi := &file_characters_v1_service_proto_msgTypes[3]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -267,7 +267,7 @@ func (x *RetrieveResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use RetrieveResponse.ProtoReflect.Descriptor instead.
 func (*RetrieveResponse) Descriptor() ([]byte, []int) {
-	return file_characters_service_proto_rawDescGZIP(), []int{3}
+	return file_characters_v1_service_proto_rawDescGZIP(), []int{3}
 }
 
 func (x *RetrieveResponse) GetCharacter() *Character {
@@ -296,7 +296,7 @@ type UpdateRequest struct {
 
 func (x *UpdateRequest) Reset() {
 	*x = UpdateRequest{}
-	mi := &file_characters_service_proto_msgTypes[4]
+	mi := &file_characters_v1_service_proto_msgTypes[4]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -308,7 +308,7 @@ func (x *UpdateRequest) String() string {
 func (*UpdateRequest) ProtoMessage() {}
 
 func (x *UpdateRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_characters_service_proto_msgTypes[4]
+	mi := &file_characters_v1_service_proto_msgTypes[4]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -321,7 +321,7 @@ func (x *UpdateRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use UpdateRequest.ProtoReflect.Descriptor instead.
 func (*UpdateRequest) Descriptor() ([]byte, []int) {
-	return file_characters_service_proto_rawDescGZIP(), []int{4}
+	return file_characters_v1_service_proto_rawDescGZIP(), []int{4}
 }
 
 func (x *UpdateRequest) GetClass() string {
@@ -410,7 +410,7 @@ type UpdateResponse struct {
 
 func (x *UpdateResponse) Reset() {
 	*x = UpdateResponse{}
-	mi := &file_characters_service_proto_msgTypes[5]
+	mi := &file_characters_v1_service_proto_msgTypes[5]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -422,7 +422,7 @@ func (x *UpdateResponse) String() string {
 func (*UpdateResponse) ProtoMessage() {}
 
 func (x *UpdateResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_characters_service_proto_msgTypes[5]
+	mi := &file_characters_v1_service_proto_msgTypes[5]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -435,7 +435,7 @@ func (x *UpdateResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use UpdateResponse.ProtoReflect.Descriptor instead.
 func (*UpdateResponse) Descriptor() ([]byte, []int) {
-	return file_characters_service_proto_rawDescGZIP(), []int{5}
+	return file_characters_v1_service_proto_rawDescGZIP(), []int{5}
 }
 
 func (x *UpdateResponse) GetCharacter() *Character {
@@ -454,7 +454,7 @@ type DeleteRequest struct {
 
 func (x *DeleteRequest) Reset() {
 	*x = DeleteRequest{}
-	mi := &file_characters_service_proto_msgTypes[6]
+	mi := &file_characters_v1_service_proto_msgTypes[6]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -466,7 +466,7 @@ func (x *DeleteRequest) String() string {
 func (*DeleteRequest) ProtoMessage() {}
 
 func (x *DeleteRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_characters_service_proto_msgTypes[6]
+	mi := &file_characters_v1_service_proto_msgTypes[6]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -479,7 +479,7 @@ func (x *DeleteRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use DeleteRequest.ProtoReflect.Descriptor instead.
 func (*DeleteRequest) Descriptor() ([]byte, []int) {
-	return file_characters_service_proto_rawDescGZIP(), []int{6}
+	return file_characters_v1_service_proto_rawDescGZIP(), []int{6}
 }
 
 func (x *DeleteRequest) GetId() string {
@@ -497,7 +497,7 @@ type DeleteResponse struct {
 
 func (x *DeleteResponse) Reset() {
 	*x = DeleteResponse{}
-	mi := &file_characters_service_proto_msgTypes[7]
+	mi := &file_characters_v1_service_proto_msgTypes[7]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -509,7 +509,7 @@ func (x *DeleteResponse) String() string {
 func (*DeleteResponse) ProtoMessage() {}
 
 func (x *DeleteResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_characters_service_proto_msgTypes[7]
+	mi := &file_characters_v1_service_proto_msgTypes[7]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -522,7 +522,7 @@ func (x *DeleteResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use DeleteResponse.ProtoReflect.Descriptor instead.
 func (*DeleteResponse) Descriptor() ([]byte, []int) {
-	return file_characters_service_proto_rawDescGZIP(), []int{7}
+	return file_characters_v1_service_proto_rawDescGZIP(), []int{7}
 }
 
 type Character struct {
@@ -545,7 +545,7 @@ type Character struct {
 
 func (x *Character) Reset() {
 	*x = Character{}
-	mi := &file_characters_service_proto_msgTypes[8]
+	mi := &file_characters_v1_service_proto_msgTypes[8]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -557,7 +557,7 @@ func (x *Character) String() string {
 func (*Character) ProtoMessage() {}
 
 func (x *Character) ProtoReflect() protoreflect.Message {
-	mi := &file_characters_service_proto_msgTypes[8]
+	mi := &file_characters_v1_service_proto_msgTypes[8]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -570,7 +570,7 @@ func (x *Character) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Character.ProtoReflect.Descriptor instead.
 func (*Character) Descriptor() ([]byte, []int) {
-	return file_characters_service_proto_rawDescGZIP(), []int{8}
+	return file_characters_v1_service_proto_rawDescGZIP(), []int{8}
 }
 
 func (x *Character) GetId() string {
@@ -657,12 +657,11 @@ func (x *Character) GetCharisma() int32 {
 	return 0
 }
 
-var File_characters_service_proto protoreflect.FileDescriptor
+var File_characters_v1_service_proto protoreflect.FileDescriptor
 
-const file_characters_service_proto_rawDesc = "" +
+const file_characters_v1_service_proto_rawDesc = "" +
 	"\n" +
-	"\x18characters/service.proto\x12\n" +
-	"characters\"\xc5\x02\n" +
+	"\x1bcharacters/v1/service.proto\x12\rcharacters.v1\"\xc5\x02\n" +
 	"\rCreateRequest\x12\x14\n" +
 	"\x05class\x18\x01 \x01(\tR\x05class\x12\x14\n" +
 	"\x05level\x18\x02 \x01(\x05R\x05level\x12\x12\n" +
@@ -677,13 +676,13 @@ const file_characters_service_proto_rawDesc = "" +
 	"\fintelligence\x18\t \x01(\x05R\fintelligence\x12\x16\n" +
 	"\x06wisdom\x18\n" +
 	" \x01(\x05R\x06wisdom\x12\x1a\n" +
-	"\bcharisma\x18\v \x01(\x05R\bcharisma\"E\n" +
-	"\x0eCreateResponse\x123\n" +
-	"\tcharacter\x18\x01 \x01(\v2\x15.characters.CharacterR\tcharacter\"!\n" +
+	"\bcharisma\x18\v \x01(\x05R\bcharisma\"H\n" +
+	"\x0eCreateResponse\x126\n" +
+	"\tcharacter\x18\x01 \x01(\v2\x18.characters.v1.CharacterR\tcharacter\"!\n" +
 	"\x0fRetrieveRequest\x12\x0e\n" +
-	"\x02id\x18\x01 \x01(\tR\x02id\"G\n" +
-	"\x10RetrieveResponse\x123\n" +
-	"\tcharacter\x18\x01 \x01(\v2\x15.characters.CharacterR\tcharacter\"\x96\x04\n" +
+	"\x02id\x18\x01 \x01(\tR\x02id\"J\n" +
+	"\x10RetrieveResponse\x126\n" +
+	"\tcharacter\x18\x01 \x01(\v2\x18.characters.v1.CharacterR\tcharacter\"\x96\x04\n" +
 	"\rUpdateRequest\x12\x19\n" +
 	"\x05class\x18\x01 \x01(\tH\x00R\x05class\x88\x01\x01\x12\x19\n" +
 	"\x05level\x18\x02 \x01(\x05H\x01R\x05level\x88\x01\x01\x12\x17\n" +
@@ -710,9 +709,9 @@ const file_characters_service_proto_rawDesc = "" +
 	"\r_constitutionB\x0f\n" +
 	"\r_intelligenceB\t\n" +
 	"\a_wisdomB\v\n" +
-	"\t_charisma\"E\n" +
-	"\x0eUpdateResponse\x123\n" +
-	"\tcharacter\x18\x01 \x01(\v2\x15.characters.CharacterR\tcharacter\"\x1f\n" +
+	"\t_charisma\"H\n" +
+	"\x0eUpdateResponse\x126\n" +
+	"\tcharacter\x18\x01 \x01(\v2\x18.characters.v1.CharacterR\tcharacter\"\x1f\n" +
 	"\rDeleteRequest\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\tR\x02id\"\x10\n" +
 	"\x0eDeleteResponse\"\xd1\x02\n" +
@@ -731,53 +730,50 @@ const file_characters_service_proto_rawDesc = "" +
 	"\fintelligence\x18\n" +
 	" \x01(\x05R\fintelligence\x12\x16\n" +
 	"\x06wisdom\x18\v \x01(\x05R\x06wisdom\x12\x1a\n" +
-	"\bcharisma\x18\f \x01(\x05R\bcharisma2\x8f\x02\n" +
-	"\x03API\x12?\n" +
-	"\x06Create\x12\x19.characters.CreateRequest\x1a\x1a.characters.CreateResponse\x12E\n" +
-	"\bRetrieve\x12\x1b.characters.RetrieveRequest\x1a\x1c.characters.RetrieveResponse\x12?\n" +
-	"\x06Update\x12\x19.characters.UpdateRequest\x1a\x1a.characters.UpdateResponse\x12?\n" +
-	"\x06Delete\x12\x19.characters.DeleteRequest\x1a\x1a.characters.DeleteResponseBf\n" +
-	"\x0ecom.charactersB\fServiceProtoP\x01\xa2\x02\x03CXX\xaa\x02\n" +
-	"Characters\xca\x02\n" +
-	"Characters\xe2\x02\x16Characters\\GPBMetadata\xea\x02\n" +
-	"Charactersb\x06proto3"
+	"\bcharisma\x18\f \x01(\x05R\bcharisma2\xab\x02\n" +
+	"\aService\x12E\n" +
+	"\x06Create\x12\x1c.characters.v1.CreateRequest\x1a\x1d.characters.v1.CreateResponse\x12K\n" +
+	"\bRetrieve\x12\x1e.characters.v1.RetrieveRequest\x1a\x1f.characters.v1.RetrieveResponse\x12E\n" +
+	"\x06Update\x12\x1c.characters.v1.UpdateRequest\x1a\x1d.characters.v1.UpdateResponse\x12E\n" +
+	"\x06Delete\x12\x1c.characters.v1.DeleteRequest\x1a\x1d.characters.v1.DeleteResponseB\xab\x01\n" +
+	"\x11com.characters.v1B\fServiceProtoP\x01Z3github.com/AranGarcia/droop/protoapis/characters/v1\xa2\x02\x03CXX\xaa\x02\rCharacters.V1\xca\x02\rCharacters\\V1\xe2\x02\x19Characters\\V1\\GPBMetadata\xea\x02\x0eCharacters::V1b\x06proto3"
 
 var (
-	file_characters_service_proto_rawDescOnce sync.Once
-	file_characters_service_proto_rawDescData []byte
+	file_characters_v1_service_proto_rawDescOnce sync.Once
+	file_characters_v1_service_proto_rawDescData []byte
 )
 
-func file_characters_service_proto_rawDescGZIP() []byte {
-	file_characters_service_proto_rawDescOnce.Do(func() {
-		file_characters_service_proto_rawDescData = protoimpl.X.CompressGZIP(unsafe.Slice(unsafe.StringData(file_characters_service_proto_rawDesc), len(file_characters_service_proto_rawDesc)))
+func file_characters_v1_service_proto_rawDescGZIP() []byte {
+	file_characters_v1_service_proto_rawDescOnce.Do(func() {
+		file_characters_v1_service_proto_rawDescData = protoimpl.X.CompressGZIP(unsafe.Slice(unsafe.StringData(file_characters_v1_service_proto_rawDesc), len(file_characters_v1_service_proto_rawDesc)))
 	})
-	return file_characters_service_proto_rawDescData
+	return file_characters_v1_service_proto_rawDescData
 }
 
-var file_characters_service_proto_msgTypes = make([]protoimpl.MessageInfo, 9)
-var file_characters_service_proto_goTypes = []any{
-	(*CreateRequest)(nil),    // 0: characters.CreateRequest
-	(*CreateResponse)(nil),   // 1: characters.CreateResponse
-	(*RetrieveRequest)(nil),  // 2: characters.RetrieveRequest
-	(*RetrieveResponse)(nil), // 3: characters.RetrieveResponse
-	(*UpdateRequest)(nil),    // 4: characters.UpdateRequest
-	(*UpdateResponse)(nil),   // 5: characters.UpdateResponse
-	(*DeleteRequest)(nil),    // 6: characters.DeleteRequest
-	(*DeleteResponse)(nil),   // 7: characters.DeleteResponse
-	(*Character)(nil),        // 8: characters.Character
+var file_characters_v1_service_proto_msgTypes = make([]protoimpl.MessageInfo, 9)
+var file_characters_v1_service_proto_goTypes = []any{
+	(*CreateRequest)(nil),    // 0: characters.v1.CreateRequest
+	(*CreateResponse)(nil),   // 1: characters.v1.CreateResponse
+	(*RetrieveRequest)(nil),  // 2: characters.v1.RetrieveRequest
+	(*RetrieveResponse)(nil), // 3: characters.v1.RetrieveResponse
+	(*UpdateRequest)(nil),    // 4: characters.v1.UpdateRequest
+	(*UpdateResponse)(nil),   // 5: characters.v1.UpdateResponse
+	(*DeleteRequest)(nil),    // 6: characters.v1.DeleteRequest
+	(*DeleteResponse)(nil),   // 7: characters.v1.DeleteResponse
+	(*Character)(nil),        // 8: characters.v1.Character
 }
-var file_characters_service_proto_depIdxs = []int32{
-	8, // 0: characters.CreateResponse.character:type_name -> characters.Character
-	8, // 1: characters.RetrieveResponse.character:type_name -> characters.Character
-	8, // 2: characters.UpdateResponse.character:type_name -> characters.Character
-	0, // 3: characters.API.Create:input_type -> characters.CreateRequest
-	2, // 4: characters.API.Retrieve:input_type -> characters.RetrieveRequest
-	4, // 5: characters.API.Update:input_type -> characters.UpdateRequest
-	6, // 6: characters.API.Delete:input_type -> characters.DeleteRequest
-	1, // 7: characters.API.Create:output_type -> characters.CreateResponse
-	3, // 8: characters.API.Retrieve:output_type -> characters.RetrieveResponse
-	5, // 9: characters.API.Update:output_type -> characters.UpdateResponse
-	7, // 10: characters.API.Delete:output_type -> characters.DeleteResponse
+var file_characters_v1_service_proto_depIdxs = []int32{
+	8, // 0: characters.v1.CreateResponse.character:type_name -> characters.v1.Character
+	8, // 1: characters.v1.RetrieveResponse.character:type_name -> characters.v1.Character
+	8, // 2: characters.v1.UpdateResponse.character:type_name -> characters.v1.Character
+	0, // 3: characters.v1.Service.Create:input_type -> characters.v1.CreateRequest
+	2, // 4: characters.v1.Service.Retrieve:input_type -> characters.v1.RetrieveRequest
+	4, // 5: characters.v1.Service.Update:input_type -> characters.v1.UpdateRequest
+	6, // 6: characters.v1.Service.Delete:input_type -> characters.v1.DeleteRequest
+	1, // 7: characters.v1.Service.Create:output_type -> characters.v1.CreateResponse
+	3, // 8: characters.v1.Service.Retrieve:output_type -> characters.v1.RetrieveResponse
+	5, // 9: characters.v1.Service.Update:output_type -> characters.v1.UpdateResponse
+	7, // 10: characters.v1.Service.Delete:output_type -> characters.v1.DeleteResponse
 	7, // [7:11] is the sub-list for method output_type
 	3, // [3:7] is the sub-list for method input_type
 	3, // [3:3] is the sub-list for extension type_name
@@ -785,27 +781,27 @@ var file_characters_service_proto_depIdxs = []int32{
 	0, // [0:3] is the sub-list for field type_name
 }
 
-func init() { file_characters_service_proto_init() }
-func file_characters_service_proto_init() {
-	if File_characters_service_proto != nil {
+func init() { file_characters_v1_service_proto_init() }
+func file_characters_v1_service_proto_init() {
+	if File_characters_v1_service_proto != nil {
 		return
 	}
-	file_characters_service_proto_msgTypes[4].OneofWrappers = []any{}
+	file_characters_v1_service_proto_msgTypes[4].OneofWrappers = []any{}
 	type x struct{}
 	out := protoimpl.TypeBuilder{
 		File: protoimpl.DescBuilder{
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
-			RawDescriptor: unsafe.Slice(unsafe.StringData(file_characters_service_proto_rawDesc), len(file_characters_service_proto_rawDesc)),
+			RawDescriptor: unsafe.Slice(unsafe.StringData(file_characters_v1_service_proto_rawDesc), len(file_characters_v1_service_proto_rawDesc)),
 			NumEnums:      0,
 			NumMessages:   9,
 			NumExtensions: 0,
 			NumServices:   1,
 		},
-		GoTypes:           file_characters_service_proto_goTypes,
-		DependencyIndexes: file_characters_service_proto_depIdxs,
-		MessageInfos:      file_characters_service_proto_msgTypes,
+		GoTypes:           file_characters_v1_service_proto_goTypes,
+		DependencyIndexes: file_characters_v1_service_proto_depIdxs,
+		MessageInfos:      file_characters_v1_service_proto_msgTypes,
 	}.Build()
-	File_characters_service_proto = out.File
-	file_characters_service_proto_goTypes = nil
-	file_characters_service_proto_depIdxs = nil
+	File_characters_v1_service_proto = out.File
+	file_characters_v1_service_proto_goTypes = nil
+	file_characters_v1_service_proto_depIdxs = nil
 }

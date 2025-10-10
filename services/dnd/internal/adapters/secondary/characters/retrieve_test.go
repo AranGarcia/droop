@@ -6,7 +6,7 @@ import (
 	"reflect"
 	"testing"
 
-	characterspb "github.com/AranGarcia/droop/protoapis/proto/characters"
+	characterspb "github.com/AranGarcia/droop/protoapis/characters/v1"
 
 	"github.com/AranGarcia/droop/dnd/internal/core/entities"
 )

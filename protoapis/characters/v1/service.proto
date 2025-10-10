@@ -1,8 +1,10 @@
 syntax = "proto3";
 
-package characters;
+package characters.v1;
 
-service API {
+option go_package = "github.com/AranGarcia/droop/protoapis/characters/v1";
+
+service Service {
     rpc Create(CreateRequest) returns (CreateResponse);
     rpc Retrieve(RetrieveRequest) returns (RetrieveResponse);
     rpc Update(UpdateRequest) returns (UpdateResponse);

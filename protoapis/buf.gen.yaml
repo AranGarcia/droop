@@ -3,18 +3,12 @@ managed:
   enabled: true
 plugins:
   - remote: buf.build/protocolbuffers/go:v1.36.6
-    out: proto/
+    out: ./
     opt:
       - paths=source_relative
-      - Mcharacters/service.proto=proto/characters
-      - Mdnd/service.proto=proto/dnd
-      - Minitiatives/service.proto=proto/initiatives
   - remote: buf.build/grpc/go:v1.5.1
-    out: proto/
+    out: ./
     opt:
       - paths=source_relative
-      - Mcharacters/service.proto=proto/characters
-      - Mdnd/service.proto=proto/dnd
-      - Minitiatives/service.proto=proto/initiatives
 inputs:
-  - directory: proto
+  - directory: ./

@@ -6,16 +6,11 @@ services:
       - 27017:27017
     command: --config /etc/mongo/mongod.conf
     environment:
-      # Are these credentials even valid?
       MONGO_INITDB_ROOT_USERNAME: mongoadmin
       MONGO_INITDB_ROOT_PASSWORD: mongoadmin
       MONGO_INITDB_DATABASE: droop
     healthcheck:
       test: echo 'db.runCommand("ping").ok' | mongosh mongodb:27017/test --quiet
-      interval: 10s
-      timeout: 10s
-      start_period: 30s
-      retries: 5
     volumes:
       - type: bind
         source: docker/mongo/entrypoint-initdb.d

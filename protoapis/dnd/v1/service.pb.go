@@ -2,9 +2,9 @@
 // versions:
 // 	protoc-gen-go v1.36.6
 // 	protoc        (unknown)
-// source: dnd/service.proto
+// source: dnd/v1/service.proto
 
-package dnd
+package v1
 
 import (
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
@@ -30,7 +30,7 @@ type RollInitiativeRequest struct {
 
 func (x *RollInitiativeRequest) Reset() {
 	*x = RollInitiativeRequest{}
-	mi := &file_dnd_service_proto_msgTypes[0]
+	mi := &file_dnd_v1_service_proto_msgTypes[0]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -42,7 +42,7 @@ func (x *RollInitiativeRequest) String() string {
 func (*RollInitiativeRequest) ProtoMessage() {}
 
 func (x *RollInitiativeRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_dnd_service_proto_msgTypes[0]
+	mi := &file_dnd_v1_service_proto_msgTypes[0]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -55,7 +55,7 @@ func (x *RollInitiativeRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use RollInitiativeRequest.ProtoReflect.Descriptor instead.
 func (*RollInitiativeRequest) Descriptor() ([]byte, []int) {
-	return file_dnd_service_proto_rawDescGZIP(), []int{0}
+	return file_dnd_v1_service_proto_rawDescGZIP(), []int{0}
 }
 
 func (x *RollInitiativeRequest) GetId() string {
@@ -74,7 +74,7 @@ type RollInitiativeResponse struct {
 
 func (x *RollInitiativeResponse) Reset() {
 	*x = RollInitiativeResponse{}
-	mi := &file_dnd_service_proto_msgTypes[1]
+	mi := &file_dnd_v1_service_proto_msgTypes[1]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -86,7 +86,7 @@ func (x *RollInitiativeResponse) String() string {
 func (*RollInitiativeResponse) ProtoMessage() {}
 
 func (x *RollInitiativeResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_dnd_service_proto_msgTypes[1]
+	mi := &file_dnd_v1_service_proto_msgTypes[1]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -99,7 +99,7 @@ func (x *RollInitiativeResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use RollInitiativeResponse.ProtoReflect.Descriptor instead.
 func (*RollInitiativeResponse) Descriptor() ([]byte, []int) {
-	return file_dnd_service_proto_rawDescGZIP(), []int{1}
+	return file_dnd_v1_service_proto_rawDescGZIP(), []int{1}
 }
 
 func (x *RollInitiativeResponse) GetResult() int32 {
@@ -109,39 +109,40 @@ func (x *RollInitiativeResponse) GetResult() int32 {
 	return 0
 }
 
-var File_dnd_service_proto protoreflect.FileDescriptor
+var File_dnd_v1_service_proto protoreflect.FileDescriptor
 
-const file_dnd_service_proto_rawDesc = "" +
+const file_dnd_v1_service_proto_rawDesc = "" +
 	"\n" +
-	"\x11dnd/service.proto\x12\x03dnd\"'\n" +
+	"\x14dnd/v1/service.proto\x12\x06dnd.v1\"'\n" +
 	"\x15RollInitiativeRequest\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\tR\x02id\"0\n" +
 	"\x16RollInitiativeResponse\x12\x16\n" +
-	"\x06result\x18\x01 \x01(\x05R\x06result2P\n" +
-	"\x03API\x12I\n" +
-	"\x0eRollInitiative\x12\x1a.dnd.RollInitiativeRequest\x1a\x1b.dnd.RollInitiativeResponseBC\n" +
-	"\acom.dndB\fServiceProtoP\x01\xa2\x02\x03DXX\xaa\x02\x03Dnd\xca\x02\x03Dnd\xe2\x02\x0fDnd\\GPBMetadata\xea\x02\x03Dndb\x06proto3"
+	"\x06result\x18\x01 \x01(\x05R\x06result2Z\n" +
+	"\aService\x12O\n" +
+	"\x0eRollInitiative\x12\x1d.dnd.v1.RollInitiativeRequest\x1a\x1e.dnd.v1.RollInitiativeResponseB\x81\x01\n" +
+	"\n" +
+	"com.dnd.v1B\fServiceProtoP\x01Z,github.com/AranGarcia/droop/protoapis/dnd/v1\xa2\x02\x03DXX\xaa\x02\x06Dnd.V1\xca\x02\x06Dnd\\V1\xe2\x02\x12Dnd\\V1\\GPBMetadata\xea\x02\aDnd::V1b\x06proto3"
 
 var (
-	file_dnd_service_proto_rawDescOnce sync.Once
-	file_dnd_service_proto_rawDescData []byte
+	file_dnd_v1_service_proto_rawDescOnce sync.Once
+	file_dnd_v1_service_proto_rawDescData []byte
 )
 
-func file_dnd_service_proto_rawDescGZIP() []byte {
-	file_dnd_service_proto_rawDescOnce.Do(func() {
-		file_dnd_service_proto_rawDescData = protoimpl.X.CompressGZIP(unsafe.Slice(unsafe.StringData(file_dnd_service_proto_rawDesc), len(file_dnd_service_proto_rawDesc)))
+func file_dnd_v1_service_proto_rawDescGZIP() []byte {
+	file_dnd_v1_service_proto_rawDescOnce.Do(func() {
+		file_dnd_v1_service_proto_rawDescData = protoimpl.X.CompressGZIP(unsafe.Slice(unsafe.StringData(file_dnd_v1_service_proto_rawDesc), len(file_dnd_v1_service_proto_rawDesc)))
 	})
-	return file_dnd_service_proto_rawDescData
+	return file_dnd_v1_service_proto_rawDescData
 }
 
-var file_dnd_service_proto_msgTypes = make([]protoimpl.MessageInfo, 2)
-var file_dnd_service_proto_goTypes = []any{
-	(*RollInitiativeRequest)(nil),  // 0: dnd.RollInitiativeRequest
-	(*RollInitiativeResponse)(nil), // 1: dnd.RollInitiativeResponse
+var file_dnd_v1_service_proto_msgTypes = make([]protoimpl.MessageInfo, 2)
+var file_dnd_v1_service_proto_goTypes = []any{
+	(*RollInitiativeRequest)(nil),  // 0: dnd.v1.RollInitiativeRequest
+	(*RollInitiativeResponse)(nil), // 1: dnd.v1.RollInitiativeResponse
 }
-var file_dnd_service_proto_depIdxs = []int32{
-	0, // 0: dnd.API.RollInitiative:input_type -> dnd.RollInitiativeRequest
-	1, // 1: dnd.API.RollInitiative:output_type -> dnd.RollInitiativeResponse
+var file_dnd_v1_service_proto_depIdxs = []int32{
+	0, // 0: dnd.v1.Service.RollInitiative:input_type -> dnd.v1.RollInitiativeRequest
+	1, // 1: dnd.v1.Service.RollInitiative:output_type -> dnd.v1.RollInitiativeResponse
 	1, // [1:2] is the sub-list for method output_type
 	0, // [0:1] is the sub-list for method input_type
 	0, // [0:0] is the sub-list for extension type_name
@@ -149,26 +150,26 @@ var file_dnd_service_proto_depIdxs = []int32{
 	0, // [0:0] is the sub-list for field type_name
 }
 
-func init() { file_dnd_service_proto_init() }
-func file_dnd_service_proto_init() {
-	if File_dnd_service_proto != nil {
+func init() { file_dnd_v1_service_proto_init() }
+func file_dnd_v1_service_proto_init() {
+	if File_dnd_v1_service_proto != nil {
 		return
 	}
 	type x struct{}
 	out := protoimpl.TypeBuilder{
 		File: protoimpl.DescBuilder{
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
-			RawDescriptor: unsafe.Slice(unsafe.StringData(file_dnd_service_proto_rawDesc), len(file_dnd_service_proto_rawDesc)),
+			RawDescriptor: unsafe.Slice(unsafe.StringData(file_dnd_v1_service_proto_rawDesc), len(file_dnd_v1_service_proto_rawDesc)),
 			NumEnums:      0,
 			NumMessages:   2,
 			NumExtensions: 0,
 			NumServices:   1,
 		},
-		GoTypes:           file_dnd_service_proto_goTypes,
-		DependencyIndexes: file_dnd_service_proto_depIdxs,
-		MessageInfos:      file_dnd_service_proto_msgTypes,
+		GoTypes:           file_dnd_v1_service_proto_goTypes,
+		DependencyIndexes: file_dnd_v1_service_proto_depIdxs,
+		MessageInfos:      file_dnd_v1_service_proto_msgTypes,
 	}.Build()
-	File_dnd_service_proto = out.File
-	file_dnd_service_proto_goTypes = nil
-	file_dnd_service_proto_depIdxs = nil
+	File_dnd_v1_service_proto = out.File
+	file_dnd_v1_service_proto_goTypes = nil
+	file_dnd_v1_service_proto_depIdxs = nil
 }

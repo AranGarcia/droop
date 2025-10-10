@@ -6,11 +6,11 @@ import (
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/credentials/insecure"
 
-	characterspb "github.com/AranGarcia/droop/protoapis/proto/characters"
+	characterspb "github.com/AranGarcia/droop/protoapis/characters/v1"
 )
 
 type Client struct {
-	grpcClient characterspb.APIClient
+	grpcClient characterspb.ServiceClient
 }
 
 type Config struct {
@@ -23,7 +23,7 @@ func NewClient(config Config) (*Client, error) {
 		return nil, fmt.Errorf("failed to initialize grpc client; %v", err)
 	}
 
-	grpcClient := characterspb.NewAPIClient(conn)
+	grpcClient := characterspb.NewServiceClient(conn)
 
 	c := &Client{
 		grpcClient: grpcClient,

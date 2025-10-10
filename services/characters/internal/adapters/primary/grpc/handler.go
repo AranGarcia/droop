@@ -3,7 +3,7 @@ package grpc
 import (
 	"context"
 
-	characterspb "github.com/AranGarcia/droop/protoapis/proto/characters"
+	characterspb "github.com/AranGarcia/droop/protoapis/characters/v1"
 )
 
 func (s Server) Create(ctx context.Context, request *characterspb.CreateRequest) (*characterspb.CreateResponse, error) {

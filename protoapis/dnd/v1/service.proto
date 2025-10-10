@@ -1,8 +1,10 @@
 syntax = "proto3";
 
-package dnd;
+package dnd.v1;
 
-service API {
+option go_package = "github.com/AranGarcia/droop/protoapis/dnd/v1";
+
+service Service {
     rpc RollInitiative(RollInitiativeRequest) returns (RollInitiativeResponse);
 }
 

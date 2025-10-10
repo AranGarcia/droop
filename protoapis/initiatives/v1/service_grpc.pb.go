@@ -2,9 +2,9 @@
 // versions:
 // - protoc-gen-go-grpc v1.5.1
 // - protoc             (unknown)
-// source: initiatives/service.proto
+// source: initiatives/v1/service.proto
 
-package initiatives
+package v1
 
 import (
 	context "context"
@@ -19,179 +19,179 @@ import (
 const _ = grpc.SupportPackageIsVersion9
 
 const (
-	API_RegisterTurn_FullMethodName = "/initiatives.API/RegisterTurn"
-	API_ListTurns_FullMethodName    = "/initiatives.API/ListTurns"
-	API_ClearAll_FullMethodName     = "/initiatives.API/ClearAll"
+	Service_RegisterTurn_FullMethodName = "/initiatives.v1.Service/RegisterTurn"
+	Service_ListTurns_FullMethodName    = "/initiatives.v1.Service/ListTurns"
+	Service_ClearAll_FullMethodName     = "/initiatives.v1.Service/ClearAll"
 )
 
-// APIClient is the client API for API service.
+// ServiceClient is the client API for Service service.
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
-type APIClient interface {
+type ServiceClient interface {
 	RegisterTurn(ctx context.Context, in *RegisterTurnRequest, opts ...grpc.CallOption) (*RegisterTurnResponse, error)
 	ListTurns(ctx context.Context, in *ListTurnsRequest, opts ...grpc.CallOption) (*ListTurnsResponse, error)
 	ClearAll(ctx context.Context, in *ClearAllRequest, opts ...grpc.CallOption) (*ClearAllResponse, error)
 }
 
-type aPIClient struct {
+type serviceClient struct {
 	cc grpc.ClientConnInterface
 }
 
-func NewAPIClient(cc grpc.ClientConnInterface) APIClient {
-	return &aPIClient{cc}
+func NewServiceClient(cc grpc.ClientConnInterface) ServiceClient {
+	return &serviceClient{cc}
 }
 
-func (c *aPIClient) RegisterTurn(ctx context.Context, in *RegisterTurnRequest, opts ...grpc.CallOption) (*RegisterTurnResponse, error) {
+func (c *serviceClient) RegisterTurn(ctx context.Context, in *RegisterTurnRequest, opts ...grpc.CallOption) (*RegisterTurnResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(RegisterTurnResponse)
-	err := c.cc.Invoke(ctx, API_RegisterTurn_FullMethodName, in, out, cOpts...)
+	err := c.cc.Invoke(ctx, Service_RegisterTurn_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *aPIClient) ListTurns(ctx context.Context, in *ListTurnsRequest, opts ...grpc.CallOption) (*ListTurnsResponse, error) {
+func (c *serviceClient) ListTurns(ctx context.Context, in *ListTurnsRequest, opts ...grpc.CallOption) (*ListTurnsResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(ListTurnsResponse)
-	err := c.cc.Invoke(ctx, API_ListTurns_FullMethodName, in, out, cOpts...)
+	err := c.cc.Invoke(ctx, Service_ListTurns_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *aPIClient) ClearAll(ctx context.Context, in *ClearAllRequest, opts ...grpc.CallOption) (*ClearAllResponse, error) {
+func (c *serviceClient) ClearAll(ctx context.Context, in *ClearAllRequest, opts ...grpc.CallOption) (*ClearAllResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(ClearAllResponse)
-	err := c.cc.Invoke(ctx, API_ClearAll_FullMethodName, in, out, cOpts...)
+	err := c.cc.Invoke(ctx, Service_ClearAll_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-// APIServer is the server API for API service.
-// All implementations must embed UnimplementedAPIServer
+// ServiceServer is the server API for Service service.
+// All implementations must embed UnimplementedServiceServer
 // for forward compatibility.
-type APIServer interface {
+type ServiceServer interface {
 	RegisterTurn(context.Context, *RegisterTurnRequest) (*RegisterTurnResponse, error)
 	ListTurns(context.Context, *ListTurnsRequest) (*ListTurnsResponse, error)
 	ClearAll(context.Context, *ClearAllRequest) (*ClearAllResponse, error)
-	mustEmbedUnimplementedAPIServer()
+	mustEmbedUnimplementedServiceServer()
 }
 
-// UnimplementedAPIServer must be embedded to have
+// UnimplementedServiceServer must be embedded to have
 // forward compatible implementations.
 //
 // NOTE: this should be embedded by value instead of pointer to avoid a nil
 // pointer dereference when methods are called.
-type UnimplementedAPIServer struct{}
+type UnimplementedServiceServer struct{}
 
-func (UnimplementedAPIServer) RegisterTurn(context.Context, *RegisterTurnRequest) (*RegisterTurnResponse, error) {
+func (UnimplementedServiceServer) RegisterTurn(context.Context, *RegisterTurnRequest) (*RegisterTurnResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method RegisterTurn not implemented")
 }
-func (UnimplementedAPIServer) ListTurns(context.Context, *ListTurnsRequest) (*ListTurnsResponse, error) {
+func (UnimplementedServiceServer) ListTurns(context.Context, *ListTurnsRequest) (*ListTurnsResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ListTurns not implemented")
 }
-func (UnimplementedAPIServer) ClearAll(context.Context, *ClearAllRequest) (*ClearAllResponse, error) {
+func (UnimplementedServiceServer) ClearAll(context.Context, *ClearAllRequest) (*ClearAllResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ClearAll not implemented")
 }
-func (UnimplementedAPIServer) mustEmbedUnimplementedAPIServer() {}
-func (UnimplementedAPIServer) testEmbeddedByValue()             {}
+func (UnimplementedServiceServer) mustEmbedUnimplementedServiceServer() {}
+func (UnimplementedServiceServer) testEmbeddedByValue()                 {}
 
-// UnsafeAPIServer may be embedded to opt out of forward compatibility for this service.
-// Use of this interface is not recommended, as added methods to APIServer will
+// UnsafeServiceServer may be embedded to opt out of forward compatibility for this service.
+// Use of this interface is not recommended, as added methods to ServiceServer will
 // result in compilation errors.
-type UnsafeAPIServer interface {
-	mustEmbedUnimplementedAPIServer()
+type UnsafeServiceServer interface {
+	mustEmbedUnimplementedServiceServer()
 }
 
-func RegisterAPIServer(s grpc.ServiceRegistrar, srv APIServer) {
-	// If the following call pancis, it indicates UnimplementedAPIServer was
+func RegisterServiceServer(s grpc.ServiceRegistrar, srv ServiceServer) {
+	// If the following call pancis, it indicates UnimplementedServiceServer was
 	// embedded by pointer and is nil.  This will cause panics if an
 	// unimplemented method is ever invoked, so we test this at initialization
 	// time to prevent it from happening at runtime later due to I/O.
 	if t, ok := srv.(interface{ testEmbeddedByValue() }); ok {
 		t.testEmbeddedByValue()
 	}
-	s.RegisterService(&API_ServiceDesc, srv)
+	s.RegisterService(&Service_ServiceDesc, srv)
 }
 
-func _API_RegisterTurn_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _Service_RegisterTurn_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(RegisterTurnRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(APIServer).RegisterTurn(ctx, in)
+		return srv.(ServiceServer).RegisterTurn(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: API_RegisterTurn_FullMethodName,
+		FullMethod: Service_RegisterTurn_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(APIServer).RegisterTurn(ctx, req.(*RegisterTurnRequest))
+		return srv.(ServiceServer).RegisterTurn(ctx, req.(*RegisterTurnRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _API_ListTurns_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _Service_ListTurns_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(ListTurnsRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(APIServer).ListTurns(ctx, in)
+		return srv.(ServiceServer).ListTurns(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: API_ListTurns_FullMethodName,
+		FullMethod: Service_ListTurns_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(APIServer).ListTurns(ctx, req.(*ListTurnsRequest))
+		return srv.(ServiceServer).ListTurns(ctx, req.(*ListTurnsRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _API_ClearAll_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _Service_ClearAll_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(ClearAllRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(APIServer).ClearAll(ctx, in)
+		return srv.(ServiceServer).ClearAll(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: API_ClearAll_FullMethodName,
+		FullMethod: Service_ClearAll_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(APIServer).ClearAll(ctx, req.(*ClearAllRequest))
+		return srv.(ServiceServer).ClearAll(ctx, req.(*ClearAllRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-// API_ServiceDesc is the grpc.ServiceDesc for API service.
+// Service_ServiceDesc is the grpc.ServiceDesc for Service service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
-var API_ServiceDesc = grpc.ServiceDesc{
-	ServiceName: "initiatives.API",
-	HandlerType: (*APIServer)(nil),
+var Service_ServiceDesc = grpc.ServiceDesc{
+	ServiceName: "initiatives.v1.Service",
+	HandlerType: (*ServiceServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
 			MethodName: "RegisterTurn",
-			Handler:    _API_RegisterTurn_Handler,
+			Handler:    _Service_RegisterTurn_Handler,
 		},
 		{
 			MethodName: "ListTurns",
-			Handler:    _API_ListTurns_Handler,
+			Handler:    _Service_ListTurns_Handler,
 		},
 		{
 			MethodName: "ClearAll",
-			Handler:    _API_ClearAll_Handler,
+			Handler:    _Service_ClearAll_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
-	Metadata: "initiatives/service.proto",
+	Metadata: "initiatives/v1/service.proto",
 }

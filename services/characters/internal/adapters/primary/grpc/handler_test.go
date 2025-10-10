@@ -8,7 +8,7 @@ import (
 	"github.com/AranGarcia/droop/characters/internal/core/api/mock"
 	"github.com/AranGarcia/droop/characters/internal/core/entities"
 
-	characterspb "github.com/AranGarcia/droop/protoapis/proto/characters"
+	characterspb "github.com/AranGarcia/droop/protoapis/characters/v1"
 )
 
 func TestServer_Retrieve(t *testing.T) {

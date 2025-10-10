@@ -7,11 +7,11 @@ import (
 
 	"github.com/AranGarcia/droop/initiatives/internal/ports/core/turns"
 
-	pb "github.com/AranGarcia/droop/protoapis/proto/initiatives"
+	pb "github.com/AranGarcia/droop/protoapis/initiatives/v1"
 )
 
 type Server struct {
-	pb.UnimplementedAPIServer
+	pb.UnimplementedServiceServer
 
 	addr string
 	api  turns.API
@@ -30,6 +30,6 @@ func (s Server) Run() error {
 		return err
 	}
 	grpcServer := grpc.NewServer()
-	pb.RegisterAPIServer(grpcServer, s)
+	pb.RegisterServiceServer(grpcServer, s)
 	return grpcServer.Serve(lis)
 }

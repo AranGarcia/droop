@@ -4,7 +4,7 @@ import (
 	"github.com/AranGarcia/droop/characters/internal/core/api"
 	"github.com/AranGarcia/droop/characters/internal/core/entities"
 
-	characterspb "github.com/AranGarcia/droop/protoapis/proto/characters"
+	characterspb "github.com/AranGarcia/droop/protoapis/characters/v1"
 )
 
 func CreateRequestToAPI(request *characterspb.CreateRequest) api.CreateCharacterRequest {

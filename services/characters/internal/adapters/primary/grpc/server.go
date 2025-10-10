@@ -7,13 +7,13 @@ import (
 
 	"github.com/AranGarcia/droop/characters/internal/core/api"
 
-	characterspb "github.com/AranGarcia/droop/protoapis/proto/characters"
+	characterspb "github.com/AranGarcia/droop/protoapis/characters/v1"
 )
 
 // Server is a gRPC adapter for the character service.
 type Server struct {
 	// Unimplemented gRPC server.
-	characterspb.UnimplementedAPIServer
+	characterspb.UnimplementedServiceServer
 
 	addr             string
 	characterService api.Characters
@@ -34,6 +34,6 @@ func (s Server) Run() error {
 		return err
 	}
 	grpcServer := grpc.NewServer()
-	characterspb.RegisterAPIServer(grpcServer, s)
+	characterspb.RegisterServiceServer(grpcServer, s)
 	return grpcServer.Serve(lis)
 }

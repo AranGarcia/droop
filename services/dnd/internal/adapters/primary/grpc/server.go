@@ -8,7 +8,7 @@ import (
 
 	"github.com/AranGarcia/droop/dnd/internal/ports/core/rules"
 
-	dndpb "github.com/AranGarcia/droop/protoapis/proto/dnd"
+	dndpb "github.com/AranGarcia/droop/protoapis/dnd/v1"
 )
 
 // Config for the server.
@@ -22,7 +22,7 @@ type Config struct {
 
 // Server is a primary port implemented with GRPC.
 type Server struct {
-	dndpb.UnimplementedAPIServer
+	dndpb.UnimplementedServiceServer
 
 	// Addr is the connection string in the format "HOST:PORT"
 	addr string
@@ -47,6 +47,6 @@ func (s Server) Run() error {
 		return fmt.Errorf("failed to bind addres %q; %s", s.addr, err)
 	}
 	grpcServer := grpc.NewServer()
-	dndpb.RegisterAPIServer(grpcServer, s)
+	dndpb.RegisterServiceServer(grpcServer, s)
 	return grpcServer.Serve(lis)
 }

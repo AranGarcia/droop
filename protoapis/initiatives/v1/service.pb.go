@@ -2,9 +2,9 @@
 // versions:
 // 	protoc-gen-go v1.36.6
 // 	protoc        (unknown)
-// source: initiatives/service.proto
+// source: initiatives/v1/service.proto
 
-package initiatives
+package v1
 
 import (
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
@@ -33,7 +33,7 @@ type RegisterTurnRequest struct {
 
 func (x *RegisterTurnRequest) Reset() {
 	*x = RegisterTurnRequest{}
-	mi := &file_initiatives_service_proto_msgTypes[0]
+	mi := &file_initiatives_v1_service_proto_msgTypes[0]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -45,7 +45,7 @@ func (x *RegisterTurnRequest) String() string {
 func (*RegisterTurnRequest) ProtoMessage() {}
 
 func (x *RegisterTurnRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_initiatives_service_proto_msgTypes[0]
+	mi := &file_initiatives_v1_service_proto_msgTypes[0]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -58,7 +58,7 @@ func (x *RegisterTurnRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use RegisterTurnRequest.ProtoReflect.Descriptor instead.
 func (*RegisterTurnRequest) Descriptor() ([]byte, []int) {
-	return file_initiatives_service_proto_rawDescGZIP(), []int{0}
+	return file_initiatives_v1_service_proto_rawDescGZIP(), []int{0}
 }
 
 func (x *RegisterTurnRequest) GetCampaignId() string {
@@ -97,7 +97,7 @@ type RegisterTurnResponse struct {
 
 func (x *RegisterTurnResponse) Reset() {
 	*x = RegisterTurnResponse{}
-	mi := &file_initiatives_service_proto_msgTypes[1]
+	mi := &file_initiatives_v1_service_proto_msgTypes[1]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -109,7 +109,7 @@ func (x *RegisterTurnResponse) String() string {
 func (*RegisterTurnResponse) ProtoMessage() {}
 
 func (x *RegisterTurnResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_initiatives_service_proto_msgTypes[1]
+	mi := &file_initiatives_v1_service_proto_msgTypes[1]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -122,7 +122,7 @@ func (x *RegisterTurnResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use RegisterTurnResponse.ProtoReflect.Descriptor instead.
 func (*RegisterTurnResponse) Descriptor() ([]byte, []int) {
-	return file_initiatives_service_proto_rawDescGZIP(), []int{1}
+	return file_initiatives_v1_service_proto_rawDescGZIP(), []int{1}
 }
 
 type ListTurnsRequest struct {
@@ -134,7 +134,7 @@ type ListTurnsRequest struct {
 
 func (x *ListTurnsRequest) Reset() {
 	*x = ListTurnsRequest{}
-	mi := &file_initiatives_service_proto_msgTypes[2]
+	mi := &file_initiatives_v1_service_proto_msgTypes[2]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -146,7 +146,7 @@ func (x *ListTurnsRequest) String() string {
 func (*ListTurnsRequest) ProtoMessage() {}
 
 func (x *ListTurnsRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_initiatives_service_proto_msgTypes[2]
+	mi := &file_initiatives_v1_service_proto_msgTypes[2]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -159,7 +159,7 @@ func (x *ListTurnsRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ListTurnsRequest.ProtoReflect.Descriptor instead.
 func (*ListTurnsRequest) Descriptor() ([]byte, []int) {
-	return file_initiatives_service_proto_rawDescGZIP(), []int{2}
+	return file_initiatives_v1_service_proto_rawDescGZIP(), []int{2}
 }
 
 func (x *ListTurnsRequest) GetCampaignId() string {
@@ -178,7 +178,7 @@ type ListTurnsResponse struct {
 
 func (x *ListTurnsResponse) Reset() {
 	*x = ListTurnsResponse{}
-	mi := &file_initiatives_service_proto_msgTypes[3]
+	mi := &file_initiatives_v1_service_proto_msgTypes[3]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -190,7 +190,7 @@ func (x *ListTurnsResponse) String() string {
 func (*ListTurnsResponse) ProtoMessage() {}
 
 func (x *ListTurnsResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_initiatives_service_proto_msgTypes[3]
+	mi := &file_initiatives_v1_service_proto_msgTypes[3]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -203,7 +203,7 @@ func (x *ListTurnsResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ListTurnsResponse.ProtoReflect.Descriptor instead.
 func (*ListTurnsResponse) Descriptor() ([]byte, []int) {
-	return file_initiatives_service_proto_rawDescGZIP(), []int{3}
+	return file_initiatives_v1_service_proto_rawDescGZIP(), []int{3}
 }
 
 func (x *ListTurnsResponse) GetTurns() []*Turn {
@@ -222,7 +222,7 @@ type ClearAllRequest struct {
 
 func (x *ClearAllRequest) Reset() {
 	*x = ClearAllRequest{}
-	mi := &file_initiatives_service_proto_msgTypes[4]
+	mi := &file_initiatives_v1_service_proto_msgTypes[4]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -234,7 +234,7 @@ func (x *ClearAllRequest) String() string {
 func (*ClearAllRequest) ProtoMessage() {}
 
 func (x *ClearAllRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_initiatives_service_proto_msgTypes[4]
+	mi := &file_initiatives_v1_service_proto_msgTypes[4]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -247,7 +247,7 @@ func (x *ClearAllRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ClearAllRequest.ProtoReflect.Descriptor instead.
 func (*ClearAllRequest) Descriptor() ([]byte, []int) {
-	return file_initiatives_service_proto_rawDescGZIP(), []int{4}
+	return file_initiatives_v1_service_proto_rawDescGZIP(), []int{4}
 }
 
 func (x *ClearAllRequest) GetCampaignId() string {
@@ -265,7 +265,7 @@ type ClearAllResponse struct {
 
 func (x *ClearAllResponse) Reset() {
 	*x = ClearAllResponse{}
-	mi := &file_initiatives_service_proto_msgTypes[5]
+	mi := &file_initiatives_v1_service_proto_msgTypes[5]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -277,7 +277,7 @@ func (x *ClearAllResponse) String() string {
 func (*ClearAllResponse) ProtoMessage() {}
 
 func (x *ClearAllResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_initiatives_service_proto_msgTypes[5]
+	mi := &file_initiatives_v1_service_proto_msgTypes[5]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -290,7 +290,7 @@ func (x *ClearAllResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ClearAllResponse.ProtoReflect.Descriptor instead.
 func (*ClearAllResponse) Descriptor() ([]byte, []int) {
-	return file_initiatives_service_proto_rawDescGZIP(), []int{5}
+	return file_initiatives_v1_service_proto_rawDescGZIP(), []int{5}
 }
 
 type Turn struct {
@@ -304,7 +304,7 @@ type Turn struct {
 
 func (x *Turn) Reset() {
 	*x = Turn{}
-	mi := &file_initiatives_service_proto_msgTypes[6]
+	mi := &file_initiatives_v1_service_proto_msgTypes[6]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -316,7 +316,7 @@ func (x *Turn) String() string {
 func (*Turn) ProtoMessage() {}
 
 func (x *Turn) ProtoReflect() protoreflect.Message {
-	mi := &file_initiatives_service_proto_msgTypes[6]
+	mi := &file_initiatives_v1_service_proto_msgTypes[6]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -329,7 +329,7 @@ func (x *Turn) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Turn.ProtoReflect.Descriptor instead.
 func (*Turn) Descriptor() ([]byte, []int) {
-	return file_initiatives_service_proto_rawDescGZIP(), []int{6}
+	return file_initiatives_v1_service_proto_rawDescGZIP(), []int{6}
 }
 
 func (x *Turn) GetCharacterId() string {
@@ -353,11 +353,11 @@ func (x *Turn) GetResult() int32 {
 	return 0
 }
 
-var File_initiatives_service_proto protoreflect.FileDescriptor
+var File_initiatives_v1_service_proto protoreflect.FileDescriptor
 
-const file_initiatives_service_proto_rawDesc = "" +
+const file_initiatives_v1_service_proto_rawDesc = "" +
 	"\n" +
-	"\x19initiatives/service.proto\x12\vinitiatives\"\x98\x01\n" +
+	"\x1cinitiatives/v1/service.proto\x12\x0einitiatives.v1\"\x98\x01\n" +
 	"\x13RegisterTurnRequest\x12\x1f\n" +
 	"\vcampaign_id\x18\x01 \x01(\tR\n" +
 	"campaignId\x12!\n" +
@@ -367,9 +367,9 @@ const file_initiatives_service_proto_rawDesc = "" +
 	"\x14RegisterTurnResponse\"3\n" +
 	"\x10ListTurnsRequest\x12\x1f\n" +
 	"\vcampaign_id\x18\x01 \x01(\tR\n" +
-	"campaignId\"<\n" +
-	"\x11ListTurnsResponse\x12'\n" +
-	"\x05turns\x18\x01 \x03(\v2\x11.initiatives.TurnR\x05turns\"2\n" +
+	"campaignId\"?\n" +
+	"\x11ListTurnsResponse\x12*\n" +
+	"\x05turns\x18\x01 \x03(\v2\x14.initiatives.v1.TurnR\x05turns\"2\n" +
 	"\x0fClearAllRequest\x12\x1f\n" +
 	"\vcampaign_id\x18\x01 \x01(\tR\n" +
 	"campaignId\"\x12\n" +
@@ -377,43 +377,43 @@ const file_initiatives_service_proto_rawDesc = "" +
 	"\x04Turn\x12!\n" +
 	"\fcharacter_id\x18\x01 \x01(\tR\vcharacterId\x12%\n" +
 	"\x0echaracter_name\x18\x02 \x01(\tR\rcharacterName\x12\x16\n" +
-	"\x06result\x18\x03 \x01(\x05R\x06result2\xef\x01\n" +
-	"\x03API\x12S\n" +
-	"\fRegisterTurn\x12 .initiatives.RegisterTurnRequest\x1a!.initiatives.RegisterTurnResponse\x12J\n" +
-	"\tListTurns\x12\x1d.initiatives.ListTurnsRequest\x1a\x1e.initiatives.ListTurnsResponse\x12G\n" +
-	"\bClearAll\x12\x1c.initiatives.ClearAllRequest\x1a\x1d.initiatives.ClearAllResponseBk\n" +
-	"\x0fcom.initiativesB\fServiceProtoP\x01\xa2\x02\x03IXX\xaa\x02\vInitiatives\xca\x02\vInitiatives\xe2\x02\x17Initiatives\\GPBMetadata\xea\x02\vInitiativesb\x06proto3"
+	"\x06result\x18\x03 \x01(\x05R\x06result2\x85\x02\n" +
+	"\aService\x12Y\n" +
+	"\fRegisterTurn\x12#.initiatives.v1.RegisterTurnRequest\x1a$.initiatives.v1.RegisterTurnResponse\x12P\n" +
+	"\tListTurns\x12 .initiatives.v1.ListTurnsRequest\x1a!.initiatives.v1.ListTurnsResponse\x12M\n" +
+	"\bClearAll\x12\x1f.initiatives.v1.ClearAllRequest\x1a .initiatives.v1.ClearAllResponseB\xb1\x01\n" +
+	"\x12com.initiatives.v1B\fServiceProtoP\x01Z4github.com/AranGarcia/droop/protoapis/initiatives/v1\xa2\x02\x03IXX\xaa\x02\x0eInitiatives.V1\xca\x02\x0eInitiatives\\V1\xe2\x02\x1aInitiatives\\V1\\GPBMetadata\xea\x02\x0fInitiatives::V1b\x06proto3"
 
 var (
-	file_initiatives_service_proto_rawDescOnce sync.Once
-	file_initiatives_service_proto_rawDescData []byte
+	file_initiatives_v1_service_proto_rawDescOnce sync.Once
+	file_initiatives_v1_service_proto_rawDescData []byte
 )
 
-func file_initiatives_service_proto_rawDescGZIP() []byte {
-	file_initiatives_service_proto_rawDescOnce.Do(func() {
-		file_initiatives_service_proto_rawDescData = protoimpl.X.CompressGZIP(unsafe.Slice(unsafe.StringData(file_initiatives_service_proto_rawDesc), len(file_initiatives_service_proto_rawDesc)))
+func file_initiatives_v1_service_proto_rawDescGZIP() []byte {
+	file_initiatives_v1_service_proto_rawDescOnce.Do(func() {
+		file_initiatives_v1_service_proto_rawDescData = protoimpl.X.CompressGZIP(unsafe.Slice(unsafe.StringData(file_initiatives_v1_service_proto_rawDesc), len(file_initiatives_v1_service_proto_rawDesc)))
 	})
-	return file_initiatives_service_proto_rawDescData
+	return file_initiatives_v1_service_proto_rawDescData
 }
 
-var file_initiatives_service_proto_msgTypes = make([]protoimpl.MessageInfo, 7)
-var file_initiatives_service_proto_goTypes = []any{
-	(*RegisterTurnRequest)(nil),  // 0: initiatives.RegisterTurnRequest
-	(*RegisterTurnResponse)(nil), // 1: initiatives.RegisterTurnResponse
-	(*ListTurnsRequest)(nil),     // 2: initiatives.ListTurnsRequest
-	(*ListTurnsResponse)(nil),    // 3: initiatives.ListTurnsResponse
-	(*ClearAllRequest)(nil),      // 4: initiatives.ClearAllRequest
-	(*ClearAllResponse)(nil),     // 5: initiatives.ClearAllResponse
-	(*Turn)(nil),                 // 6: initiatives.Turn
+var file_initiatives_v1_service_proto_msgTypes = make([]protoimpl.MessageInfo, 7)
+var file_initiatives_v1_service_proto_goTypes = []any{
+	(*RegisterTurnRequest)(nil),  // 0: initiatives.v1.RegisterTurnRequest
+	(*RegisterTurnResponse)(nil), // 1: initiatives.v1.RegisterTurnResponse
+	(*ListTurnsRequest)(nil),     // 2: initiatives.v1.ListTurnsRequest
+	(*ListTurnsResponse)(nil),    // 3: initiatives.v1.ListTurnsResponse
+	(*ClearAllRequest)(nil),      // 4: initiatives.v1.ClearAllRequest
+	(*ClearAllResponse)(nil),     // 5: initiatives.v1.ClearAllResponse
+	(*Turn)(nil),                 // 6: initiatives.v1.Turn
 }
-var file_initiatives_service_proto_depIdxs = []int32{
-	6, // 0: initiatives.ListTurnsResponse.turns:type_name -> initiatives.Turn
-	0, // 1: initiatives.API.RegisterTurn:input_type -> initiatives.RegisterTurnRequest
-	2, // 2: initiatives.API.ListTurns:input_type -> initiatives.ListTurnsRequest
-	4, // 3: initiatives.API.ClearAll:input_type -> initiatives.ClearAllRequest
-	1, // 4: initiatives.API.RegisterTurn:output_type -> initiatives.RegisterTurnResponse
-	3, // 5: initiatives.API.ListTurns:output_type -> initiatives.ListTurnsResponse
-	5, // 6: initiatives.API.ClearAll:output_type -> initiatives.ClearAllResponse
+var file_initiatives_v1_service_proto_depIdxs = []int32{
+	6, // 0: initiatives.v1.ListTurnsResponse.turns:type_name -> initiatives.v1.Turn
+	0, // 1: initiatives.v1.Service.RegisterTurn:input_type -> initiatives.v1.RegisterTurnRequest
+	2, // 2: initiatives.v1.Service.ListTurns:input_type -> initiatives.v1.ListTurnsRequest
+	4, // 3: initiatives.v1.Service.ClearAll:input_type -> initiatives.v1.ClearAllRequest
+	1, // 4: initiatives.v1.Service.RegisterTurn:output_type -> initiatives.v1.RegisterTurnResponse
+	3, // 5: initiatives.v1.Service.ListTurns:output_type -> initiatives.v1.ListTurnsResponse
+	5, // 6: initiatives.v1.Service.ClearAll:output_type -> initiatives.v1.ClearAllResponse
 	4, // [4:7] is the sub-list for method output_type
 	1, // [1:4] is the sub-list for method input_type
 	1, // [1:1] is the sub-list for extension type_name
@@ -421,26 +421,26 @@ var file_initiatives_service_proto_depIdxs = []int32{
 	0, // [0:1] is the sub-list for field type_name
 }
 
-func init() { file_initiatives_service_proto_init() }
-func file_initiatives_service_proto_init() {
-	if File_initiatives_service_proto != nil {
+func init() { file_initiatives_v1_service_proto_init() }
+func file_initiatives_v1_service_proto_init() {
+	if File_initiatives_v1_service_proto != nil {
 		return
 	}
 	type x struct{}
 	out := protoimpl.TypeBuilder{
 		File: protoimpl.DescBuilder{
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
-			RawDescriptor: unsafe.Slice(unsafe.StringData(file_initiatives_service_proto_rawDesc), len(file_initiatives_service_proto_rawDesc)),
+			RawDescriptor: unsafe.Slice(unsafe.StringData(file_initiatives_v1_service_proto_rawDesc), len(file_initiatives_v1_service_proto_rawDesc)),
 			NumEnums:      0,
 			NumMessages:   7,
 			NumExtensions: 0,
 			NumServices:   1,
 		},
-		GoTypes:           file_initiatives_service_proto_goTypes,
-		DependencyIndexes: file_initiatives_service_proto_depIdxs,
-		MessageInfos:      file_initiatives_service_proto_msgTypes,
+		GoTypes:           file_initiatives_v1_service_proto_goTypes,
+		DependencyIndexes: file_initiatives_v1_service_proto_depIdxs,
+		MessageInfos:      file_initiatives_v1_service_proto_msgTypes,
 	}.Build()
-	File_initiatives_service_proto = out.File
-	file_initiatives_service_proto_goTypes = nil
-	file_initiatives_service_proto_depIdxs = nil
+	File_initiatives_v1_service_proto = out.File
+	file_initiatives_v1_service_proto_goTypes = nil
+	file_initiatives_v1_service_proto_depIdxs = nil
 }

@@ -26,3 +26,14 @@ func (s Server) Retrieve(ctx context.Context, request *characterspb.RetrieveRequ
 	response := RetrieveResponseToProto(apiResponse)
 	return response, nil
 }
+
+// List returns all Characters.
+func (s Server) List(ctx context.Context, request *characterspb.ListRequest) (*characterspb.ListResponse, error) {
+	apiRequest := ListRequestToAPI(request)
+	apiResponse, err := s.characterService.List(ctx, apiRequest)
+	if err != nil {
+		return nil, handleAPIError(err)
+	}
+	response := ListResponseToProto(apiResponse)
+	return response, nil
+}

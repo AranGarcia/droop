@@ -7,6 +7,8 @@ import (
 	"google.golang.org/grpc/status"
 
 	"github.com/AranGarcia/droop/characters/internal/core/api"
+
+	cerr "github.com/AranGarcia/droop/shared/common-errors"
 )
 
 func handleAPIError(err error) error {
@@ -14,13 +16,13 @@ func handleAPIError(err error) error {
 }
 
 func apiErrToCode(err error) codes.Code {
-	invalidRequestError := api.InvalidRequestError{}
+	invalidRequestError := cerr.InvalidInputError{}
 	if errors.As(err, &invalidRequestError) {
 		return codes.InvalidArgument
 	}
 
 	switch err {
-	case api.ErrNotFound:
+	case api.ErrNotFound, api.ErrInvalidID:
 		return codes.NotFound
 	}
 	return codes.Internal

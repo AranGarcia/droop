@@ -80,6 +80,25 @@ func RetrieveResponseToProto(response *api.RetrieveCharacterResponse) *character
 	}
 }
 
+func ListRequestToAPI(_ *characterspb.ListRequest) api.ListCharactersRequest {
+	return api.ListCharactersRequest{}
+}
+
+func ListResponseToProto(response *api.ListCharactersResponse) *characterspb.ListResponse {
+	if response == nil {
+		return nil
+	}
+
+	characters := make([]*characterspb.Character, len(response.Characters))
+	for i := range response.Characters {
+		characters[i] = CharacterPBFromCore(response.Characters[i])
+	}
+
+	return &characterspb.ListResponse{
+		Characters: characters,
+	}
+}
+
 func CharacterPBFromCore(character entities.Character) *characterspb.Character {
 	return &characterspb.Character{
 		Id:           character.ID,

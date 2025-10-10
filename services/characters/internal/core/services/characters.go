@@ -75,6 +75,11 @@ func (c Characters) Delete(ctx context.Context, request api.DeleteCharacterReque
 }
 
 func (c Characters) List(ctx context.Context, request api.ListCharactersRequest) (*api.ListCharactersResponse, error) {
+	// Default sort key
+	if request.Sort == "" {
+		request.Sort = api.CreatedAt
+	}
+
 	if err := request.Validate(); err != nil {
 		return nil, err
 	}

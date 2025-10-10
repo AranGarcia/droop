@@ -10,6 +10,8 @@ import (
 )
 
 func repositoryErrorToAPI(err error) error {
+	// HACK: using validator from repository layer is not ideal
+	// TODO: move this to api error handling layer
 	if validationErrors, ok := err.(validator.ValidationErrors); ok {
 		return api.NewInvalidRequestError(validationErrors)
 	}

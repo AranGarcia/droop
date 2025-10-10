@@ -40,6 +40,7 @@ func (c Characters) Create(ctx context.Context, request api.CreateCharacterReque
 	}
 
 	if err := requestEntity.Validate(); err != nil {
+		// HACK: using validator from repository layer is not ideal
 		return nil, repositoryErrorToAPI(err)
 	}
 

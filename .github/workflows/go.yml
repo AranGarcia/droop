@@ -24,9 +24,6 @@ jobs:
     - name: Install buf
       uses: bufbuild/buf-action@v1
 
-    - name: Compile protocol buffers
-      run: make proto
-
     - name: Build services
       run: |
         go build -v ./services/characters/...

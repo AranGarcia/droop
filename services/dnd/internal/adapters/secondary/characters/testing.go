@@ -27,3 +27,7 @@ func (m mockClient) Update(ctx context.Context, in *characterspb.UpdateRequest, 
 func (m mockClient) Delete(ctx context.Context, in *characterspb.DeleteRequest, opts ...grpc.CallOption) (*characterspb.DeleteResponse, error) {
 	panic("not implemented") // TODO: Implement
 }
+
+func (m mockClient) List(ctx context.Context, in *characterspb.ListRequest, opts ...grpc.CallOption) (*characterspb.ListResponse, error) {
+	panic("not implemented") // TODO: Implement
+}

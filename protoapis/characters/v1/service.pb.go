@@ -525,6 +525,86 @@ func (*DeleteResponse) Descriptor() ([]byte, []int) {
 	return file_characters_v1_service_proto_rawDescGZIP(), []int{7}
 }
 
+type ListRequest struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *ListRequest) Reset() {
+	*x = ListRequest{}
+	mi := &file_characters_v1_service_proto_msgTypes[8]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *ListRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ListRequest) ProtoMessage() {}
+
+func (x *ListRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_characters_v1_service_proto_msgTypes[8]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ListRequest.ProtoReflect.Descriptor instead.
+func (*ListRequest) Descriptor() ([]byte, []int) {
+	return file_characters_v1_service_proto_rawDescGZIP(), []int{8}
+}
+
+type ListResponse struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Characters    []*Character           `protobuf:"bytes,1,rep,name=characters,proto3" json:"characters,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *ListResponse) Reset() {
+	*x = ListResponse{}
+	mi := &file_characters_v1_service_proto_msgTypes[9]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *ListResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ListResponse) ProtoMessage() {}
+
+func (x *ListResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_characters_v1_service_proto_msgTypes[9]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ListResponse.ProtoReflect.Descriptor instead.
+func (*ListResponse) Descriptor() ([]byte, []int) {
+	return file_characters_v1_service_proto_rawDescGZIP(), []int{9}
+}
+
+func (x *ListResponse) GetCharacters() []*Character {
+	if x != nil {
+		return x.Characters
+	}
+	return nil
+}
+
 type Character struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Id            string                 `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
@@ -545,7 +625,7 @@ type Character struct {
 
 func (x *Character) Reset() {
 	*x = Character{}
-	mi := &file_characters_v1_service_proto_msgTypes[8]
+	mi := &file_characters_v1_service_proto_msgTypes[10]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -557,7 +637,7 @@ func (x *Character) String() string {
 func (*Character) ProtoMessage() {}
 
 func (x *Character) ProtoReflect() protoreflect.Message {
-	mi := &file_characters_v1_service_proto_msgTypes[8]
+	mi := &file_characters_v1_service_proto_msgTypes[10]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -570,7 +650,7 @@ func (x *Character) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Character.ProtoReflect.Descriptor instead.
 func (*Character) Descriptor() ([]byte, []int) {
-	return file_characters_v1_service_proto_rawDescGZIP(), []int{8}
+	return file_characters_v1_service_proto_rawDescGZIP(), []int{10}
 }
 
 func (x *Character) GetId() string {
@@ -714,7 +794,12 @@ const file_characters_v1_service_proto_rawDesc = "" +
 	"\tcharacter\x18\x01 \x01(\v2\x18.characters.v1.CharacterR\tcharacter\"\x1f\n" +
 	"\rDeleteRequest\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\tR\x02id\"\x10\n" +
-	"\x0eDeleteResponse\"\xd1\x02\n" +
+	"\x0eDeleteResponse\"\r\n" +
+	"\vListRequest\"H\n" +
+	"\fListResponse\x128\n" +
+	"\n" +
+	"characters\x18\x01 \x03(\v2\x18.characters.v1.CharacterR\n" +
+	"characters\"\xd1\x02\n" +
 	"\tCharacter\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\tR\x02id\x12\x14\n" +
 	"\x05class\x18\x02 \x01(\tR\x05class\x12\x14\n" +
@@ -730,12 +815,13 @@ const file_characters_v1_service_proto_rawDesc = "" +
 	"\fintelligence\x18\n" +
 	" \x01(\x05R\fintelligence\x12\x16\n" +
 	"\x06wisdom\x18\v \x01(\x05R\x06wisdom\x12\x1a\n" +
-	"\bcharisma\x18\f \x01(\x05R\bcharisma2\xab\x02\n" +
+	"\bcharisma\x18\f \x01(\x05R\bcharisma2\xec\x02\n" +
 	"\aService\x12E\n" +
 	"\x06Create\x12\x1c.characters.v1.CreateRequest\x1a\x1d.characters.v1.CreateResponse\x12K\n" +
 	"\bRetrieve\x12\x1e.characters.v1.RetrieveRequest\x1a\x1f.characters.v1.RetrieveResponse\x12E\n" +
 	"\x06Update\x12\x1c.characters.v1.UpdateRequest\x1a\x1d.characters.v1.UpdateResponse\x12E\n" +
-	"\x06Delete\x12\x1c.characters.v1.DeleteRequest\x1a\x1d.characters.v1.DeleteResponseB\xab\x01\n" +
+	"\x06Delete\x12\x1c.characters.v1.DeleteRequest\x1a\x1d.characters.v1.DeleteResponse\x12?\n" +
+	"\x04List\x12\x1a.characters.v1.ListRequest\x1a\x1b.characters.v1.ListResponseB\xab\x01\n" +
 	"\x11com.characters.v1B\fServiceProtoP\x01Z3github.com/AranGarcia/droop/protoapis/characters/v1\xa2\x02\x03CXX\xaa\x02\rCharacters.V1\xca\x02\rCharacters\\V1\xe2\x02\x19Characters\\V1\\GPBMetadata\xea\x02\x0eCharacters::V1b\x06proto3"
 
 var (
@@ -750,7 +836,7 @@ func file_characters_v1_service_proto_rawDescGZIP() []byte {
 	return file_characters_v1_service_proto_rawDescData
 }
 
-var file_characters_v1_service_proto_msgTypes = make([]protoimpl.MessageInfo, 9)
+var file_characters_v1_service_proto_msgTypes = make([]protoimpl.MessageInfo, 11)
 var file_characters_v1_service_proto_goTypes = []any{
 	(*CreateRequest)(nil),    // 0: characters.v1.CreateRequest
 	(*CreateResponse)(nil),   // 1: characters.v1.CreateResponse
@@ -760,25 +846,30 @@ var file_characters_v1_service_proto_goTypes = []any{
 	(*UpdateResponse)(nil),   // 5: characters.v1.UpdateResponse
 	(*DeleteRequest)(nil),    // 6: characters.v1.DeleteRequest
 	(*DeleteResponse)(nil),   // 7: characters.v1.DeleteResponse
-	(*Character)(nil),        // 8: characters.v1.Character
+	(*ListRequest)(nil),      // 8: characters.v1.ListRequest
+	(*ListResponse)(nil),     // 9: characters.v1.ListResponse
+	(*Character)(nil),        // 10: characters.v1.Character
 }
 var file_characters_v1_service_proto_depIdxs = []int32{
-	8, // 0: characters.v1.CreateResponse.character:type_name -> characters.v1.Character
-	8, // 1: characters.v1.RetrieveResponse.character:type_name -> characters.v1.Character
-	8, // 2: characters.v1.UpdateResponse.character:type_name -> characters.v1.Character
-	0, // 3: characters.v1.Service.Create:input_type -> characters.v1.CreateRequest
-	2, // 4: characters.v1.Service.Retrieve:input_type -> characters.v1.RetrieveRequest
-	4, // 5: characters.v1.Service.Update:input_type -> characters.v1.UpdateRequest
-	6, // 6: characters.v1.Service.Delete:input_type -> characters.v1.DeleteRequest
-	1, // 7: characters.v1.Service.Create:output_type -> characters.v1.CreateResponse
-	3, // 8: characters.v1.Service.Retrieve:output_type -> characters.v1.RetrieveResponse
-	5, // 9: characters.v1.Service.Update:output_type -> characters.v1.UpdateResponse
-	7, // 10: characters.v1.Service.Delete:output_type -> characters.v1.DeleteResponse
-	7, // [7:11] is the sub-list for method output_type
-	3, // [3:7] is the sub-list for method input_type
-	3, // [3:3] is the sub-list for extension type_name
-	3, // [3:3] is the sub-list for extension extendee
-	0, // [0:3] is the sub-list for field type_name
+	10, // 0: characters.v1.CreateResponse.character:type_name -> characters.v1.Character
+	10, // 1: characters.v1.RetrieveResponse.character:type_name -> characters.v1.Character
+	10, // 2: characters.v1.UpdateResponse.character:type_name -> characters.v1.Character
+	10, // 3: characters.v1.ListResponse.characters:type_name -> characters.v1.Character
+	0,  // 4: characters.v1.Service.Create:input_type -> characters.v1.CreateRequest
+	2,  // 5: characters.v1.Service.Retrieve:input_type -> characters.v1.RetrieveRequest
+	4,  // 6: characters.v1.Service.Update:input_type -> characters.v1.UpdateRequest
+	6,  // 7: characters.v1.Service.Delete:input_type -> characters.v1.DeleteRequest
+	8,  // 8: characters.v1.Service.List:input_type -> characters.v1.ListRequest
+	1,  // 9: characters.v1.Service.Create:output_type -> characters.v1.CreateResponse
+	3,  // 10: characters.v1.Service.Retrieve:output_type -> characters.v1.RetrieveResponse
+	5,  // 11: characters.v1.Service.Update:output_type -> characters.v1.UpdateResponse
+	7,  // 12: characters.v1.Service.Delete:output_type -> characters.v1.DeleteResponse
+	9,  // 13: characters.v1.Service.List:output_type -> characters.v1.ListResponse
+	9,  // [9:14] is the sub-list for method output_type
+	4,  // [4:9] is the sub-list for method input_type
+	4,  // [4:4] is the sub-list for extension type_name
+	4,  // [4:4] is the sub-list for extension extendee
+	0,  // [0:4] is the sub-list for field type_name
 }
 
 func init() { file_characters_v1_service_proto_init() }
@@ -793,7 +884,7 @@ func file_characters_v1_service_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_characters_v1_service_proto_rawDesc), len(file_characters_v1_service_proto_rawDesc)),
 			NumEnums:      0,
-			NumMessages:   9,
+			NumMessages:   11,
 			NumExtensions: 0,
 			NumServices:   1,
 		},

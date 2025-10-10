@@ -13,12 +13,6 @@ Herramienta para jugar D&D
 
 ## Instalación
 
-Compila los protobufs
-
-```bash
-make proto
-```
-
 ## Ejecución
 
 Se pueden levantar todos los servicios con Docker Compose:
